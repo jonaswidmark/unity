@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ActionSystemUI : MonoBehaviour
 {
-    private VisualsManager visualsManager;
+    private ActionManager actionManager;
     [SerializeField] private Transform selecionButtonPrefab;
     [SerializeField] private Transform selectionButtonContainerTransform;
     [SerializeField] private TextMeshProUGUI selectionButtonText;
@@ -19,11 +19,11 @@ public class ActionSystemUI : MonoBehaviour
     }
     private void Start()
     {
-        visualsManager = VisualsManager.Instance;
-        VisualsManager.OnAnySelected += VisualsManager_OnAnySelected;
+        actionManager = ActionManager.Instance;
+        ActionManager.OnAnySelected += ActionManager_OnAnySelected;
         CreateActionButtons();
     }
-    private void VisualsManager_OnAnySelected(object sender, EventArgs e)
+    private void ActionManager_OnAnySelected(object sender, EventArgs e)
     {
         CreateActionButtons();
     }
@@ -34,19 +34,17 @@ public class ActionSystemUI : MonoBehaviour
             Destroy(buttonTransform.gameObject);
         }
         actionButtonUIList.Clear();
-        selectedTransform = visualsManager.GetSelectedTransform();
+        selectedTransform = actionManager.GetSelectedTransform();
         
         if(selectedTransform != null)
         {
             foreach (BaseAction baseAction in selectedTransform.GetBaseActionArray())
             {
-                Debug.Log(baseAction);
                 Transform ActionButtonTransform = Instantiate(selecionButtonPrefab, selectionButtonContainerTransform);
                 ActionButtonUI actionButtonUI = ActionButtonTransform.GetComponent<ActionButtonUI>();
                 actionButtonUI.SetBaseAction(baseAction);
                 actionButtonUIList.Add(actionButtonUI);
             }
         }
-        
     }
 }

@@ -8,6 +8,7 @@ public class TestCube : MonoBehaviour, IClickable
     private InputManager inputManager;
     private CountdownManager countdownManager;
     private VisualsManager visualsManager;
+    private ActionManager actionManager;
     public EventHandler<TaskEventArgs> OnInitializaTask; 
     [SerializeField] private CountdownPurpose purpose;
     private float purposeTimer = 9f;
@@ -22,6 +23,7 @@ public class TestCube : MonoBehaviour, IClickable
         inputManager = InputManager.Instance;
         countdownManager = CountdownManager.Instance;
         visualsManager = VisualsManager.Instance;
+        actionManager = ActionManager.Instance;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         RemoveVisual();
     }
@@ -60,12 +62,20 @@ public class TestCube : MonoBehaviour, IClickable
     {
         Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
         bool WasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<TestCube>() != null;
+        if(WasHit)
+        {
+            actionManager.SetSelectedTransform(this);
+        }
         return WasHit;
     }
     public bool WasOtherSelected()
     {
         Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
         bool WasOtherHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<TestCube>() == null;
+        if(!WasOtherHit)
+        {
+            actionManager.SetSelectedTransform(null);
+        }
         return WasOtherHit;
     }
     private void RemoveVisual()

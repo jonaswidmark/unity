@@ -6,7 +6,6 @@ using UnityEngine;
 public class VisualsManager : MonoBehaviour
 {
     public static VisualsManager Instance {get; private set;}
-    public static event EventHandler OnAnySelected;
     [SerializeField] private Transform selectedVisual;
     [SerializeField] private GameObject selectedVisualGameObject;
     private Transform visualParent;
@@ -42,14 +41,10 @@ public class VisualsManager : MonoBehaviour
         {
             childTransform.gameObject.GetComponent<MeshRenderer>().enabled = true;
             selectedTransform = clickableObject;
-            OnAnySelected?.Invoke(this, EventArgs.Empty);
         }
-        
     }
     public void RemoveVisual(IClickable clickableObject)
     {
-        
-        
         if (clickableObject.ObjectTransform.parent == null)
         {
             visualParent = clickableObject.ObjectTransform;
@@ -61,7 +56,7 @@ public class VisualsManager : MonoBehaviour
         Transform childTransform = clickableObject.ObjectTransform.Find(SelectedVisualString);
         
         childTransform.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        OnAnySelected?.Invoke(this, EventArgs.Empty);
+        
         if(selectedTransform == clickableObject)
         {
             selectedTransform = null;

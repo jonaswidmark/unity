@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IClickable
 {
     private InputManager inputManager;
     private VisualsManager visualsManager;
+    private ActionManager actionManager;
     private Rigidbody rb = null;
     [SerializeField] private float moveSpeed = 4f;
     private bool isInMovement = false;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, IClickable
     private void Start()
     {
         inputManager = InputManager.Instance;
+        actionManager = ActionManager.Instance;
         inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
         inputManager.OnNotMoving += InputManager_OnNotMoving;
         inputManager.OnIsJumping += InputManager_OnIsJumping;
@@ -79,12 +81,20 @@ public class Player : MonoBehaviour, IClickable
     {
         Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
         bool WasOtherHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() == null;
+        if(!WasOtherHit)
+        {
+            actionManager.SetSelectedTransform(null);
+        }
         return WasOtherHit;
     }
     public bool WasSelected()
     {
         Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
         bool WasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() != null;
+        if(WasHit)
+        {
+            actionManager.SetSelectedTransform(this);
+        }
         return WasHit;
     }
     private void SetVisual()
