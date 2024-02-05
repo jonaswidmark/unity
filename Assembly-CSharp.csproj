@@ -58,13 +58,17 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
+    <Compile Include="Assets\Scripts\SelectionSystem.cs" />
+    <Compile Include="Assets\Scripts\Actions\BaseAction.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\Actions\BuildAction.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownPurposeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
     <Compile Include="Assets\Scripts\Managers\CountdownManager.cs" />
     <Compile Include="Assets\Scripts\TestCube.cs" />
+    <Compile Include="Assets\Scripts\ActionButtonUI.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
