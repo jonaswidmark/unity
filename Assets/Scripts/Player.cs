@@ -23,10 +23,14 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 forwardVector3 = new UnityEngine.Vector3(0,0,1);
     private Vector3 moveVector = new UnityEngine.Vector3(0,0,0);
     [SerializeField] private LayerMask floor;
+    private BaseAction[] baseActionArray;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        baseActionArray = GetComponents<BaseAction>();
+        
     }
     private void Start()
     {
@@ -55,6 +59,10 @@ public class Player : MonoBehaviour, IClickable
     private void Update()
     {
         GroundedSettings();
+    }
+    public BaseAction[] GetBaseActionArray()
+    {
+        return baseActionArray;
     }
     private void InputManager_OnSelect(object sender, EventArgs e)
     {
@@ -184,7 +192,7 @@ public class Player : MonoBehaviour, IClickable
             }
         }
     }
-    private void HandleFloor()
+    /* private void HandleFloor()
     {
         RaycastHit hit;
         float raycastDistance = 3f;
@@ -201,7 +209,7 @@ public class Player : MonoBehaviour, IClickable
             Debug.Log(hit.distance);
         }
         
-    }
+    } */
     public bool GetIsGrounded()
     {
         return isGrounded;
@@ -214,4 +222,5 @@ public class Player : MonoBehaviour, IClickable
     {
         return isMovingForward;
     }
+    
 }

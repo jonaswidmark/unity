@@ -7,4 +7,5 @@ public interface IClickable
     Transform ObjectTransform { get; }
     GameObject ObjectGameObject { get; }
     public bool WasSelected();
+    public BaseAction[] GetBaseActionArray();
 }

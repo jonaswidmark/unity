@@ -1,14 +1,17 @@
-using System.Collections;
+
+using System;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class VisualsManager : MonoBehaviour
 {
     public static VisualsManager Instance {get; private set;}
+    public static event EventHandler OnAnySelected;
     [SerializeField] private Transform selectedVisual;
     [SerializeField] private GameObject selectedVisualGameObject;
     private Transform visualParent;
     private string SelectedVisualString = "SelectedVisual";
+    private IClickable selectedTransform;
 
     public void Awake()
     {
@@ -38,6 +41,8 @@ public class VisualsManager : MonoBehaviour
         if(childTransform)
         {
             childTransform.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            selectedTransform = clickableObject;
+            OnAnySelected?.Invoke(this, EventArgs.Empty);
         }
         
     }
@@ -56,6 +61,15 @@ public class VisualsManager : MonoBehaviour
         Transform childTransform = clickableObject.ObjectTransform.Find(SelectedVisualString);
         
         childTransform.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        OnAnySelected?.Invoke(this, EventArgs.Empty);
+        if(selectedTransform == clickableObject)
+        {
+            selectedTransform = null;
+        }
+    }
+    public IClickable GetSelectedTransform()
+    {
+        return selectedTransform;
     }
    
 }

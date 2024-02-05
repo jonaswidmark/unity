@@ -11,8 +11,13 @@ public class TestCube : MonoBehaviour, IClickable
     public EventHandler<TaskEventArgs> OnInitializaTask; 
     [SerializeField] private CountdownPurpose purpose;
     private float purposeTimer = 9f;
+    private BaseAction[] baseActionArray;
     
-    public void Start()
+    private void Awake()
+    {
+        baseActionArray = GetComponents<BaseAction>();
+    }
+    private void Start()
     {
         inputManager = InputManager.Instance;
         countdownManager = CountdownManager.Instance;
@@ -33,6 +38,10 @@ public class TestCube : MonoBehaviour, IClickable
         {
             return gameObject;
         }
+    }
+    public BaseAction[] GetBaseActionArray()
+    {
+        return baseActionArray;
     }
     private void InputManager_OnSelect(object sender, EventArgs e)
     {
@@ -63,11 +72,13 @@ public class TestCube : MonoBehaviour, IClickable
     {
         IClickable interfaceReference = (IClickable) this;
         visualsManager.RemoveVisual(interfaceReference);
+        
     }
     private void SetVisual()
     {
         IClickable interfaceReference = (IClickable) this;
         visualsManager.SetVisual(interfaceReference);
-
+        
     }
+
 }
