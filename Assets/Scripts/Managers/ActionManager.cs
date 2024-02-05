@@ -20,7 +20,8 @@ public class ActionManager : MonoBehaviour
     }
     public void SetSelectedAction(BaseAction baseAction)
     {
-        Debug.Log(baseAction);
+        //Debug.Log(baseAction);
+        GetDerivedClass(baseAction);
     }
     public void SetSelectedTransform(IClickable selectedTransform)
     {
@@ -30,5 +31,10 @@ public class ActionManager : MonoBehaviour
     public IClickable GetSelectedTransform()
     {
         return selectedTransform;
+    }
+    public void GetDerivedClass<T>(T obj) where T : BaseAction
+    {
+        // Gör något med obj...
+        Debug.Log($"Anropad från: {obj.GetType().Name}");
     }
 }
