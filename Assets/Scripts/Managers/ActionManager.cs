@@ -8,6 +8,8 @@ public class ActionManager : MonoBehaviour
     public static ActionManager Instance {get; private set;}
     public static event EventHandler OnAnySelected;
     private IClickable selectedTransform;
+    
+    private string currentActionName;
     public void Awake()
     {
         if(Instance != null)
@@ -20,7 +22,6 @@ public class ActionManager : MonoBehaviour
     }
     public void SetSelectedAction(BaseAction baseAction)
     {
-        //Debug.Log(baseAction);
         GetDerivedClass(baseAction);
     }
     public void SetSelectedTransform(IClickable selectedTransform)
@@ -32,9 +33,9 @@ public class ActionManager : MonoBehaviour
     {
         return selectedTransform;
     }
-    public void GetDerivedClass<T>(T obj) where T : BaseAction
+    public string GetDerivedClass<T>(T obj) where T : BaseAction
     {
-        // Gör något med obj...
-        Debug.Log($"Anropad från: {obj.GetType().Name}");
+        currentActionName = obj.GetType().ToString();
+        return currentActionName;
     }
 }
