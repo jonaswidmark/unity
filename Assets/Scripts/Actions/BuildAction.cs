@@ -13,6 +13,4 @@ public class BuildAction : BaseAction
     {
         ActionStart(onActionComplete);
     }
-
-    
 }
