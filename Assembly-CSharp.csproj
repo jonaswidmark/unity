@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownPurposeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
     <Compile Include="Assets\Scripts\Managers\CountdownManager.cs" />
-    <Compile Include="Assets\Scripts\TestCube.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />

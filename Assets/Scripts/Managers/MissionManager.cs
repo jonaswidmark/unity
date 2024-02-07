@@ -27,7 +27,7 @@ public class MissionManager : MonoBehaviour
 
     public void InitializeMission()//MissionScriptableObject mission)
     {
-        countdownManager.SpawnPrefab(purposeTimer, purpose);
+        countdownManager.SpawnPrefab(purposeTimer, purpose, out GameObject spawnedPrefab);
     }
 
 }

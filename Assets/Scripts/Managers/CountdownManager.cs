@@ -27,19 +27,20 @@ public class CountdownManager : MonoBehaviour
     }
     void Start()
     {
-        CountdownPurpose purposeMyFirstTask = purposeList.Find(x => x.GetKey() == "my_first_task");
-        CountdownPurpose purposeMySecondTask = purposeList.Find(x => x.GetKey() == "my_second_task");
+        //CountdownPurpose purposeMyFirstTask = purposeList.Find(x => x.GetKey() == "my_first_task");
+        //CountdownPurpose purposeMySecondTask = purposeList.Find(x => x.GetKey() == "my_second_task");
 
         //SpawnPrefab(3f, purposeMyFirstTask);
         //SpawnPrefab(4f, purposeMySecondTask);
 
     }
 
-    public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose)
+    public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose, out GameObject spawnedPrefab)
     {
+        spawnedPrefab = null;
         if (prefabToSpawn != null && parentObject != null && countdownArray != null && countdownPurpose != null)
         {
-            GameObject spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
+            spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
             CountdownScriptableObject countdownData = CreateCountdownScriptableObject(initialTime, countdownPurpose);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);
