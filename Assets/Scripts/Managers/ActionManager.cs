@@ -7,10 +7,11 @@ public class ActionManager : MonoBehaviour
 {
     public static ActionManager Instance {get; private set;}
     public static event EventHandler OnAnySelected;
+    public Action onActionComplete;
     private IClickable selectedTransform;
     
     private string currentActionName;
-    public void Awake()
+    private void Awake()
     {
         if(Instance != null)
         {
@@ -20,10 +21,16 @@ public class ActionManager : MonoBehaviour
         }
         Instance = this;
     }
+    private void Update()
+    {
+        
+    }
+    
     public void SetSelectedAction(BaseAction baseAction)
     {
         GetDerivedClass(baseAction);
     }
+    
     public void SetSelectedTransform(IClickable selectedTransform)
     {
         this.selectedTransform = selectedTransform;
@@ -35,7 +42,9 @@ public class ActionManager : MonoBehaviour
     }
     public string GetDerivedClass<T>(T obj) where T : BaseAction
     {
+        // This is where the action is triggered!
         currentActionName = obj.GetType().ToString();
+        obj.TakeAction(onActionComplete);
         return currentActionName;
     }
 }

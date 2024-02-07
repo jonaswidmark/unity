@@ -11,6 +11,7 @@ public class BuildAction : BaseAction
     }
     public override void TakeAction(Action onActionComplete)
     {
+        Debug.Log("Building!");
         ActionStart(onActionComplete);
     }
 }
