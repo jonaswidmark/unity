@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ public class CountdownManager : MonoBehaviour
 {
     public static CountdownManager Instance { get; private set; }
     public GameObject prefabToSpawn;
+    public event EventHandler onMissionTaskComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
     [SerializeField] private List<CountdownPurpose> purposeList;
     [SerializeField] private Transform parentObject;
@@ -35,13 +37,14 @@ public class CountdownManager : MonoBehaviour
 
     }
 
-    public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose, out GameObject spawnedPrefab)
+    public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
     {
         spawnedPrefab = null;
+        countdownData = null;
         if (prefabToSpawn != null && parentObject != null && countdownArray != null && countdownPurpose != null)
         {
             spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
-            CountdownScriptableObject countdownData = CreateCountdownScriptableObject(initialTime, countdownPurpose);
+            countdownData = CreateCountdownScriptableObject(initialTime, countdownPurpose);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);
             if (!countdownArray.GetCountdownStartedArray().ContainsKey(spawnedPrefab))
@@ -77,7 +80,7 @@ public class CountdownManager : MonoBehaviour
         string t = countdownData.GetCountdownPurpose().GetKey();
         Debug.Log("Timer with task: " + t + " was completed!");
         Destroy(pairToRemove.Key);
-
+        onMissionTaskComplete?.Invoke(this, EventArgs.Empty);
     }
 
     void Update()
