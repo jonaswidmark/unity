@@ -10,6 +10,7 @@ public class MissionManager : MonoBehaviour
     private MissionScriptableObject mission;
     [SerializeField] private CountdownPurpose purpose;
     private float purposeTimer = 9f;
+    [SerializeField] private MissionScriptableObject missionScriptableObject;
     private void Awake()
     {
         if (Instance != null)
@@ -27,7 +28,13 @@ public class MissionManager : MonoBehaviour
 
     public void InitializeMission()//MissionScriptableObject mission)
     {
-        countdownManager.SpawnPrefab(purposeTimer, purpose, out GameObject spawnedPrefab);
+        List<CountdownPurpose> missionTasks = missionScriptableObject.GetMissionTasks();
+        Debug.Log(missionTasks.Count);
+        foreach(CountdownPurpose missionTask in missionTasks)
+        {
+            countdownManager.SpawnPrefab(purposeTimer, missionTask, out GameObject spawnedPrefab);
+        }
+        
     }
 
 }

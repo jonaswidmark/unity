@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission", menuName = "CustomObjects/Mission")]
 public class MissionScriptableObject : ScriptableObject
 {
-    //[SerializeField] private List<string, GameObject, CountdownScriptableObject> countdownActiceArray = new Dictionary<GameObject, CountdownScriptableObject>();
+    [SerializeField] private List<CountdownPurpose> missionTasks = new List<CountdownPurpose>();
     
+    public List<CountdownPurpose> GetMissionTasks()
+    {
+        return missionTasks;
+    }
 }
