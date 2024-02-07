@@ -53,8 +53,6 @@ public class HomeBase : MonoBehaviour, IClickable
         }
         if(WasSelected())
         {
-            
-            countdownManager.SpawnPrefab(purposeTimer, purpose);
             SetVisual();
         }
     }

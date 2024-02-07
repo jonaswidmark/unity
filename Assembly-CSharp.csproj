@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Managers\ActionManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
+    <Compile Include="Assets\Scripts\Managers\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
     <Compile Include="Assets\Scripts\Actions\BaseAction.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\TaskEventArgs.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />

@@ -8,12 +8,17 @@ public abstract class BaseAction : MonoBehaviour
     public static event EventHandler OnAnyActionStarted;
     public static event EventHandler OnAnyActionCompleted;
     protected Action onActionComplete;
+    protected MissionManager missionManager;
     protected IClickable selectedObject;
     protected bool isActive;
 
     protected virtual void Awake()
     {
         selectedObject = GetComponent<IClickable>();
+    }
+    protected virtual void Start()
+    {
+        missionManager = MissionManager.Instance;
     }
     public IClickable GetSelectedObject()
     {

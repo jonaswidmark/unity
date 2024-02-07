@@ -8,6 +8,7 @@ public class ActionManager : MonoBehaviour
     public static ActionManager Instance {get; private set;}
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
+    private MissionManager missionManager;
     private IClickable selectedTransform;
     
     private string currentActionName;
@@ -20,6 +21,10 @@ public class ActionManager : MonoBehaviour
             return ;
         }
         Instance = this;
+    }
+    private void Start()
+    {
+        missionManager = MissionManager.Instance;
     }
     private void Update()
     {
@@ -45,6 +50,7 @@ public class ActionManager : MonoBehaviour
         // This is where the action is triggered!
         currentActionName = obj.GetType().ToString();
         obj.TakeAction(onActionComplete);
+        
         return currentActionName;
     }
 }

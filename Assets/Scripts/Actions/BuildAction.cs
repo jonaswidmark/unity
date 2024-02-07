@@ -13,5 +13,6 @@ public class BuildAction : BaseAction
     {
         Debug.Log("Building!");
         ActionStart(onActionComplete);
+        missionManager.InitializeMission();
     }
 }
