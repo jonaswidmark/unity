@@ -7,7 +7,6 @@ public class GridObject
     private GridSystem gridSystem;
     private GridPosition gridPosition;
     private Transform transform;
-
     public GridObject(GridSystem gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
@@ -25,6 +24,4 @@ public class GridObject
     {
         return transform;
     }
-    
-
 }

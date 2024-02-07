@@ -25,7 +25,6 @@ public class GridSystem
                 gridObjectArray[x, z] = new GridObject(this, gridPosition);
             }
         }
-        
     }
     public int GetWidth()
     {
@@ -43,20 +42,4 @@ public class GridSystem
     {
         return gridObjectArray;
     }
-   /*  public Vector3 GetWorldPosition(GridPosition gridPosition)
-    {
-        return new Vector3(gridPosition.x, 0, gridPosition.z) * cellSize;
-    } */
-    /* public GridPosition GetGridPosition(Vector3 worldPosition)
-    {
-        return new GridPosition(
-            Mathf.RoundToInt(worldPosition.x / cellSize),
-            Mathf.RoundToInt(worldPosition.z / cellSize)
-        );
-    }
-    
-    public GridObject GetGridObject(GridPosition gridPosition)
-    {
-        return gridObjectArray[gridPosition.x, gridPosition.z];
-    } */
 }

@@ -45,6 +45,7 @@ public class VisualsManager : MonoBehaviour
     }
     public void RemoveVisual(IClickable clickableObject)
     {
+        if (clickableObject == null) return;
         if (clickableObject.ObjectTransform.parent == null)
         {
             visualParent = clickableObject.ObjectTransform;

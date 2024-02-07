@@ -41,7 +41,7 @@ public class GridScriptableObject : ScriptableObject
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
                 
                 gridDebugObject.SetGridObject(GetGridObject(gridPosition));
-                gridDebugObject.UpdateGridPositionText();
+                //gridDebugObject.UpdateGridPositionText();
             }
         }
     }

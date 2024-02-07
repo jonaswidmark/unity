@@ -22,23 +22,24 @@ public class LevelGrid : MonoBehaviour
         gridScriptableObject.SetGridSystem(gridSystem);
         gridScriptableObject.CreateLevelGrids(gridObjectPrefab);
     }
-    public void PlaceTransformAtGridPosition(GridPosition gridPosition, Transform transform, Vector3 offsetPlacing)
+    public void PlaceTransformAtGridPosition(GridPosition gridPosition, Transform transform, Vector3 offsetPlacing, out Transform spawnedTransform)
     {
         SetTransformAtGridPosition(gridPosition, transform);
-        SpawnTransformAtGridPosition(gridPosition, transform, offsetPlacing);
+        SpawnTransformAtGridPosition(gridPosition, transform, offsetPlacing, out spawnedTransform);
     }
     public void SetTransformAtGridPosition(GridPosition gridPosition, Transform transform)
     {
         GridObject gridObject = gridScriptableObject.GetGridObject(gridPosition);
         gridObject.SetTranform(transform);
     }
-    public void SpawnTransformAtGridPosition(GridPosition gridPosition, Transform transform, Vector3 offsetPlacing)
+    public void SpawnTransformAtGridPosition(GridPosition gridPosition, Transform transform, Vector3 offsetPlacing, out  Transform spawnedTransform)
     {
+        spawnedTransform = null;
         GridObject gridObject = gridScriptableObject.GetGridObject(gridPosition);
         if(transform != null && gridObject != null)
         {
             Vector3 gridObjectWorldPosition = gridScriptableObject.GetWorldPosition(gridPosition);
-            Instantiate(transform, gridObjectWorldPosition + offsetPlacing, Quaternion.identity);
+            spawnedTransform = Instantiate(transform, gridObjectWorldPosition + offsetPlacing, Quaternion.identity);
         }
     }
     public Transform GetTransformAtGridPosition(GridPosition gridPosition)
