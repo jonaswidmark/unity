@@ -42,11 +42,12 @@ public class MissionManager : MonoBehaviour
             missionTasksStack.Push(missionTask);
         }
         
-        /* while (missionTasksStack.Count > 0)
+        while (missionTasksStack.Count > 0)
         {
             CountdownPurpose missionTask = missionTasksStack.Pop();
             reverseMissionTasksStack.Push(missionTask);
-        } */
+        }
+        missionTasksStack = reverseMissionTasksStack;
         InitializeNextMissionTask();
     }
     private void InitializeNextMissionTask()

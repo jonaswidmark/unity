@@ -36,7 +36,6 @@ public class CountdownManager : MonoBehaviour
         //SpawnPrefab(4f, purposeMySecondTask);
 
     }
-
     public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
     {
         spawnedPrefab = null;
@@ -53,7 +52,6 @@ public class CountdownManager : MonoBehaviour
             }
         }
     }
-
     CountdownScriptableObject CreateCountdownScriptableObject(float initialTime, CountdownPurpose countdownPurpose)
     {
         CountdownScriptableObject countdownData = ScriptableObject.CreateInstance<CountdownScriptableObject>();
@@ -61,7 +59,6 @@ public class CountdownManager : MonoBehaviour
         countdownData.SetCountdownPurpose(countdownPurpose);
         return countdownData;
     }
-
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
     {
         var pairToRemove = countdownDictionary.FirstOrDefault(pair => pair.Value == countdownData);
@@ -82,7 +79,6 @@ public class CountdownManager : MonoBehaviour
         Destroy(pairToRemove.Key);
         onMissionTaskComplete?.Invoke(this, EventArgs.Empty);
     }
-
     void Update()
     {
         if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
@@ -101,7 +97,6 @@ public class CountdownManager : MonoBehaviour
             }
         }
     }
-
     private string DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
