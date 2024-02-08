@@ -15,7 +15,7 @@ public class CountdownManager : MonoBehaviour
     [SerializeField] private Transform parentObject;
 
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
-
+    
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
     private void Awake()
     {
@@ -85,30 +85,21 @@ public class CountdownManager : MonoBehaviour
 
     void Update()
     {
-        if (countdownArray != null)
+        if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
         {
-            if (countdownArray.GetCountdownActiveArray().Count > 0)
+            for (int i = 0; i < countdownDictionary.Count; i++)
             {
-                foreach (var kvp in countdownDictionary)
+                var kvp = countdownDictionary.ElementAt(i);
+                if (kvp.Key != null)
                 {
-                    if (kvp.Key != null)
-                    {
-                        GameObject spawnedPrefab = kvp.Key;
-                        CountdownScriptableObject countdownData = kvp.Value;
+                    GameObject spawnedPrefab = kvp.Key;
+                    CountdownScriptableObject countdownData = kvp.Value;
 
-                        countdownData.UpdateCountdown();
-                        spawnedPrefab.GetComponent<Timer>().SetTimeText(
-                            DisplayTime(
-                                countdownData.GetTimeRemaining()
-                                )
-                            );
-                    }
-
+                    countdownData.UpdateCountdown();
+                    spawnedPrefab.GetComponent<Timer>().SetTimeText(DisplayTime(countdownData.GetTimeRemaining()));
                 }
             }
         }
-
-
     }
 
     private string DisplayTime(float timeToDisplay)
