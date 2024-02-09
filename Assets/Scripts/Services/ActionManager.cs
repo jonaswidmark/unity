@@ -30,7 +30,10 @@ public class ActionManager : MonoBehaviour
     {
         
     }
-    
+    public string GetServiceName()
+    {
+        return "ActionManager";
+    }
     public void SetSelectedAction(BaseAction baseAction)
     {
         GetDerivedClass(baseAction);
