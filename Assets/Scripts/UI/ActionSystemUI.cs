@@ -19,6 +19,9 @@ public class ActionSystemUI : MonoBehaviour
     }
     private void Start()
     {
+        ///IService actionIService = ServiceLocator.GetService("ActionService");
+        //ActionService actionService = (ActionService)actionIService;
+        //ActionService.OnAnySelected += ActionManager_OnAnySelected;
         actionManager = ActionManager.Instance;
         ActionManager.OnAnySelected += ActionManager_OnAnySelected;
         CreateActionButtons();

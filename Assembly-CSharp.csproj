@@ -79,7 +79,6 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Services\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Services\BaseService.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IService.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceManager.cs" />
+    <Compile Include="Assets\Scripts\Services\ActionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TerrainSampleAssets\ThirdPartyNotices.txt" />

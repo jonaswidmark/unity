@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   servicesToRegister:
   - serviceName: Testing
+  - serviceName: ActionService
 --- !u!4 &642044183
 Transform:
   m_ObjectHideFlags: 0
@@ -2196,6 +2197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081148237}
   - component: {fileID: 1081148238}
+  - component: {fileID: 1081148239}
   m_Layer: 0
   m_Name: RegisteredServices
   m_TagString: Untagged
@@ -2232,6 +2234,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridObjectPrefab: {fileID: 2209989096310871301, guid: 756752b28b18b4d4987f382f0addee8e,
     type: 3}
+--- !u!114 &1081148239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081148235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8980ca4735f020943a84808c50a4cf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1197364977
 GameObject:
   m_ObjectHideFlags: 0
