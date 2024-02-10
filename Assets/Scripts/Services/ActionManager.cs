@@ -26,14 +26,11 @@ public class ActionManager : MonoBehaviour
     {
         missionManager = MissionManager.Instance;
     }
-    private void Update()
-    {
-        
-    }
     public string GetServiceName()
     {
         return "ActionManager";
     }
+    
     public void SetSelectedAction(BaseAction baseAction)
     {
         GetDerivedClass(baseAction);

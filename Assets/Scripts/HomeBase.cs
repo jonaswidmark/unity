@@ -26,6 +26,9 @@ public class HomeBase : MonoBehaviour, IClickable
         actionManager = ActionManager.Instance;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         RemoveVisual();
+        Debug.Log("Start Homebase");
+        BaseService t = ServiceLocator.GetService("Testing");
+        Debug.Log(t);
     }
     public Transform ObjectTransform
     {
@@ -88,4 +91,6 @@ public class HomeBase : MonoBehaviour, IClickable
         IClickable interfaceReference = (IClickable) this;
         visualsManager.SetVisual(interfaceReference);
     }
+    
+    
 }

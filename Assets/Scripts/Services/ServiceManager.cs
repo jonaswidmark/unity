@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System;
 
 public class ServiceManager : MonoBehaviour
 {
-    private static ServiceManager instance;
+    public static ServiceManager Instance {get; private set;}
     private Dictionary<string, BaseService> registeredServices = new Dictionary<string, BaseService>();
 
-    public static ServiceManager Instance
+    /* public static ServiceManager Instance
     {
         get
         {
@@ -21,6 +23,33 @@ public class ServiceManager : MonoBehaviour
             }
             return instance;
         }
+    } */
+
+    public void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.Log("There's more than one ServiceManager! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return ;
+        }
+        Instance = this;
+        
+           /*  if (Instance == null)
+            {
+                Instance = FindObjectOfType<ServiceManager>();
+                if (Instance == null)
+                {
+                    GameObject singleton = new GameObject("ServiceManager");
+                    Instance = singleton.AddComponent<ServiceManager>();
+                }
+            }
+            Instance = this; */
+        
+    }
+    private void Start()
+    {
+        
     }
 
     public void RegisterService(string serviceName, BaseService service)

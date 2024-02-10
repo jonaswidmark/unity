@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 public class ServiceRegistrator : MonoBehaviour
 {
-    [SerializeField] private List<BaseService> servicesToRegister;
+    public List<BaseService> servicesToRegister = new List<BaseService>();
 
-    private void Awake()
+    
+
+    private void Start()
     {
         ServiceManager serviceManager = ServiceManager.Instance;
         if (serviceManager != null)
