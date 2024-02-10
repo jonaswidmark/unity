@@ -27,7 +27,7 @@ public class HomeBase : MonoBehaviour, IClickable
         inputManager.OnMouseSelect += InputManager_OnSelect;
         RemoveVisual();
         Debug.Log("Start Homebase");
-        BaseService t = ServiceLocator.GetService("Testing");
+        IService t = ServiceLocator.GetService("Testing");
         Debug.Log(t);
     }
     public Transform ObjectTransform

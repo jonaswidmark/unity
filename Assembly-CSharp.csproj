@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Services\BaseService.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IService.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\TaskEventArgs.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />

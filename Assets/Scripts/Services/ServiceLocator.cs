@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class ServiceLocator
 {
-    public static BaseService GetService(string serviceName)
+    public static IService GetService(string serviceName)
     {
         ServiceManager serviceManager = ServiceManager.Instance;
 

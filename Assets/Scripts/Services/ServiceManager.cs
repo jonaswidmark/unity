@@ -1,58 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using System;
 
 public class ServiceManager : MonoBehaviour
 {
-    public static ServiceManager Instance {get; private set;}
-    private Dictionary<string, BaseService> registeredServices = new Dictionary<string, BaseService>();
+    public static ServiceManager Instance { get; private set; }
+    private Dictionary<string, IService> registeredServices = new Dictionary<string, IService>();
 
-    /* public static ServiceManager Instance
+    private void Awake()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<ServiceManager>();
-                if (instance == null)
-                {
-                    GameObject singleton = new GameObject("ServiceManager");
-                    instance = singleton.AddComponent<ServiceManager>();
-                }
-            }
-            return instance;
-        }
-    } */
-
-    public void Awake()
-    {
-        if(Instance != null)
+        if (Instance != null)
         {
             Debug.Log("There's more than one ServiceManager! " + transform + " - " + Instance);
             Destroy(gameObject);
-            return ;
+            return;
         }
         Instance = this;
-        
-           /*  if (Instance == null)
-            {
-                Instance = FindObjectOfType<ServiceManager>();
-                if (Instance == null)
-                {
-                    GameObject singleton = new GameObject("ServiceManager");
-                    Instance = singleton.AddComponent<ServiceManager>();
-                }
-            }
-            Instance = this; */
-        
-    }
-    private void Start()
-    {
-        
     }
 
-    public void RegisterService(string serviceName, BaseService service)
+    public void RegisterService(string serviceName, IService service)
     {
         if (!registeredServices.ContainsKey(serviceName))
         {
@@ -64,8 +29,9 @@ public class ServiceManager : MonoBehaviour
         }
     }
 
-    public BaseService GetService(string serviceName)
+    public IService GetService(string serviceName)
     {
+        Debug.Log(registeredServices.Count);
         if (registeredServices.ContainsKey(serviceName))
         {
             return registeredServices[serviceName];

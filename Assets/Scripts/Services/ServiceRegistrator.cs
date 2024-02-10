@@ -1,18 +1,16 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ServiceRegistrator : MonoBehaviour
 {
-    public List<BaseService> servicesToRegister = new List<BaseService>();
-
-    
+    [SerializeField] private List<ConcreteService> servicesToRegister = new List<ConcreteService>();
 
     private void Start()
     {
         ServiceManager serviceManager = ServiceManager.Instance;
         if (serviceManager != null)
         {
-            foreach (BaseService service in servicesToRegister)
+            foreach (ConcreteService service in servicesToRegister)
             {
                 serviceManager.RegisterService(service.GetServiceName(), service);
             }
