@@ -21,6 +21,7 @@ public class ActionManager : MonoBehaviour
             return ;
         }
         Instance = this;
+        //Nothing
     }
     private void Start()
     {
