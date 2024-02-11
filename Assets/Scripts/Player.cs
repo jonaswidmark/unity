@@ -37,9 +37,9 @@ public class Player : MonoBehaviour, IClickable
     {
         inputManager = InputManager.Instance;
         actionManager = ActionManager.Instance;//ServiceLocator.GetService<ActionService>("ActionService");
-        inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
+        /* inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
         inputManager.OnNotMoving += InputManager_OnNotMoving;
-        inputManager.OnIsJumping += InputManager_OnIsJumping;
+        inputManager.OnIsJumping += InputManager_OnIsJumping; */
         inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         //VisualService visualService = ServiceLocator.GetService<VisualService>("VisualService");
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour, IClickable
         }
         
     }
-    private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
+    /* private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
     {
         isInMovement = true;
     }
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour, IClickable
     private void InputManager_OnNotMoving(object sender, System.EventArgs e)
     {
         isInMovement = false;
-    }
+    } */
     private void InputManager_OnMouseX(object sender, EventArgs e)
     {
         Vector2 mouseXDelta = inputManager.GetMouseXDelta();

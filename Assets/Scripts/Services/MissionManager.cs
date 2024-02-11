@@ -6,6 +6,7 @@ using UnityEngine;
 public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
+    public event EventHandler<MissionEventArgs> OnMissionEnded;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject mission;
@@ -18,7 +19,7 @@ public class MissionManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.Log("There's more than one MonoBehaviour! " + transform + " - " + Instance);
+            Debug.Log("There's more than one MissionManager! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }
@@ -57,6 +58,11 @@ public class MissionManager : MonoBehaviour
         {
             CountdownPurpose nextissionTask = missionTasksStack.Pop();
             countdownManager.SpawnPrefab(purposeTimer, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
+        }
+        else
+        {
+            MissionEventArgs eventArgs = new MissionEventArgs(mission);
+            OnMissionEnded?.Invoke(this, eventArgs);
         }
     }
 }

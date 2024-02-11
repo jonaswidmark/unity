@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Actions\BuildAction.cs" />
     <Compile Include="Assets\Scripts\UI\ActionButtonUI.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownArrayScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Services\MissionService.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownPurposeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceRegistrator.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IService.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\TaskEventArgs.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
     <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />

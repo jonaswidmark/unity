@@ -14,3 +14,13 @@ public class TaskEventArgs : EventArgs
         this.timer = timer;
     }
 }
+
+public class MissionEventArgs : EventArgs
+{
+    public MissionScriptableObject mission {get;}
+
+    public MissionEventArgs(MissionScriptableObject mission)
+    {
+        this.mission = mission;
+    }
+}

@@ -47,8 +47,8 @@ public class InputService : MonoBehaviour, IService
     private void OnDisable()
     {
         playerInputActions.Disable();
-        playerInputActions.Player.Movement.performed -= OnMovementPerformed;
-        playerInputActions.Player.Movement.canceled -= OnMovementCanceled;
+        /* playerInputActions.Player.Movement.performed -= OnMovementPerformed;
+        playerInputActions.Player.Movement.canceled -= OnMovementCanceled; */
         InputAction mouseXAction = new InputAction("MouseX");
         mouseXAction.Disable();
         mouseXAction.performed -= OnMouseXAction;

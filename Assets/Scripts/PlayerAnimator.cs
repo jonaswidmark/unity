@@ -20,15 +20,15 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsMovingBackwards",false);
         animator.SetBool("WalkLeft",false);
         animator.SetBool("WalkRight",false);
-        inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
+        /* inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
         inputManager.OnIsMovingBackwards += InputManager_OnIsMovingBackwards;
         inputManager.OnIsMovingLeft += InputManager_OnIsMovingLeft;
         inputManager.OnIsMovingRight += InputManager_OnIsMovingRight;
         inputManager.OnIsJumping += InputManager_OnIsJumping;
-        inputManager.OnNotMoving += InputManager_OnNotMoving;
+        inputManager.OnNotMoving += InputManager_OnNotMoving; */
     }
 
-    private void InputManager_OnIsJumping(object sender, EventArgs e)
+    /* private void InputManager_OnIsJumping(object sender, EventArgs e)
     {
         bool isPlayerGrounded = player.GetIsGrounded();
         bool isPlayerInMovement = player.GetIsInMovement();
@@ -41,9 +41,9 @@ public class PlayerAnimator : MonoBehaviour
         {
             animator.SetTrigger("JumpRun");
         }
-    }
+    } */
 
-    private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
+    /* private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
     {
         animator.SetBool("IsMovingForward",true);
         //animator.SetBool("WalkLeft",false);
@@ -76,5 +76,5 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("WalkLeft",false);
         animator.SetBool("IsMovingForward",false);
         animator.SetBool("IsMovingBackwards",false);
-    }
+    } */
 }

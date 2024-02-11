@@ -12,6 +12,7 @@ public class StateMachine: MonoBehaviour
     [SerializeField] private IdleState IdleState;
     [SerializeField] private MissionState missionState;
     private GameManager gameManager;
+    private MissionManager missionManager;
 
     private void Awake()
     {
@@ -26,9 +27,15 @@ public class StateMachine: MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        missionManager = MissionManager.Instance;
+        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         IdleState = new IdleState();
         missionState = new MissionState();
         SetCurrentState(IdleState);
+    }
+    private void MissionManager_OnMissionEnded(object sender, EventArgs e)
+    {
+        ChangeState(IdleState);
     }
     private void SetCurrentState(IState newState)
     {

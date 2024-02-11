@@ -9,7 +9,7 @@ public class HomeBase : MonoBehaviour, IClickable
     private CountdownManager countdownManager;
     private VisualsManager visualsManager;
     private ActionManager actionManager;
-    public EventHandler<TaskEventArgs> OnInitializaTask; 
+    public EventHandler<TaskEventArgs> OnInitializeTask; 
     [SerializeField] private CountdownPurpose purpose;
     
     private BaseAction[] baseActionArray;
