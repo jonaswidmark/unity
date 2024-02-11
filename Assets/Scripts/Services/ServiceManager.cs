@@ -35,19 +35,13 @@ public class ServiceManager : MonoBehaviour
 
     public T GetService<T>(string serviceName) where T : class, IService
 {
-    Debug.Log("HÄR!");
-    Debug.Log(registeredServices.Count);
-    Debug.Log(registeredServices);
     
     if (registeredServices.ContainsKey(serviceName))
     {
-        Debug.Log("FINNS?");
+        
         Type serviceType = registeredServices[serviceName].GetType(); // Hämta typen av tjänsten
         Type serviceTypeX = serviceTypes[serviceName];
-        Debug.Log(serviceTypeX);
-        Debug.Log(serviceType);
-        Debug.Log(typeof(T));
-
+        
         if (serviceType == typeof(T))
         {
             return Activator.CreateInstance(serviceType) as T;

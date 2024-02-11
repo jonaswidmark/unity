@@ -11,7 +11,7 @@ public class HomeBase : MonoBehaviour, IClickable
     private ActionManager actionManager;
     public EventHandler<TaskEventArgs> OnInitializaTask; 
     [SerializeField] private CountdownPurpose purpose;
-    private float purposeTimer = 9f;
+    
     private BaseAction[] baseActionArray;
     
     private void Awake()

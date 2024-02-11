@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+    private IState currentState;
     [SerializeField] private Transform homeBasePrefab;
     private Transform homeBase;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.Log("There's more than one GameManager! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     void Start()
     {
         CreateHomeBase();
@@ -20,8 +32,12 @@ public class GameManager : MonoBehaviour
         spawnedTransform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
-    private void Update()
+    public void SetPlayerState(IState currentState)
     {
-    
+        this.currentState = currentState;
+    }
+    public IState GetPlayerState()
+    {
+        return currentState;
     }
 }

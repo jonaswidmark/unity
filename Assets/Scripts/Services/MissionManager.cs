@@ -35,22 +35,20 @@ public class MissionManager : MonoBehaviour
     }
     public void InitializeMission()//MissionScriptableObject mission)
     {
-        Debug.Log("0");
         List<CountdownPurpose> missionTasks = missionScriptableObject.GetMissionTasks();
-        Debug.Log("1");
         foreach(CountdownPurpose missionTask in missionTasks)
         {
             missionTasksStack.Push(missionTask);
         }
-        Debug.Log("2");
+        
         while (missionTasksStack.Count > 0)
         {
             CountdownPurpose missionTask = missionTasksStack.Pop();
             reverseMissionTasksStack.Push(missionTask);
         }
-        Debug.Log("3");
+        
         missionTasksStack = reverseMissionTasksStack;
-        Debug.Log("4");
+        
         InitializeNextMissionTask();
     }
     private void InitializeNextMissionTask()

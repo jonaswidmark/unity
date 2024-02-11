@@ -8,7 +8,8 @@ public class ActionManager : MonoBehaviour
     public static ActionManager Instance { get; private set; }
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
-    private MissionManager missionManager;
+    private GameManager gameManager;
+    private StateMachine stateMachine;
     private IClickable selectedTransform;
 
     private string currentActionName;
@@ -21,11 +22,11 @@ public class ActionManager : MonoBehaviour
             return;
         }
         Instance = this;
-        //Nothing
     }
     private void Start()
     {
-        missionManager = MissionManager.Instance;
+        gameManager = GameManager.Instance;
+        stateMachine = StateMachine.Instance;
     }
     public string GetServiceName()
     {
@@ -34,7 +35,16 @@ public class ActionManager : MonoBehaviour
 
     public void SetSelectedAction(BaseAction baseAction)
     {
-        GetDerivedClass(baseAction);
+        
+        
+        if(stateMachine.GetPlayerState().GetType() ==  typeof(IdleState) )
+        {
+            GetDerivedClass(baseAction);
+            IState missionState = new MissionState();
+            stateMachine.ChangeState(missionState);
+            //Debug.Log(stateMachine.GetPlayerState());
+        }
+        
     }
 
     public void SetSelectedTransform(IClickable selectedTransform)

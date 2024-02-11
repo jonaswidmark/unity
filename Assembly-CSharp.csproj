@@ -62,6 +62,8 @@
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Services\CountdownService.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
+    <Compile Include="Assets\Scripts\States\IdleState.cs" />
+    <Compile Include="Assets\Scripts\States\MissionState.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\Services\InputService.cs" />
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Assets\Scripts\Services\ServiceRegistrator.cs" />
     <Compile Include="Assets\Scripts\Services\ActionManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
+    <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
