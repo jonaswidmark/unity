@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissionManager : MonoBehaviour
+public class MissionService : MonoBehaviour, IService
 {
-    public static MissionManager Instance { get; private set; }
-    private CountdownManager countdownManager;
+    private CountdownService countdownService;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject mission;
     [SerializeField] private CountdownPurpose purpose;
@@ -14,43 +13,35 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private MissionScriptableObject missionScriptableObject;
     private Stack<CountdownPurpose> missionTasksStack = new Stack<CountdownPurpose>();
     private Stack<CountdownPurpose> reverseMissionTasksStack = new Stack<CountdownPurpose>();
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one MonoBehaviour! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    
     private void Start()
     {
-        countdownManager = CountdownManager.Instance;
-        countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
+        CountdownService countdownService = ServiceLocator.GetService<CountdownService>("CountdownService");
+        countdownService.onMissionTaskComplete += CountdownService_onMissionTaskComplete;
     }
-    private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
+    public string GetServiceName()
+    {
+        return "MissionService";
+    }
+    private void CountdownService_onMissionTaskComplete(object sender, EventArgs e)
     {
         InitializeNextMissionTask();
     }
     public void InitializeMission()//MissionScriptableObject mission)
     {
-        Debug.Log("0");
         List<CountdownPurpose> missionTasks = missionScriptableObject.GetMissionTasks();
-        Debug.Log("1");
+        
         foreach(CountdownPurpose missionTask in missionTasks)
         {
             missionTasksStack.Push(missionTask);
         }
-        Debug.Log("2");
+        
         while (missionTasksStack.Count > 0)
         {
             CountdownPurpose missionTask = missionTasksStack.Pop();
             reverseMissionTasksStack.Push(missionTask);
         }
-        Debug.Log("3");
         missionTasksStack = reverseMissionTasksStack;
-        Debug.Log("4");
         InitializeNextMissionTask();
     }
     private void InitializeNextMissionTask()
@@ -58,7 +49,7 @@ public class MissionManager : MonoBehaviour
         if(missionTasksStack.Count>0)
         {
             CountdownPurpose nextissionTask = missionTasksStack.Pop();
-            countdownManager.SpawnPrefab(purposeTimer, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
+            countdownService.SpawnPrefab(purposeTimer, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
         }
     }
 }

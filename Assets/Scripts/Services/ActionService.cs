@@ -8,18 +8,20 @@ public class ActionService : MonoBehaviour, IService
    
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
-    private MissionManager missionManager;
+    private MissionService missionService;
     private IClickable selectedTransform;
     
     private string currentActionName;
     
     private void Start()
     {
-        missionManager = MissionManager.Instance;
+        MissionService missionService = ServiceLocator.GetService<MissionService>("MissionService");
+
+        
     }
     public string GetServiceName()
     {
-        return "ActionManager";
+        return "ActionService";
     }
     
     public void SetSelectedAction(BaseAction baseAction)

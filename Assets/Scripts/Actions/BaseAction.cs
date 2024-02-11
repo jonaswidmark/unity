@@ -38,4 +38,8 @@ public abstract class BaseAction : MonoBehaviour
         onActionComplete();
         OnAnyActionCompleted?.Invoke(this, EventArgs.Empty);
     }
+    protected MissionManager GetMissionManager()
+    {
+        return missionManager;
+    }
 }

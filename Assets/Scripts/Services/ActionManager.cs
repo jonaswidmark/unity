@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class ActionManager : MonoBehaviour
 {
-    public static ActionManager Instance {get; private set;}
+    public static ActionManager Instance { get; private set; }
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
     private MissionManager missionManager;
     private IClickable selectedTransform;
-    
+
     private string currentActionName;
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Debug.Log("There's more than one ActionManager! " + transform + " - " + Instance);
             Destroy(gameObject);
-            return ;
+            return;
         }
         Instance = this;
         //Nothing
@@ -31,12 +31,12 @@ public class ActionManager : MonoBehaviour
     {
         return "ActionManager";
     }
-    
+
     public void SetSelectedAction(BaseAction baseAction)
     {
         GetDerivedClass(baseAction);
     }
-    
+
     public void SetSelectedTransform(IClickable selectedTransform)
     {
         this.selectedTransform = selectedTransform;
@@ -51,7 +51,7 @@ public class ActionManager : MonoBehaviour
         // This is where the action is triggered!
         currentActionName = obj.GetType().ToString();
         obj.TakeAction(onActionComplete);
-        
+
         return currentActionName;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HomeBase : MonoBehaviour, IClickable
 {
-    private InputManager inputManager;
+    private InputManager inputService;
     private CountdownManager countdownManager;
     private VisualsManager visualsManager;
     private ActionManager actionManager;
@@ -20,15 +20,17 @@ public class HomeBase : MonoBehaviour, IClickable
     }
     private void Start()
     {
-        inputManager = InputManager.Instance;
+        //InputService inputService = ServiceLocator.GetService<InputService>("InputService");
+        inputService = InputManager.Instance;
+        /* CountdownService countdownService = ServiceLocator.GetService<CountdownService>("CountdownService");
+        VisualService visualService = ServiceLocator.GetService<VisualService>("VisualService");
+        ActionService actionService = ServiceLocator.GetService<ActionService>("ActionService"); */ 
         countdownManager = CountdownManager.Instance;
         visualsManager = VisualsManager.Instance;
         actionManager = ActionManager.Instance;
-        inputManager.OnMouseSelect += InputManager_OnSelect;
+        inputService.OnMouseSelect += InputManager_OnSelect;
+        
         RemoveVisual();
-        Debug.Log("Start Homebase");
-        IService t = ServiceLocator.GetService("ActionService");
-        Debug.Log(t);
     }
     public Transform ObjectTransform
     {

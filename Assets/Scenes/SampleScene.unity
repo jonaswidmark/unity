@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209b5e50ea4e0dd4fa786b3d25b200b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentObject: {fileID: 32414694}
+  parentObject: {fileID: 71331730}
   purpose: {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
   missionScriptableObject: {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792,
     type: 2}
@@ -1533,7 +1533,6 @@ GameObject:
   m_Component:
   - component: {fileID: 642044183}
   - component: {fileID: 642044182}
-  - component: {fileID: 642044184}
   m_Layer: 0
   m_Name: Services
   m_TagString: Untagged
@@ -1556,6 +1555,10 @@ MonoBehaviour:
   servicesToRegister:
   - serviceName: Testing
   - serviceName: ActionService
+  - serviceName: CountdownService
+  - serviceName: MissionService
+  - serviceName: VisualService
+  - serviceName: InputService
 --- !u!4 &642044183
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,18 +1574,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &642044184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642044181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d70b2482f4adc784599a2b0b23a90a9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &743367307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2196,8 +2187,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081148237}
-  - component: {fileID: 1081148238}
-  - component: {fileID: 1081148239}
   m_Layer: 0
   m_Name: RegisteredServices
   m_TagString: Untagged
@@ -2220,32 +2209,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1081148238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081148235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfd48e682ea7e7459a72cbf7ba92763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridObjectPrefab: {fileID: 2209989096310871301, guid: 756752b28b18b4d4987f382f0addee8e,
-    type: 3}
---- !u!114 &1081148239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081148235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8980ca4735f020943a84808c50a4cf86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1197364977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,7 +2493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 8102873661277268313, guid: 53bd45ebdf6649c4aa99dcd91d8472a0,
     type: 3}
-  selectedVisualGameObject: {fileID: 0}
+  selectedVisualGameObject: {fileID: 2771558440283628068, guid: 53bd45ebdf6649c4aa99dcd91d8472a0,
+    type: 3}
 --- !u!1 &1521900733
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,18 +13,19 @@ public class ActionSystemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI selectionButtonText;
     private List<ActionButtonUI> actionButtonUIList;
     private IClickable selectedTransform;
+
     private void Awake()
     {
         actionButtonUIList = new List<ActionButtonUI>();
     }
     private void Start()
     {
-        ///IService actionIService = ServiceLocator.GetService("ActionService");
-        //ActionService actionService = (ActionService)actionIService;
-        //ActionService.OnAnySelected += ActionManager_OnAnySelected;
+        //ActionService actionService = ServiceLocator.GetService<ActionService>("ActionService");
         actionManager = ActionManager.Instance;
         ActionManager.OnAnySelected += ActionManager_OnAnySelected;
         CreateActionButtons();
+        
+        
     }
     private void ActionManager_OnAnySelected(object sender, EventArgs e)
     {

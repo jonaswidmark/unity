@@ -36,12 +36,13 @@ public class Player : MonoBehaviour, IClickable
     private void Start()
     {
         inputManager = InputManager.Instance;
-        actionManager = ActionManager.Instance;
+        actionManager = ActionManager.Instance;//ServiceLocator.GetService<ActionService>("ActionService");
         inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
         inputManager.OnNotMoving += InputManager_OnNotMoving;
         inputManager.OnIsJumping += InputManager_OnIsJumping;
         inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
+        //VisualService visualService = ServiceLocator.GetService<VisualService>("VisualService");
         visualsManager = VisualsManager.Instance;
     }
     public Transform ObjectTransform
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour, IClickable
     }
     public bool WasOtherSelected()
     {
-        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(inputManager.GetMouseScreenPosition());
         bool WasOtherHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() == null;
         if(!WasOtherHit)
         {
@@ -89,7 +90,7 @@ public class Player : MonoBehaviour, IClickable
     }
     public bool WasSelected()
     {
-        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(inputManager.GetMouseScreenPosition());
         bool WasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() != null;
         if(WasHit)
         {
@@ -110,8 +111,11 @@ public class Player : MonoBehaviour, IClickable
     }
     private void FixedUpdate()
     {
+        if(inputManager != null)
+        {
+            moveVector = inputManager.GetMoveVector();
+        }
         
-        moveVector = inputManager.GetMoveVector();
         if(transform.position.y <= 0)
         {
             transform.position = new UnityEngine.Vector3(transform.position.x,0,transform.position.z);

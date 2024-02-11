@@ -15,7 +15,11 @@ public class BuildAction : BaseAction
     {
         Debug.Log("Building!");
         ActionStart(onActionComplete);
-        missionManager.InitializeMission();
+        if(GetMissionManager() != null)
+        {
+            GetMissionManager().InitializeMission();
+        }
+        
     }
     public string GetCurrentMission()
     {
