@@ -11,6 +11,7 @@ public interface IState
 
 public class IdleState : IState
 {
+    private MissionManager missionManager = MissionManager.Instance;
     public void Enter()
     {
         // Logik för att gå in i tillståndet "Idle"
@@ -23,7 +24,7 @@ public class IdleState : IState
 
     public void Exit()
     {
-        // Logik för att lämna tillståndet "Idle"
+        missionManager.UpdateMissionList();
     }
 }
 

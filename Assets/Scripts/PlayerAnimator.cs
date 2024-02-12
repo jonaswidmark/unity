@@ -20,12 +20,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsMovingBackwards",false);
         animator.SetBool("WalkLeft",false);
         animator.SetBool("WalkRight",false);
-        /* inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
-        inputManager.OnIsMovingBackwards += InputManager_OnIsMovingBackwards;
-        inputManager.OnIsMovingLeft += InputManager_OnIsMovingLeft;
-        inputManager.OnIsMovingRight += InputManager_OnIsMovingRight;
-        inputManager.OnIsJumping += InputManager_OnIsJumping;
-        inputManager.OnNotMoving += InputManager_OnNotMoving; */
     }
 
     /* private void InputManager_OnIsJumping(object sender, EventArgs e)
@@ -43,38 +37,5 @@ public class PlayerAnimator : MonoBehaviour
         }
     } */
 
-    /* private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
-    {
-        animator.SetBool("IsMovingForward",true);
-        //animator.SetBool("WalkLeft",false);
-        //animator.SetBool("WalkRight",false);
-    }
-    private void InputManager_OnIsMovingBackwards(object sender, System.EventArgs e)
-    {
-        animator.SetBool("IsMovingBackwards",true);
-        animator.SetBool("WalkLeft",false);
-        animator.SetBool("IsMovingForward",false);
-        animator.SetBool("IsMovingForward",false);
-    }
-    private void InputManager_OnNotMoving(object sender, System.EventArgs e)
-    {
-        animator.SetBool("IsMovingBackwards",false);
-        animator.SetBool("IsMovingForward",false);
-        animator.SetBool("WalkLeft",false);
-        animator.SetBool("WalkRight",false);
-    }
-    private void InputManager_OnIsMovingLeft(object sender, System.EventArgs e)
-    {
-        animator.SetBool("IsMovingBackwards",false);
-        animator.SetBool("WalkLeft",true);
-        animator.SetBool("IsMovingForward",false);
-        animator.SetBool("WalkRight",false);
-    }
-    private void InputManager_OnIsMovingRight(object sender, System.EventArgs e)
-    {
-        animator.SetBool("WalkRight",true);
-        animator.SetBool("WalkLeft",false);
-        animator.SetBool("IsMovingForward",false);
-        animator.SetBool("IsMovingBackwards",false);
-    } */
+    
 }

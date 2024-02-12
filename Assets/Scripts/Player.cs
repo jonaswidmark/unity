@@ -36,13 +36,9 @@ public class Player : MonoBehaviour, IClickable
     private void Start()
     {
         inputManager = InputManager.Instance;
-        actionManager = ActionManager.Instance;//ServiceLocator.GetService<ActionService>("ActionService");
-        /* inputManager.OnIsMovingForward += InputManager_OnIsMovingForward;
-        inputManager.OnNotMoving += InputManager_OnNotMoving;
-        inputManager.OnIsJumping += InputManager_OnIsJumping; */
+        actionManager = ActionManager.Instance;
         inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
-        //VisualService visualService = ServiceLocator.GetService<VisualService>("VisualService");
         visualsManager = VisualsManager.Instance;
     }
     public Transform ObjectTransform
@@ -158,26 +154,7 @@ public class Player : MonoBehaviour, IClickable
         }
         
     }
-    /* private void InputManager_OnIsMovingForward(object sender, System.EventArgs e)
-    {
-        isInMovement = true;
-    }
-    private void InputManager_OnIsJumping(object sender, System.EventArgs e)
-    {
-        if(isMovingForward)
-        {
-            float thrust = 500f;
-            rb.AddForce(0, thrust, 0, ForceMode.Impulse);
-            rb.velocity = new Vector3(0,1,0) * moveSpeed;
-            //rb.velocity = moveVector * moveSpeed;
-            
-        }
-    }
     
-    private void InputManager_OnNotMoving(object sender, System.EventArgs e)
-    {
-        isInMovement = false;
-    } */
     private void InputManager_OnMouseX(object sender, EventArgs e)
     {
         Vector2 mouseXDelta = inputManager.GetMouseXDelta();
@@ -206,24 +183,7 @@ public class Player : MonoBehaviour, IClickable
             }
         }
     }
-    /* private void HandleFloor()
-    {
-        RaycastHit hit;
-        float raycastDistance = 3f;
-        //Debug.Log(floor);
-        if(rb == null) { Debug.Log("Missing RigidBody"); return ;}
-        rb.useGravity = true;
-        rb.isKinematic = false;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, floor))
-        {
-            
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            transform.position = new Vector3(transform.position.x,0,transform.position.z);
-            Debug.Log(hit.distance);
-        }
-        
-    } */
+    
     public bool GetIsGrounded()
     {
         return isGrounded;

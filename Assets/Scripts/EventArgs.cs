@@ -17,10 +17,12 @@ public class TaskEventArgs : EventArgs
 
 public class MissionEventArgs : EventArgs
 {
-    public MissionScriptableObject mission {get;}
+    public MissionScriptableObject Mission { get; }
 
     public MissionEventArgs(MissionScriptableObject mission)
     {
-        this.mission = mission;
+        Mission = mission;
     }
+
+    public string Title => Mission.Title;
 }

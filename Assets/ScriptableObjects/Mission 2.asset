@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 352ee44170a408a47a281b5459f0f2da, type: 3}
-  m_Name: Mission
+  m_Name: Mission 2
   m_EditorClassIdentifier: 
   missionTasks:
-  - {fileID: 11400000, guid: 844d64009bfa0b642839dc5fe131bdfd, type: 2}
-  title: Build Shelter
+  - {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
+  - {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
+  title: Go get gold
   isAvailable: 1
+  missionOrder: 1

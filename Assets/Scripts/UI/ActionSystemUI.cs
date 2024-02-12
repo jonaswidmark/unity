@@ -33,6 +33,7 @@ public class ActionSystemUI : MonoBehaviour
     }
     private void CreateActionButtons()
     {
+        Debug.Log("CreateActionButtons");
         foreach(Transform buttonTransform in selectionButtonContainerTransform)
         {
             Destroy(buttonTransform.gameObject);

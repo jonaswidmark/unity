@@ -13,19 +13,30 @@ public class ActionButtonUI : MonoBehaviour
     private ActionManager actionManager;
     private BaseAction baseAction;
     private StateMachine stateMachine;
+    private MissionManager missionManager;
 
     private void Start()
     {
         actionManager = ActionManager.Instance;
         stateMachine = StateMachine.Instance;
+        missionManager= MissionManager.Instance;
         stateMachine.OnMissionState += StateMachine_OnMissionState;
         stateMachine.OnIdleState += StateMachine_OnIdleState;
+        missionManager.OnUpdatedMissionList += MissionManager_OnUpdatedMissionList;
         button.interactable = true;
     }
+
+    private void MissionManager_OnUpdatedMissionList(object sender, MissionEventArgs e)
+    {
+        Debug.Log("Knappen!");
+        Debug.Log(e.Title);
+    }
+
     private void ToggleSelectable()
     {
         button.interactable = !button.interactable;
     }
+    
     private void StateMachine_OnMissionState(object sender, EventArgs e)
     {
         ToggleSelectable();
@@ -38,7 +49,7 @@ public class ActionButtonUI : MonoBehaviour
     {
         this.baseAction = baseAction;
         textMeshPro.text = baseAction.GetActionName().ToUpper();
-        
+        Debug.Log(textMeshPro.text);
         button.onClick.AddListener(() => {
                 actionManager.SetSelectedAction(baseAction);
         });
