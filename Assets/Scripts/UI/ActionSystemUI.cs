@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ActionSystemUI : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ActionSystemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI selectionButtonText;
     private List<ActionButtonUI> actionButtonUIList;
     private IClickable selectedTransform;
+
 
     private void Awake()
     {
@@ -28,12 +30,16 @@ public class ActionSystemUI : MonoBehaviour
         
     }
     private void ActionManager_OnAnySelected(object sender, EventArgs e)
-    {
-        CreateActionButtons();
+    {   
+        Debug.Log("ActionManager_OnAnySelected");
+            CreateActionButtons();
+        
+        
     }
     private void CreateActionButtons()
     {
         Debug.Log("CreateActionButtons");
+        /**
         foreach(Transform buttonTransform in selectionButtonContainerTransform)
         {
             Destroy(buttonTransform.gameObject);
@@ -51,5 +57,6 @@ public class ActionSystemUI : MonoBehaviour
                 actionButtonUIList.Add(actionButtonUI);
             }
         }
+        **/
     }
 }

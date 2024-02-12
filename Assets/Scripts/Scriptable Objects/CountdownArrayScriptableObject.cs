@@ -15,6 +15,7 @@ public class CountdownArrayScriptableObject : ScriptableObject
     }
     public void AddToCountdownStartedArray(GameObject timerGameObject, CountdownScriptableObject timeSO)
     {
+        Debug.Log("AddToCountdownStartedArray");
         countdownStartedArray.Add(timerGameObject, timeSO);
         UpdateCountdownActiveArray();
     }
@@ -24,11 +25,13 @@ public class CountdownArrayScriptableObject : ScriptableObject
     }
     public void AddToCountdownCompletedArray(GameObject timerGameObject, CountdownScriptableObject timeSO)
     {
+        Debug.Log("AddToCountdownCompletedArray");
         countdownCompletedArray.Add(timerGameObject, timeSO);
         UpdateCountdownActiveArray();
     }
     private void UpdateCountdownActiveArray()
     {
+        Debug.Log("UpdateCountdownActiveArray");
         countdownActiceArray.Clear();
         
         foreach (var kv in countdownStartedArray)

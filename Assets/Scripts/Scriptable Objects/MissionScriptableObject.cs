@@ -25,6 +25,7 @@ public class MissionScriptableObject : ScriptableObject
     
     public List<CountdownPurpose> GetMissionTasks()
     {
+        Debug.Log("MissionScriptableObject");
         return missionTasks;
     }
 }

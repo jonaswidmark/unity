@@ -58,10 +58,15 @@ public class ActionManager : MonoBehaviour
     }
     public string GetDerivedClass<T>(T obj) where T : BaseAction
     {
+        Debug.Log("GetDerivedClass");
         // This is where the action is triggered!
         currentActionName = obj.GetType().ToString();
         obj.TakeAction(onActionComplete);
 
         return currentActionName;
+    }
+    public void SetStartMission(MissionScriptableObject newMission)
+    {
+        Debug.Log("starting " + newMission);
     }
 }

@@ -14,6 +14,7 @@ public class ActionButtonUI : MonoBehaviour
     private BaseAction baseAction;
     private StateMachine stateMachine;
     private MissionManager missionManager;
+    [SerializeField] private MissionScriptableObject missionToStart;
 
     private void Start()
     {
@@ -24,22 +25,33 @@ public class ActionButtonUI : MonoBehaviour
         stateMachine.OnIdleState += StateMachine_OnIdleState;
         missionManager.OnUpdatedMissionList += MissionManager_OnUpdatedMissionList;
         button.interactable = true;
+        button.onClick.AddListener(() => {
+                actionManager.SetStartMission(missionToStart);
+        });
     }
 
     private void MissionManager_OnUpdatedMissionList(object sender, MissionEventArgs e)
     {
         Debug.Log("Knappen!");
         Debug.Log(e.Title);
+        missionToStart = e.Mission;
     }
 
     private void ToggleSelectable()
     {
-        button.interactable = !button.interactable;
+        //button.interactable = !button.interactable;
     }
     
     private void StateMachine_OnMissionState(object sender, EventArgs e)
     {
+        Debug.Log("StateMachine_OnMissionState");
         ToggleSelectable();
+        for (int i = 0; i < button.onClick.GetPersistentEventCount(); i++)
+        {
+            var listener = button.onClick.GetPersistentMethodName(i);
+            Debug.Log("Listener " + i + ": " + listener);
+        }
+        //button.onClick.RemoveAllListeners();
     }
     private void StateMachine_OnIdleState(object sender, EventArgs e)
     {
@@ -47,11 +59,14 @@ public class ActionButtonUI : MonoBehaviour
     }
     public void SetBaseAction(BaseAction baseAction)
     {
+        Debug.Log("SetBaseAction on button");
+        Debug.Log(baseAction.GetActionName().ToUpper());
         this.baseAction = baseAction;
         textMeshPro.text = baseAction.GetActionName().ToUpper();
         Debug.Log(textMeshPro.text);
         button.onClick.AddListener(() => {
-                actionManager.SetSelectedAction(baseAction);
+                //actionManager.SetSelectedAction(baseAction);
+                actionManager.SetStartMission(missionToStart);
         });
     } 
     public void UpdateSelectedVisual()

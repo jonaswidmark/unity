@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionService : MonoBehaviour, IService
+public class XActionService : MonoBehaviour, IService
 {
    
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
-    private MissionService missionService;
+    private XMissionService missionService;
     private IClickable selectedTransform;
     
     private string currentActionName;
     
     private void Start()
     {
-        MissionService missionService = ServiceLocator.GetService<MissionService>("MissionService");
+        XMissionService missionService = ServiceLocator.GetService<XMissionService>("MissionService");
 
         
     }

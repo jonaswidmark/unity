@@ -28,12 +28,14 @@ public abstract class BaseAction : MonoBehaviour
     public abstract void TakeAction(Action onActionComplete);
     protected void ActionStart(Action onActionComplete)
     {
+        Debug.Log("ActionStart");
         isActive = true;
         this.onActionComplete = onActionComplete;
         OnAnyActionStarted?.Invoke(this, EventArgs.Empty);
     }
     protected void ActionComplete()
     {
+        Debug.Log("ActionComplete");
         isActive = false;
         onActionComplete();
         OnAnyActionCompleted?.Invoke(this, EventArgs.Empty);

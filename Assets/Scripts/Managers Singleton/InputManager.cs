@@ -10,12 +10,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance {get; private set;}
     private PlayerInputActions playerInputActions = null;
     private Vector3 moveVector = Vector3.zero;
-    /* public event EventHandler OnIsMovingForward;
-    public event EventHandler OnIsMovingBackwards;
-    public event EventHandler OnIsMovingLeft;
-    public event EventHandler OnIsMovingRight;
-    public event EventHandler OnIsJumping;
-    public event EventHandler OnNotMoving; */
+   
     public event EventHandler OnMouseX;   
     public event EventHandler OnMouseSelect;  
     private Vector2 mouseXDelta;

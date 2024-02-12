@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissionService : MonoBehaviour, IService
+public class XMissionService : MonoBehaviour, IService
 {
-    private CountdownService countdownService;
+    private XCountdownService countdownService;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject mission;
     [SerializeField] private CountdownPurpose purpose;
@@ -16,7 +16,7 @@ public class MissionService : MonoBehaviour, IService
     
     private void Start()
     {
-        CountdownService countdownService = ServiceLocator.GetService<CountdownService>("CountdownService");
+        XCountdownService countdownService = ServiceLocator.GetService<XCountdownService>("CountdownService");
         countdownService.onMissionTaskComplete += CountdownService_onMissionTaskComplete;
     }
     public string GetServiceName()

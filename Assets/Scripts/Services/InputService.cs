@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputService : MonoBehaviour, IService
+public class XInputService : MonoBehaviour, IService
 {
    
     private PlayerInputActions playerInputActions = null;

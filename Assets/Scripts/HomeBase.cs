@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HomeBase : MonoBehaviour, IClickable
@@ -11,7 +12,6 @@ public class HomeBase : MonoBehaviour, IClickable
     private ActionManager actionManager;
     public EventHandler<TaskEventArgs> OnInitializeTask; 
     [SerializeField] private CountdownPurpose purpose;
-    
     private BaseAction[] baseActionArray;
     
     private void Awake()
@@ -48,6 +48,7 @@ public class HomeBase : MonoBehaviour, IClickable
     }
     public BaseAction[] GetBaseActionArray()
     {
+        Debug.Log("GetBaseActionArray");    
         return baseActionArray;
     }
     private void InputManager_OnSelect(object sender, EventArgs e)
