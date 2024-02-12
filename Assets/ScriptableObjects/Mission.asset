@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionTasks:
   - {fileID: 11400000, guid: 844d64009bfa0b642839dc5fe131bdfd, type: 2}
+  - {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
   title: Build Shelter
   isAvailable: 1
+  missionOrder: 0

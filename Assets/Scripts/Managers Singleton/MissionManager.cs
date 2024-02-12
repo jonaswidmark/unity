@@ -55,27 +55,22 @@ public class MissionManager : MonoBehaviour
         countdownManager = CountdownManager.Instance;
         countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
         UpdateMissionList();
-        //InitializeMission();
+       
     }
     private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
     {
         InitializeNextMissionTask();
     }
-    public void InitializeMission()//MissionScriptableObject mission)
+    
+    public void InitializeMission()
     {
-        List<CountdownPurpose> missionTasks = activeMission.GetMissionTasks();
+        List<ITask> missionTasks = activeMission.GetMissionTasks();
+        missionTasksStack.Clear();
+        
         foreach(CountdownPurpose missionTask in missionTasks)
         {
             missionTasksStack.Push(missionTask);
         }
-        
-        while (missionTasksStack.Count > 0)
-        {
-            CountdownPurpose missionTask = missionTasksStack.Pop();
-            reverseMissionTasksStack.Push(missionTask);
-        }
-        
-        missionTasksStack = reverseMissionTasksStack;
         
         InitializeNextMissionTask();
     }

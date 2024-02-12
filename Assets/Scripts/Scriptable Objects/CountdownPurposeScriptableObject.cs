@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 
 [CreateAssetMenu(fileName = "New CountdownPurpose", menuName = "CustomObjects/CountdownPurpose")]
-public class CountdownPurpose : ScriptableObject
+public class CountdownPurpose : ScriptableObject, ITask
 {
     [SerializeField] int id;
     [SerializeField] String key;

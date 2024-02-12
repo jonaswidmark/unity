@@ -65,8 +65,5 @@ public class ActionManager : MonoBehaviour
 
         return currentActionName;
     }
-    public void SetStartMission(MissionScriptableObject newMission)
-    {
-        Debug.Log("starting " + newMission);
-    }
+    
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Mission", menuName = "CustomObjects/Mission")]
-public class MissionScriptableObject : ScriptableObject
+public class MissionScriptableObject : ScriptableObject, ITask
 {
-    [SerializeField] private List<CountdownPurpose> missionTasks = new List<CountdownPurpose>();
+    public List<ITask> missionTasks = new List<ITask>();
     [SerializeField] private string title;
     public bool isAvailable;
 
@@ -21,11 +22,23 @@ public class MissionScriptableObject : ScriptableObject
         get { return title; }
         private set { title = value; }
     }
+    public string GetTitle()
+    {
+        return Title;
+    }
+    new public int GetInstanceID()
+    {
+        return GetHashCode();
+    }
     
     
-    public List<CountdownPurpose> GetMissionTasks()
+    public List<ITask> GetMissionTasks()
     {
         Debug.Log("MissionScriptableObject");
         return missionTasks;
     }
+    
+
+
+
 }
