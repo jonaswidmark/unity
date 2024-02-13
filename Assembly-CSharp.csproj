@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Managers Singleton\GameManager.cs" />
     <Compile Include="Assets\Scripts\HomeBase.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObjectEditor.cs" />
     <Compile Include="Assets\Scripts\Actions\BuildAction.cs" />
     <Compile Include="Assets\Scripts\UI\ActionButtonUI.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownArrayScriptableObject.cs" />

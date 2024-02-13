@@ -64,7 +64,7 @@ public class MissionManager : MonoBehaviour
     
     public void InitializeMission()
     {
-        List<ITask> missionTasks = activeMission.GetMissionTasks();
+        List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();
         
         foreach(CountdownPurpose missionTask in missionTasks)

@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission", menuName = "CustomObjects/Mission")]
 public class MissionScriptableObject : ScriptableObject, ITask
 {
-    public List<ITask> missionTasks = new List<ITask>();
+    public List<ScriptableObject> missionTasks = new List<ScriptableObject>();
     [SerializeField] private string title;
     public bool isAvailable;
 
@@ -32,7 +32,7 @@ public class MissionScriptableObject : ScriptableObject, ITask
     }
     
     
-    public List<ITask> GetMissionTasks()
+    public List<ScriptableObject> GetMissionTasks()
     {
         Debug.Log("MissionScriptableObject");
         return missionTasks;
