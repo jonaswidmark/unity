@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownPurposeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceRegistrator.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\MissionTaskScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
