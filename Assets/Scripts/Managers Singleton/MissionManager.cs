@@ -17,7 +17,7 @@ public class MissionManager : MonoBehaviour
     private float purposeTimer = 9f;
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<CountdownPurpose> missionTasksStack = new Stack<CountdownPurpose>();
-    private Stack<CountdownPurpose> reverseMissionTasksStack = new Stack<CountdownPurpose>();
+    //private Stack<CountdownPurpose> reverseMissionTasksStack = new Stack<CountdownPurpose>();
     private void Awake()
     {
         if (Instance != null)
@@ -46,7 +46,7 @@ public class MissionManager : MonoBehaviour
         }
         else
         {
-            // Om listan är tom, hantera detta scenario här
+            
             Debug.Log("Inga tillgängliga missioner hittades.");
         }
     }
@@ -64,7 +64,9 @@ public class MissionManager : MonoBehaviour
     
     public void InitializeMission()
     {
+        
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
+        
         missionTasksStack.Clear();
         
         foreach(CountdownPurpose missionTask in missionTasks)

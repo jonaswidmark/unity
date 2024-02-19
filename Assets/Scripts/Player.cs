@@ -13,9 +13,9 @@ public class Player : MonoBehaviour, IClickable
 {
     private InputManager inputManager;
     private VisualsManager visualsManager;
-    private ActionManager actionManager;
+    //private ActionManager actionManager;
     private Rigidbody rb = null;
-    [SerializeField] private float moveSpeed = 4f;
+    //[SerializeField] private float moveSpeed = 4f;
     private bool isInMovement = false;
     private bool isMovingForward = false;
     private bool isGrounded = false;
@@ -24,19 +24,19 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 forwardVector3 = new UnityEngine.Vector3(0,0,1);
     private Vector3 moveVector = new UnityEngine.Vector3(0,0,0);
     [SerializeField] private LayerMask floor;
-    private BaseAction[] baseActionArray;
+    //private BaseAction[] baseActionArray;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        baseActionArray = GetComponents<BaseAction>();
+        //baseActionArray = GetComponents<BaseAction>();
         
     }
     private void Start()
     {
         inputManager = InputManager.Instance;
-        actionManager = ActionManager.Instance;
+        //actionManager = ActionManager.Instance;
         //inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         visualsManager = VisualsManager.Instance;
@@ -60,10 +60,10 @@ public class Player : MonoBehaviour, IClickable
     {
         GroundedSettings();
     }
-    public BaseAction[] GetBaseActionArray()
+    /* public BaseAction[] GetBaseActionArray()
     {
         return baseActionArray;
-    }
+    } */
      private void InputManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour, IClickable
         {
             return;
         }
-        
+        /* 
         if(moveVector == forwardVector3)
         {
             isMovingForward = true;
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour, IClickable
         {
             isInMovement = moveVector != emptyVector3;//UnityEngine.Vector3.zero;
         }
-        
+         */
     }
     /* 
     private void InputManager_OnMouseX(object sender, EventArgs e)
