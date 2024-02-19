@@ -8,9 +8,9 @@ public class ActionManager : MonoBehaviour
     public static ActionManager Instance { get; private set; }
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
-    private GameManager gameManager;
     private StateMachine stateMachine;
     private IClickable selectedTransform;
+    private InputManager inputService;
 
     private string currentActionName;
     private void Awake()
@@ -25,18 +25,27 @@ public class ActionManager : MonoBehaviour
     }
     private void Start()
     {
-        gameManager = GameManager.Instance;
         stateMachine = StateMachine.Instance;
+        inputService = InputManager.Instance;
+        inputService.OnMouseSelect += InputManager_OnSelect;
+    }
+    private void InputManager_OnSelect(object sender, EventArgs e)
+    {
+        /* if(WasOtherSelected())
+        {
+            RemoveVisual();
+        }
+        if(WasSelected())
+        {
+            SetVisual();
+        } */
     }
     public string GetServiceName()
     {
         return "ActionManager";
     }
-
     public void SetSelectedAction(BaseAction baseAction)
     {
-        
-        
         if(stateMachine.GetPlayerState().GetType() ==  typeof(IdleState) )
         {
             GetDerivedClass(baseAction);

@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private IState currentState;
     [SerializeField] private Transform homeBasePrefab;
-    private Transform homeBase;
     private void Awake()
     {
         if (Instance != null)
@@ -20,8 +19,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        CreateHomeBase();
-        
+        //CreateHomeBase();
     }
     void CreateHomeBase()
     {
@@ -31,7 +29,6 @@ public class GameManager : MonoBehaviour
         LevelGrid.Instance.PlaceTransformAtGridPosition(homeBasePosition,homeBasePrefab,offset, out spawnedTransform);
         spawnedTransform.rotation = Quaternion.Euler(90, 0, 0);
     }
-
     public void SetPlayerState(IState currentState)
     {
         this.currentState = currentState;

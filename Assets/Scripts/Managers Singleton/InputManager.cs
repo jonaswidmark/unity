@@ -9,41 +9,36 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance {get; private set;}
     private PlayerInputActions playerInputActions = null;
+    private InputAction mouseSelect = null;
     private Vector3 moveVector = Vector3.zero;
    
     public event EventHandler OnMouseX;   
-    public event EventHandler OnMouseSelect;  
+    public event EventHandler OnMouseSelect; 
     private Vector2 mouseXDelta;
 
     public void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Debug.Log("There's more than one InputManager! " + transform + " - " + Instance);
             Destroy(gameObject);
-            return ;
+            return;
         }
         Instance = this;
         playerInputActions = new PlayerInputActions();
     }
-    
+
     private void OnEnable()
     {
         playerInputActions.Enable();
-        /* InputAction mouseXAction = new InputAction("MouseX", binding:"<Mouse>/delta");
-        mouseXAction.Enable();
-        mouseXAction.performed += OnMouseXAction; */
-        InputAction mouseSelect = new InputAction("MouseSelect", binding:"<Mouse>/press");
-        mouseSelect.Enable();
+
+        mouseSelect = playerInputActions.Player.MouseSelect;
         mouseSelect.performed += OnMouseSelectAction;
-        
     }
     private void OnDisable()
     {
         playerInputActions.Disable();
-        InputAction mouseXAction = new InputAction("MouseX");
-        mouseXAction.Disable();
-        mouseXAction.performed -= OnMouseXAction;
+        mouseSelect.performed -= OnMouseSelectAction;
     }
     
 
@@ -55,8 +50,10 @@ public class InputManager : MonoBehaviour
     {
         OnMouseSelect?.Invoke(this, EventArgs.Empty);
     }
+    
     public void OnMouseXAction(InputAction.CallbackContext context)
     {
+        Debug.Log("OnMouseXAction");
         mouseXDelta = context.ReadValue<Vector2>();
         if(mouseXDelta.magnitude > 0f)
         {

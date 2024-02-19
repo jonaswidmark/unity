@@ -54,7 +54,6 @@ public class CountdownManager : MonoBehaviour
     }
     CountdownScriptableObject CreateCountdownScriptableObject(float initialTime, CountdownPurpose countdownPurpose)
     {
-        Debug.Log("CreateCountdownScriptableObject");
         CountdownScriptableObject countdownData = ScriptableObject.CreateInstance<CountdownScriptableObject>();
         countdownData.StartCountdown(initialTime);
         countdownData.SetCountdownPurpose(countdownPurpose);
@@ -62,7 +61,6 @@ public class CountdownManager : MonoBehaviour
     }
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
     {
-        Debug.Log("HandleCountdownFinished");
         var pairToRemove = countdownDictionary.FirstOrDefault(pair => pair.Value == countdownData);
         if (!pairToRemove.Key || countdownArray != null)
         {

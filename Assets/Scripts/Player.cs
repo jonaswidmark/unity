@@ -37,9 +37,10 @@ public class Player : MonoBehaviour, IClickable
     {
         inputManager = InputManager.Instance;
         actionManager = ActionManager.Instance;
-        inputManager.OnMouseX += InputManager_OnMouseX;
+        //inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         visualsManager = VisualsManager.Instance;
+        visualsManager.RemoveVisual(this);
     }
     public Transform ObjectTransform
     {
@@ -63,48 +64,23 @@ public class Player : MonoBehaviour, IClickable
     {
         return baseActionArray;
     }
-    private void InputManager_OnSelect(object sender, EventArgs e)
+     private void InputManager_OnSelect(object sender, EventArgs e)
     {
-        if(WasOtherSelected())
-        {
-            RemoveVisual();
-        }
         if(WasSelected())
         {
-            SetVisual();
+            visualsManager.SetVisual(this);
         }
-    }
-    public bool WasOtherSelected()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(inputManager.GetMouseScreenPosition());
-        bool WasOtherHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() == null;
-        if(!WasOtherHit)
+        else 
         {
-            actionManager.SetSelectedTransform(null);
+            visualsManager.RemoveVisual(this);
         }
-        return WasOtherHit;
     }
+    
     public bool WasSelected()
     {
-        Ray ray = Camera.main.ScreenPointToRay(inputManager.GetMouseScreenPosition());
-        bool WasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<Player>() != null;
-        if(WasHit)
-        {
-            actionManager.SetSelectedTransform(this);
-        }
-        return WasHit;
+        return Utils.WasSelected(this);
     }
-    private void SetVisual()
-    {
-        IClickable interfaceReference = (IClickable) this;
-        visualsManager.SetVisual(interfaceReference);
 
-    }
-    private void RemoveVisual()
-    {
-        IClickable interfaceReference = (IClickable) this;
-        visualsManager.RemoveVisual(interfaceReference);
-    }
     private void FixedUpdate()
     {
         if(inputManager != null)
@@ -114,7 +90,7 @@ public class Player : MonoBehaviour, IClickable
         
         if(transform.position.y <= 0)
         {
-            transform.position = new UnityEngine.Vector3(transform.position.x,0,transform.position.z);
+            //transform.position = new UnityEngine.Vector3(transform.position.x,0,transform.position.z);
         }
         if ((transform.position - moveVector).normalized == emptyVector3)
         {
@@ -154,14 +130,14 @@ public class Player : MonoBehaviour, IClickable
         }
         
     }
-    
+    /* 
     private void InputManager_OnMouseX(object sender, EventArgs e)
     {
         Vector2 mouseXDelta = inputManager.GetMouseXDelta();
         float sensitivity = 0.6f;
         transform.Rotate(Vector3.up,mouseXDelta.x * sensitivity);
         //transform.Rotate(Vector3.left, mouseXDelta.y);
-    }
+    } */
     private void RotateTowardsDirection(Vector3 targetDirection, float rotateSpeed)
     {
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
@@ -170,7 +146,7 @@ public class Player : MonoBehaviour, IClickable
     }
     private void GroundedSettings()
     {
-        RaycastHit hit;
+       /*  RaycastHit hit;
         float raycastDistance = 3f;
         float groundedApproximate = 0.1f;
         isGrounded = false;
@@ -181,7 +157,7 @@ public class Player : MonoBehaviour, IClickable
             {
                 isGrounded = true;
             }
-        }
+        } */
     }
     
     public bool GetIsGrounded()

@@ -15,14 +15,14 @@ public class ActionSystemUI : MonoBehaviour
     private List<ActionButtonUI> actionButtonUIList;
     private IClickable selectedTransform;
 
-
+    /**
     private void Awake()
     {
         actionButtonUIList = new List<ActionButtonUI>();
     }
     private void Start()
     {
-        //ActionService actionService = ServiceLocator.GetService<ActionService>("ActionService");
+        
         actionManager = ActionManager.Instance;
         ActionManager.OnAnySelected += ActionManager_OnAnySelected;
         CreateActionButtons();
@@ -38,8 +38,7 @@ public class ActionSystemUI : MonoBehaviour
     }
     private void CreateActionButtons()
     {
-        Debug.Log("CreateActionButtons");
-        /**
+        
         foreach(Transform buttonTransform in selectionButtonContainerTransform)
         {
             Destroy(buttonTransform.gameObject);
@@ -57,6 +56,6 @@ public class ActionSystemUI : MonoBehaviour
                 actionButtonUIList.Add(actionButtonUI);
             }
         }
-        **/
-    }
+        
+    }**/
 }
