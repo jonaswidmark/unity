@@ -250,4 +250,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnMouseSelect(InputAction.CallbackContext context);
     }
+
+    public static implicit operator PlayerInputActions(InputAction v)
+    {
+        throw new NotImplementedException();
+    }
+
 }

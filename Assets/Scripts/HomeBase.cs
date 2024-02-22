@@ -11,6 +11,7 @@ public class HomeBase :  MonoBehaviour, IClickable
     private InputManager inputManager;
     private VisualsManager visualsManager;
     
+    [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
     {
         inputManager = InputManager.Instance;
