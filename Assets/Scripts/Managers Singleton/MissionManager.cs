@@ -10,6 +10,8 @@ public class MissionManager : MonoBehaviour
     public event EventHandler<MissionEventArgs> OnMissionEnded;
 
     public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
+
+    public event EventHandler<MissionEventArgs> OnNewMission;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
@@ -31,6 +33,12 @@ public class MissionManager : MonoBehaviour
     private void SetActiveMission(MissionScriptableObject activeMission)
     {
         this.activeMission = activeMission;
+    }
+    public void SetNewMissionAction(MissionScriptableObject mission)
+    {
+        SetActiveMission(mission);
+        MissionEventArgs eventArgs = new MissionEventArgs(mission);
+        OnNewMission?.Invoke(this,eventArgs);
     }
     public void UpdateMissionList()
     {
@@ -54,7 +62,7 @@ public class MissionManager : MonoBehaviour
     {
         countdownManager = CountdownManager.Instance;
         countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
-        UpdateMissionList();
+        //UpdateMissionList();
        
     }
     private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
@@ -64,7 +72,7 @@ public class MissionManager : MonoBehaviour
     
     public void InitializeMission()
     {
-        
+        Debug.Log("initialize mission!");
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         
         missionTasksStack.Clear();

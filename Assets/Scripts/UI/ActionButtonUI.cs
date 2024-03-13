@@ -25,8 +25,9 @@ public class ActionButtonUI : MonoBehaviour
         stateMachine.OnMissionState += StateMachine_OnMissionState;
         stateMachine.OnIdleState += StateMachine_OnIdleState;
         missionManager.OnUpdatedMissionList += MissionManager_OnUpdatedMissionList;
+        missionManager.OnNewMission += MissionManager_OnNewMission;
         button.interactable = true;
-        SetNewMission(missionToStart);
+        button.gameObject.SetActive(false);
     }
     private void SetNewMission(MissionScriptableObject missionToStart)
     {
@@ -43,6 +44,11 @@ public class ActionButtonUI : MonoBehaviour
     {
         missionToStart = e.Mission;
         //SetNewMission(missionToStart);
+    }
+    private void MissionManager_OnNewMission(object sender, MissionEventArgs e)
+    {
+        missionToStart = e.Mission;
+        SetNewMission(missionToStart);
     }
 
     private void ToggleSelectable()

@@ -650,7 +650,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &194286938
@@ -749,9 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 71331730}
   purpose: {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
-  missionScriptableObjectList:
-  - {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792, type: 2}
-  - {fileID: 11400000, guid: 3586cfbaff1c5024faa78be2d4463d38, type: 2}
+  missionScriptableObjectList: []
 --- !u!1 &258318453
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +951,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c85260905ad66418704a5c52f773c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionScriptableObjectList: []
+  missionScriptableObjectList:
+  - {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792, type: 2}
 --- !u!65 &265014531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2831,7 +2830,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1329160866
@@ -2939,7 +2938,7 @@ MonoBehaviour:
   textMeshPro: {fileID: 614328197}
   button: {fileID: 1341655858}
   buttonContainer: {fileID: 135916491}
-  missionToStart: {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792, type: 2}
+  missionToStart: {fileID: 0}
 --- !u!114 &1341655858
 MonoBehaviour:
   m_ObjectHideFlags: 0
