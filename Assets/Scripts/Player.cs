@@ -36,8 +36,6 @@ public class Player : MonoBehaviour, IClickable
     private void Start()
     {
         inputManager = InputManager.Instance;
-        //actionManager = ActionManager.Instance;
-        //inputManager.OnMouseX += InputManager_OnMouseX;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         visualsManager = VisualsManager.Instance;
         visualsManager.RemoveVisual(this);

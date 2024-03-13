@@ -36,7 +36,7 @@ public class VisualsManager : MonoBehaviour
         }
         
         Transform childTransform = clickableObject.ObjectTransform.Find(SelectedVisualString);
-        
+
         if(childTransform)
         {
             childTransform.gameObject.GetComponent<MeshRenderer>().enabled = true;
