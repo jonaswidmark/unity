@@ -11,16 +11,11 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private GameObject buttonContainer;
     [SerializeField] private IClickable selectedObject;
-    private ActionManager actionManager;
-    private BaseAction baseAction;
-    private StateMachine stateMachine;
     private MissionManager missionManager;
     [SerializeField] private MissionScriptableObject missionToStart;
 
     private void Start()
     {
-        actionManager = ActionManager.Instance;
-        stateMachine = StateMachine.Instance;
         missionManager= MissionManager.Instance;
         missionManager.OnNewMission += MissionManager_OnNewMission;
         button.interactable = true;

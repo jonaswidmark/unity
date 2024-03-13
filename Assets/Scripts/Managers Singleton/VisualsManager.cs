@@ -8,6 +8,7 @@ public class VisualsManager : MonoBehaviour
     public static VisualsManager Instance {get; private set;}
     [SerializeField] private Transform selectedVisual;
     [SerializeField] private GameObject selectedVisualGameObject;
+    [SerializeField] private List<Transform> nonResetVisualTransformList;
     private Transform visualParent;
     private string SelectedVisualString = "SelectedVisual";
     private IClickable selectedTransform;
@@ -22,6 +23,10 @@ public class VisualsManager : MonoBehaviour
         }
         Instance = this;
        
+    }
+    public List<Transform> GetNonResetVisualTransformList()
+    {
+        return nonResetVisualTransformList;
     }
     public void SetVisual(IClickable clickableObject)
     {

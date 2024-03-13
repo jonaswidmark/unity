@@ -29,7 +29,7 @@ public class HomeBase :  MonoBehaviour, IClickable
             visualsManager.SetVisual(this);
             UpdateMissionList();
         }
-        else 
+        else if(Utils.WhatClickableInterfaceSelected() != null)
         {
             visualsManager.RemoveVisual(this);
         }
@@ -40,9 +40,6 @@ public class HomeBase :  MonoBehaviour, IClickable
     }
     public void UpdateMissionList()
     {
-        //var availableMissions = missionScriptableObjectList.Where(mission => mission.isAvailable);
-        //var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
-        //var firstMission = sortedMissions.FirstOrDefault();
         var nextMission = Utils.GetNextMission(missionScriptableObjectList);
         if (nextMission != null)
         {

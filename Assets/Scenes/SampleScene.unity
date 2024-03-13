@@ -3196,6 +3196,8 @@ MonoBehaviour:
     type: 3}
   selectedVisualGameObject: {fileID: 2771558440283628068, guid: 53bd45ebdf6649c4aa99dcd91d8472a0,
     type: 3}
+  nonResetVisualTransformList:
+  - {fileID: 1341655856}
 --- !u!1 &1521900733
 GameObject:
   m_ObjectHideFlags: 0

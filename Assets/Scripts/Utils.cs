@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public static class Utils
 {
     private static IClickable selectedObject;
+    
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
@@ -14,6 +15,20 @@ public static class Utils
             ActionManager.Instance.SetSelectedTransform((IClickable) obj);
         }
         return wasHit;
+    }
+    public static IClickable WhatClickableInterfaceSelected()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            IClickable clickableComponent = hit.collider.GetComponent<IClickable>();
+            if (clickableComponent != null)
+            {
+                return clickableComponent;
+            }
+        }
+        return null;
     }
     public static MissionScriptableObject GetNextMission(List<MissionScriptableObject> missionList)
     {
