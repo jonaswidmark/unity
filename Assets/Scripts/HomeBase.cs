@@ -40,18 +40,17 @@ public class HomeBase :  MonoBehaviour, IClickable
     }
     public void UpdateMissionList()
     {
-        var availableMissions = missionScriptableObjectList.Where(mission => mission.isAvailable);
-        var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
-        var firstMission = sortedMissions.FirstOrDefault();
-        
-        if (firstMission != null)
+        //var availableMissions = missionScriptableObjectList.Where(mission => mission.isAvailable);
+        //var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
+        //var firstMission = sortedMissions.FirstOrDefault();
+        var nextMission = Utils.GetNextMission(missionScriptableObjectList);
+        if (nextMission != null)
         {
-            SetActiveMission(firstMission);
-            missionManager.SetNewMissionAction(firstMission);
+            SetActiveMission(nextMission);
+            missionManager.SetNewMissionAction(nextMission);
         }
         else
         {
-            
             Debug.Log("Inga tillgängliga missioner hittades.");
         }
     }

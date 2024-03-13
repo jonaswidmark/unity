@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Linq;
+using System.Collections.Generic;
 public static class Utils
 {
     private static IClickable selectedObject;
@@ -13,5 +14,11 @@ public static class Utils
             ActionManager.Instance.SetSelectedTransform((IClickable) obj);
         }
         return wasHit;
+    }
+    public static MissionScriptableObject GetNextMission(List<MissionScriptableObject> missionList)
+    {
+        var availableMissions = missionList.Where(mission => mission.isAvailable);
+        var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
+        return sortedMissions.FirstOrDefault();
     }
 }

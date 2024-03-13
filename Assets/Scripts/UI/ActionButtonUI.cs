@@ -22,9 +22,6 @@ public class ActionButtonUI : MonoBehaviour
         actionManager = ActionManager.Instance;
         stateMachine = StateMachine.Instance;
         missionManager= MissionManager.Instance;
-        stateMachine.OnMissionState += StateMachine_OnMissionState;
-        stateMachine.OnIdleState += StateMachine_OnIdleState;
-        missionManager.OnUpdatedMissionList += MissionManager_OnUpdatedMissionList;
         missionManager.OnNewMission += MissionManager_OnNewMission;
         button.interactable = true;
         button.gameObject.SetActive(false);
@@ -40,52 +37,9 @@ public class ActionButtonUI : MonoBehaviour
         textMeshPro.text = missionToStart.Title;
     }
 
-    private void MissionManager_OnUpdatedMissionList(object sender, MissionEventArgs e)
-    {
-        missionToStart = e.Mission;
-        //SetNewMission(missionToStart);
-    }
     private void MissionManager_OnNewMission(object sender, MissionEventArgs e)
     {
         missionToStart = e.Mission;
         SetNewMission(missionToStart);
-    }
-
-    private void ToggleSelectable()
-    {
-        //button.interactable = !button.interactable;
-    }
-    
-    private void StateMachine_OnMissionState(object sender, EventArgs e)
-    {
-        Debug.Log("StateMachine_OnMissionState");
-        /* ToggleSelectable();
-        for (int i = 0; i < button.onClick.GetPersistentEventCount(); i++)
-        {
-            var listener = button.onClick.GetPersistentMethodName(i);
-            Debug.Log("Listener " + i + ": " + listener);
-        } */
-        //button.onClick.RemoveAllListeners();
-    }
-    private void StateMachine_OnIdleState(object sender, EventArgs e)
-    {
-        ToggleSelectable();
-    }
-    public void SetBaseAction(BaseAction baseAction)
-    {
-        Debug.Log("SetBaseAction on button");
-        Debug.Log(baseAction.GetActionName().ToUpper());
-        this.baseAction = baseAction;
-        textMeshPro.text = baseAction.GetActionName().ToUpper();
-        Debug.Log(textMeshPro.text);
-        /* button.onClick.AddListener(() => {
-                //actionManager.SetSelectedAction(baseAction);
-                actionManager.SetStartMission(missionToStart);
-        }); */
-    } 
-    public void UpdateSelectedVisual()
-    {
-        /*  BaseAction selectedBaseAction = actionManager.GetSelectedAction();
-        selectedBaseAction.SetActive(selectedBaseAction == baseAction);  */
     }
 }
