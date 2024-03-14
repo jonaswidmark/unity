@@ -5,9 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - parentObject: {instanceID: 0}
-  - purpose: {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
-  - missionScriptableObject: {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792,
-      type: 2}
+  - purpose: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

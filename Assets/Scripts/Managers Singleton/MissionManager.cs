@@ -15,11 +15,9 @@ public class MissionManager : MonoBehaviour
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
-    [SerializeField] private CountdownPurpose purpose;
     private float purposeTimer = 9f;
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
-    private Stack<CountdownPurpose> missionTasksStack = new Stack<CountdownPurpose>();
-    //private Stack<CountdownPurpose> reverseMissionTasksStack = new Stack<CountdownPurpose>();
+    private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private void Awake()
     {
         if (Instance != null)
@@ -62,8 +60,6 @@ public class MissionManager : MonoBehaviour
     {
         countdownManager = CountdownManager.Instance;
         countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
-        //UpdateMissionList();
-       
     }
     private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
     {
@@ -72,23 +68,19 @@ public class MissionManager : MonoBehaviour
     
     public void InitializeMission()
     {
-        Debug.Log("initialize mission!");
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
-        
         missionTasksStack.Clear();
-        
-        foreach(CountdownPurpose missionTask in missionTasks)
+        foreach(MissionTask missionTask in missionTasks)
         {
             missionTasksStack.Push(missionTask);
         }
-        
         InitializeNextMissionTask();
     }
     private void InitializeNextMissionTask()
     {
         if(missionTasksStack.Count>0)
         {
-            CountdownPurpose nextissionTask = missionTasksStack.Pop();
+            MissionTask nextissionTask = missionTasksStack.Pop();
             countdownManager.SpawnPrefab(purposeTimer, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
         }
         else

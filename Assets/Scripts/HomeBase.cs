@@ -7,7 +7,6 @@ using UnityEngine;
 public class HomeBase :  MonoBehaviour, IClickable
 {
     
-    private CountdownPurpose purpose;
     private InputManager inputManager;
     private VisualsManager visualsManager;
     private MissionManager missionManager;

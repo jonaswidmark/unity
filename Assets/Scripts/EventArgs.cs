@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class TaskEventArgs : EventArgs
 {
-    public CountdownPurpose countdownPurpose {get;}
+    public MissionTask missionTask {get;}
     public float timer {get;}
 
-    public TaskEventArgs(float timer, CountdownPurpose countdownPurpose)
+    public TaskEventArgs(float timer, MissionTask missionTask)
     {
-        this.countdownPurpose = countdownPurpose;
+        this.missionTask = missionTask;
         this.timer = timer;
     }
 }

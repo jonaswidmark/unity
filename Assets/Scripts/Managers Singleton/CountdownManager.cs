@@ -11,11 +11,11 @@ public class CountdownManager : MonoBehaviour
     public GameObject prefabToSpawn;
     public event EventHandler onMissionTaskComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
-    [SerializeField] private List<CountdownPurpose> purposeList;
+    [SerializeField] private List<MissionTask> purposeList;
     [SerializeField] private Transform parentObject;
 
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
-    
+
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
     private void Awake()
     {
@@ -27,23 +27,14 @@ public class CountdownManager : MonoBehaviour
         }
         Instance = this;
     }
-    void Start()
-    {
-        //CountdownPurpose purposeMyFirstTask = purposeList.Find(x => x.GetKey() == "my_first_task");
-        //CountdownPurpose purposeMySecondTask = purposeList.Find(x => x.GetKey() == "my_second_task");
-
-        //SpawnPrefab(3f, purposeMyFirstTask);
-        //SpawnPrefab(4f, purposeMySecondTask);
-
-    }
-    public void SpawnPrefab(float initialTime, CountdownPurpose countdownPurpose, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
+    public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
     {
         spawnedPrefab = null;
         countdownData = null;
-        if (prefabToSpawn != null && parentObject != null && countdownArray != null && countdownPurpose != null)
+        if (prefabToSpawn != null && parentObject != null && countdownArray != null && missionTask != null)
         {
             spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
-            countdownData = CreateCountdownScriptableObject(initialTime, countdownPurpose);
+            countdownData = CreateCountdownScriptableObject(initialTime, missionTask);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);
             if (!countdownArray.GetCountdownStartedArray().ContainsKey(spawnedPrefab))
@@ -52,11 +43,11 @@ public class CountdownManager : MonoBehaviour
             }
         }
     }
-    CountdownScriptableObject CreateCountdownScriptableObject(float initialTime, CountdownPurpose countdownPurpose)
+    CountdownScriptableObject CreateCountdownScriptableObject(float initialTime, MissionTask missionTask)
     {
         CountdownScriptableObject countdownData = ScriptableObject.CreateInstance<CountdownScriptableObject>();
         countdownData.StartCountdown(initialTime);
-        countdownData.SetCountdownPurpose(countdownPurpose);
+        countdownData.SetCountdownMissionTask(missionTask);
         return countdownData;
     }
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
@@ -74,7 +65,7 @@ public class CountdownManager : MonoBehaviour
             }
 
         }
-        string t = countdownData.GetCountdownPurpose().GetKey();
+        string t = countdownData.GetCountdownMissionTask().GetKey();
         Debug.Log("Timer with task: " + t + " was completed!");
         Destroy(pairToRemove.Key);
         onMissionTaskComplete?.Invoke(this, EventArgs.Empty);

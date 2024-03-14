@@ -6,7 +6,7 @@ using System.Linq;
 [CreateAssetMenu(fileName = "New Countdown", menuName = "CustomObjects/Countdown")]
 public class CountdownScriptableObject : ScriptableObject
 {
-    [SerializeField] private CountdownPurpose countdownPurpose;
+    [SerializeField] private MissionTask missionTask;
     private bool timerIsRunning = false;
     private float timeRemaining = 0f;
     public delegate void CountdownFinishedEvent(CountdownScriptableObject countdownData);
@@ -15,13 +15,13 @@ public class CountdownScriptableObject : ScriptableObject
     {
         get { return timeRemaining; }
     }
-    public void SetCountdownPurpose(CountdownPurpose countdownPurpose)
+    public void SetCountdownMissionTask(MissionTask missionTask)
     {
-        this.countdownPurpose = countdownPurpose;
+        this.missionTask = missionTask;
     }
-    public CountdownPurpose GetCountdownPurpose()
+    public MissionTask GetCountdownMissionTask()
     {
-        return countdownPurpose;
+        return missionTask;
     }
     public void StartCountdown(float initialTime)
     {

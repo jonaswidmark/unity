@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Interfaces and BaseClasses\IService.cs" />
     <Compile Include="Assets\Scripts\Managers Singleton\VisualsManager.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects\CountdownPurposeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceRegistrator.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionTaskScriptableObject.cs" />

@@ -39,6 +39,18 @@ public class MissionTask : ScriptableObject
         get { return toTransform; }
         private set { toTransform = value; }
     }
-    
-    
+    public int GetId()
+    {
+        return id;
+    }
+    public string GetKey()
+    {
+        return key;
+    }
+    public string GetTitle()
+    {
+        return title;
+    }
+
+
 }
