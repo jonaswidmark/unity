@@ -1,19 +1,14 @@
-using UnityEngine;
 using System.Collections.Generic;
-using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New MissionTask", menuName = "CustomObjects/MissionTask")]
 public class MissionTask : ScriptableObject
 {
     [SerializeField] int id;
-    [SerializeField] String key;
-    [SerializeField] String title;
-    [SerializeField] Transform fromTransform;
-
-    [SerializeField] Transform toTransform;
-
+    [SerializeField] string key;
+    [SerializeField] string title;
+    [SerializeField] string toTransformTitle;
+    [SerializeField] float timeToExecute;
     public int Id
     {
         get { return id; }
@@ -29,15 +24,10 @@ public class MissionTask : ScriptableObject
         get { return title; }
         private set { title = value; }
     }
-    public Transform FromTransform
+    public Transform GetToTransform()
     {
-        get { return fromTransform; }
-        private set { fromTransform = value; }
-    }
-    public Transform ToTransform
-    {
-        get { return toTransform; }
-        private set { toTransform = value; }
+        GameObject obj = GameObject.Find(toTransformTitle);
+        return obj != null ? obj.transform : null;
     }
     public int GetId()
     {
@@ -51,6 +41,10 @@ public class MissionTask : ScriptableObject
     {
         return title;
     }
-
-
+    public float TimeToExecute
+    {
+        get { return timeToExecute; }
+        set { timeToExecute = value; }
+    }
+    
 }
