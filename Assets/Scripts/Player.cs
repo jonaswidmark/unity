@@ -13,9 +13,10 @@ public class Player : MonoBehaviour, IClickable
 {
     private InputManager inputManager;
     private VisualsManager visualsManager;
-    //private ActionManager actionManager;
+    private MissionManager missionManager;
     private Rigidbody rb = null;
-    //[SerializeField] private float moveSpeed = 4f;
+    public event EventHandler OnIsPlayerWalking;
+    public event EventHandler OnIsPlayerIdle;
     private bool isInMovement = false;
     private bool isMovingForward = false;
     private bool isGrounded = false;
@@ -24,13 +25,18 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 forwardVector3 = new UnityEngine.Vector3(0,0,1);
     private Vector3 moveVector = new UnityEngine.Vector3(0,0,0);
     [SerializeField] private LayerMask floor;
-    //private BaseAction[] baseActionArray;
+    private Transform targetTransform;
+    public float duration = 3f; // Antal sekunder det tar att nå målet
+
+    private Vector3 initialPosition;
+    private float elapsedTime = 0f;
+    private bool isMoving = false;
+ 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        //baseActionArray = GetComponents<BaseAction>();
         
     }
     private void Start()
@@ -39,6 +45,39 @@ public class Player : MonoBehaviour, IClickable
         inputManager.OnMouseSelect += InputManager_OnSelect;
         visualsManager = VisualsManager.Instance;
         visualsManager.RemoveVisual(this);
+        missionManager = MissionManager.Instance;
+        missionManager.OnGoToTransform += MissionManager_OnGoToTransform;
+        initialPosition = transform.position;
+    }
+    private void Update()
+    {
+        //GroundedSettings();
+
+        if (!isMoving)
+            return;
+
+        elapsedTime += Time.deltaTime;
+
+        float t = Mathf.Clamp01(elapsedTime / duration);
+
+        transform.position = Vector3.Lerp(initialPosition, targetTransform.position, t);
+        float distance = Vector3.Distance(transform.position, targetTransform.position);
+        
+        if (distance <= 0.1f)
+        {
+            isMoving = false;
+            OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
+        }
+    }
+    private void MissionManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
+    {
+        Debug.Log("Start moving towards " + e.missionTask.GetToTransform());
+        initialPosition = transform.position;
+        targetTransform = e.missionTask.GetToTransform();
+        elapsedTime = 0f;
+        duration = e.missionTask.TimeToExecute;
+        isMoving = true;
+        OnIsPlayerWalking?.Invoke(this, EventArgs.Empty);
     }
     public Transform ObjectTransform
     {
@@ -54,14 +93,8 @@ public class Player : MonoBehaviour, IClickable
             return gameObject;
         }
     }
-    private void Update()
-    {
-        GroundedSettings();
-    }
-    /* public BaseAction[] GetBaseActionArray()
-    {
-        return baseActionArray;
-    } */
+    
+    
      private void InputManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())

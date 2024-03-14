@@ -8,14 +8,12 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
     public event EventHandler<MissionEventArgs> OnMissionEnded;
-
     public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
-
+    public event EventHandler<MissionTaskEventArgs> OnGoToTransform;
     public event EventHandler<MissionEventArgs> OnNewMission;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
-    private float purposeTimer = 9f;
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private void Awake()
@@ -81,12 +79,23 @@ public class MissionManager : MonoBehaviour
         if(missionTasksStack.Count>0)
         {
             MissionTask nextissionTask = missionTasksStack.Pop();
-            countdownManager.SpawnPrefab(purposeTimer, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
+            float timeToExecute = nextissionTask.TimeToExecute;
+            countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
+            InvokeMissionTaskEvents(nextissionTask);
         }
         else
         {
             MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
             OnMissionEnded?.Invoke(this, eventArgs);
         }
+    }
+    private void InvokeMissionTaskEvents(MissionTask missionTask)
+    {
+        Transform goToTransform = missionTask.GetToTransform();
+        if(goToTransform != null)
+        {
+            MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
+            OnGoToTransform?.Invoke(this, eventArgs);
+        } 
     }
 }

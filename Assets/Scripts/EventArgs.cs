@@ -6,11 +6,9 @@ using UnityEngine;
 public class MissionTaskEventArgs : EventArgs
 {
     public MissionTask missionTask {get;}
-    public float timer {get;}
-    public MissionTaskEventArgs(float timer, MissionTask missionTask)
+    public MissionTaskEventArgs(MissionTask missionTask)
     {
         this.missionTask = missionTask;
-        this.timer = timer;
     }
 }
 

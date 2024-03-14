@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   key: 
-  title: 
+  title: Go to Home Base
   toTransformTitle: HomeBase
+  timeToExecute: 5
