@@ -31,7 +31,7 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 initialPosition;
     private float elapsedTime = 0f;
     private bool isMoving = false;
-    public float collisionRadius = 0.5f;
+    public float collisionRadius = 1.0f;
 
     private void Awake()
     {
@@ -59,70 +59,35 @@ public class Player : MonoBehaviour, IClickable
     {
         if (!isMoving)
             return;
-
+        Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        transform.position = newInitialPosition;
         Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
         
         
         float rotationSpeed = 100.0f;
         bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
         if (!rotationComplete) return;
-        
-        elapsedTime += Time.deltaTime;
-        float t = Mathf.Clamp01(elapsedTime / duration);
-        transform.position = Vector3.Lerp(initialPosition, targetTransform.position, t);
-        
         if (IsTouchingTarget())
         {
             isMoving = false;
             OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
         } 
-        /* 
-        if(inputManager != null)
-        {
-            moveVector = inputManager.GetMoveVector();
-        }
+        elapsedTime += Time.deltaTime;
         
-        if(transform.position.y <= 0)
-        {
-            //transform.position = new UnityEngine.Vector3(transform.position.x,0,transform.position.z);
-        }
-        if ((transform.position - moveVector).normalized == emptyVector3)
-        {
-            return;
-        }
-        if (!isGrounded)
-        {
-            return;
-        }
+        float t = Mathf.Clamp01(elapsedTime / duration);
+        Vector3 newTargetPosition = new Vector3(targetTransform.position.x, 0.0f, targetTransform.position.z);
+
+        transform.position = Vector3.Lerp(initialPosition, newTargetPosition, t);
+         
+         // Beräkna den nya positionen för spelaren
+        //Vector3 newPosition = Vector3.Lerp(initialPosition, newTargetPosition, elapsedTime / duration);
+    
+        // Flytta spelaren
+        //GetComponent<Rigidbody>().MovePosition(newPosition);
+
+       
         
-        if(moveVector == forwardVector3)
-        {
-            isMovingForward = true;
-            rb.velocity = transform.forward * moveSpeed;
-        }
-        else
-        {
-            isMovingForward = false;
-            if(moveVector == upVector3 )
-            {
-                if(!isInMovement)
-                {
-                    float thrust = 100f;
-                    rb.AddForce(0, thrust, 0, ForceMode.Impulse);
-                    rb.velocity = moveVector * moveSpeed;
-                } 
-            }
-            else
-            {
-                rb.velocity = moveVector * moveSpeed;
-            }
-            
-        }
-        if(moveVector != upVector3)
-        {
-            isInMovement = moveVector != emptyVector3;//UnityEngine.Vector3.zero;
-        }
-         */
+        
     }
     private bool IsTouchingTarget()
     {

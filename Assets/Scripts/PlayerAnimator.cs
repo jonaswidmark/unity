@@ -24,7 +24,6 @@ public class PlayerAnimator : MonoBehaviour
     }
     private void Player_OnIsPlayerIdle(object sender, EventArgs e)
     {
-        Debug.Log("Player_OnIsPlayerIdle");
         animator.SetBool("IsWalking",false);
         animator.SetBool("IsIdle",true);
     }
