@@ -31,7 +31,7 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 initialPosition;
     private float elapsedTime = 0f;
     private bool isMoving = false;
- 
+    public float collisionRadius = 0.5f;
 
     private void Awake()
     {
@@ -53,67 +53,33 @@ public class Player : MonoBehaviour, IClickable
     {
         //GroundedSettings();
 
+        
+    }
+    private void FixedUpdate()
+    {
         if (!isMoving)
             return;
 
+        Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
+        
+        
+        float rotationSpeed = 100.0f;
+        bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
+        if (!rotationComplete) return;
+        
         elapsedTime += Time.deltaTime;
 
         float t = Mathf.Clamp01(elapsedTime / duration);
 
         transform.position = Vector3.Lerp(initialPosition, targetTransform.position, t);
-        float distance = Vector3.Distance(transform.position, targetTransform.position);
+        //float distance = Vector3.Distance(transform.position, targetTransform.position);
         
-        if (distance <= 0.1f)
+        if (IsTouchingTarget())
         {
             isMoving = false;
             OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
-        }
-    }
-    private void MissionManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
-    {
-        Debug.Log("Start moving towards " + e.missionTask.GetToTransform());
-        initialPosition = transform.position;
-        targetTransform = e.missionTask.GetToTransform();
-        elapsedTime = 0f;
-        duration = e.missionTask.TimeToExecute;
-        isMoving = true;
-        OnIsPlayerWalking?.Invoke(this, EventArgs.Empty);
-    }
-    public Transform ObjectTransform
-    {
-        get
-        {
-            return transform;
-        }
-    }
-    public GameObject ObjectGameObject
-    {
-        get
-        {
-            return gameObject;
-        }
-    }
-    
-    
-     private void InputManager_OnSelect(object sender, EventArgs e)
-    {
-        if(WasSelected())
-        {
-            visualsManager.SetVisual(this);
-        }
-        else 
-        {
-            visualsManager.RemoveVisual(this);
-        }
-    }
-    
-    public bool WasSelected()
-    {
-        return Utils.WasSelected(this);
-    }
-
-    private void FixedUpdate()
-    {
+        } 
+        /* 
         if(inputManager != null)
         {
             moveVector = inputManager.GetMoveVector();
@@ -131,7 +97,7 @@ public class Player : MonoBehaviour, IClickable
         {
             return;
         }
-        /* 
+        
         if(moveVector == forwardVector3)
         {
             isMovingForward = true;
@@ -161,6 +127,88 @@ public class Player : MonoBehaviour, IClickable
         }
          */
     }
+    private bool IsTouchingTarget()
+    {
+        // Utför en sfärisk kollisionskontroll runt spelarens position med angiven radie
+        Collider[] colliders = Physics.OverlapSphere(transform.position, collisionRadius);
+
+        // Loopa igenom alla collider som hittades
+        foreach (Collider collider in colliders)
+        {
+            // Kontrollera om någon av kolliderarna tillhör målet
+            if (collider.transform == targetTransform)
+            {
+                // Returnera true om målet hittades
+                return true;
+            }
+        }
+
+        // Returnera false om målet inte hittades
+        return false;
+    }
+    private void MissionManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
+    {
+        
+        initialPosition = transform.position;
+        targetTransform = e.missionTask.GetToTransform();
+        
+        elapsedTime = 0f;
+        duration = e.missionTask.TimeToExecute;
+        isMoving = true;
+        OnIsPlayerWalking?.Invoke(this, EventArgs.Empty);
+    }
+    private bool RotateTowardsDirection(Vector3 targetDirection, float rotateSpeed)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+        
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        
+        // Kontrollera om vi är nära den önskade rotationen
+        float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+        float thresholdAngle = 1.0f; // Ange en tröskelvinkel för att avgöra när rotationen är klar
+        //Debug.Log(angleDifference);
+        if (angleDifference < thresholdAngle)
+        {
+            // Rotationen är klar
+            return true;
+        }
+        else
+        {
+            // Fortsätt rotera
+            return false;
+        }
+    }
+    public Transform ObjectTransform
+    {
+        get
+        {
+            return transform;
+        }
+    }
+    public GameObject ObjectGameObject
+    {
+        get
+        {
+            return gameObject;
+        }
+    }
+    private void InputManager_OnSelect(object sender, EventArgs e)
+    {
+        if(WasSelected())
+        {
+            visualsManager.SetVisual(this);
+        }
+        else 
+        {
+            visualsManager.RemoveVisual(this);
+        }
+    }
+    public bool WasSelected()
+    {
+        return Utils.WasSelected(this);
+    }
+
+    
     /* 
     private void InputManager_OnMouseX(object sender, EventArgs e)
     {
@@ -169,12 +217,6 @@ public class Player : MonoBehaviour, IClickable
         transform.Rotate(Vector3.up,mouseXDelta.x * sensitivity);
         //transform.Rotate(Vector3.left, mouseXDelta.y);
     } */
-    private void RotateTowardsDirection(Vector3 targetDirection, float rotateSpeed)
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-    }
     private void GroundedSettings()
     {
        /*  RaycastHit hit;

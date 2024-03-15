@@ -748,7 +748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentObject: {fileID: 71331730}
-  purpose: {fileID: 11400000, guid: 74d23997e986e4241a86b363fbfb3938, type: 2}
   missionScriptableObjectList: []
 --- !u!1 &258318453
 GameObject:
@@ -2430,7 +2429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980864395}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.3156658, z: -0, w: 0.9488705}
   m_LocalPosition: {x: 3, y: 0, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2438,7 +2437,7 @@ Transform:
   - {fileID: 743367308}
   - {fileID: 1329160864}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -36.802, z: 0}
 --- !u!114 &980864397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2454,6 +2453,7 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 64
+  duration: 3
 --- !u!54 &980864398
 Rigidbody:
   m_ObjectHideFlags: 0
