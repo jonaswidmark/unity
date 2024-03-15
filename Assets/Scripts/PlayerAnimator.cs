@@ -20,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Player_OnIsPlayerWalking(object sender, EventArgs e)
     {
         animator.SetBool("IsWalking",true);
+        animator.SetBool("IsIdle",false);
     }
     private void Player_OnIsPlayerIdle(object sender, EventArgs e)
     {

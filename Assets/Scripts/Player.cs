@@ -68,11 +68,8 @@ public class Player : MonoBehaviour, IClickable
         if (!rotationComplete) return;
         
         elapsedTime += Time.deltaTime;
-
         float t = Mathf.Clamp01(elapsedTime / duration);
-
         transform.position = Vector3.Lerp(initialPosition, targetTransform.position, t);
-        //float distance = Vector3.Distance(transform.position, targetTransform.position);
         
         if (IsTouchingTarget())
         {

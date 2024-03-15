@@ -16,4 +16,4 @@ MonoBehaviour:
   key: 
   title: Go to Home Base
   toTransformTitle: HomeBase
-  timeToExecute: 5
+  timeToExecute: 10
