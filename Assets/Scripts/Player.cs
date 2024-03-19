@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IClickable
     private Vector3 moveVector = new UnityEngine.Vector3(0,0,0);
     [SerializeField] private LayerMask floor;
     private Transform targetTransform;
-    public float duration = 3f; // Antal sekunder det tar att nå målet
+    public float duration = 15.0f; // Antal sekunder det tar att nå målet
 
     private Vector3 initialPosition;
     private float elapsedTime = 0f;
@@ -56,13 +56,51 @@ public class Player : MonoBehaviour, IClickable
         
     }
     private void FixedUpdate()
+{
+    if (!isMoving)
+        return;
+
+    Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
+    transform.position = newInitialPosition;
+
+    Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
+
+    float rotationSpeed = 100.0f;
+    bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
+    if (!rotationComplete) return;
+
+    if (IsTouchingTarget())
+    {
+        Debug.Log("IsTouchingTarget");
+        isMoving = false;
+        OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
+        return;
+    }
+    float minSpeed = 0.0f;
+    float maxSpeed = 0.05f;
+    // Beräkna totala avståndet till målet
+    float totalDistance = Vector3.Distance(transform.position, targetTransform.position);
+    Debug.Log(totalDistance/0.05f * Time.deltaTime);
+    // Beräkna hur stor del av avståndet som redan har tagits
+    float remainingDistance = totalDistance * (1.0f - Mathf.Clamp01(elapsedTime / duration));
+
+    // Beräkna den nya hastigheten baserat på avståndet till målet
+    float speed = Mathf.Lerp(minSpeed, maxSpeed, remainingDistance / totalDistance);
+    Debug.Log(speed);
+    // Flytta spelaren med den nya hastigheten
+    float step = speed * Time.deltaTime;
+    transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, 0.05f);
+
+    elapsedTime += Time.deltaTime;
+}
+
+    private void FixedUpdateX()
     {
         if (!isMoving)
             return;
         Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
         transform.position = newInitialPosition;
         Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
-        
         
         float rotationSpeed = 100.0f;
         bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
@@ -75,10 +113,15 @@ public class Player : MonoBehaviour, IClickable
         elapsedTime += Time.deltaTime;
         
         float t = Mathf.Clamp01(elapsedTime / duration);
+        
         Vector3 newTargetPosition = new Vector3(targetTransform.position.x, 0.0f, targetTransform.position.z);
-
-        transform.position = Vector3.Lerp(initialPosition, newTargetPosition, t);
-         
+        transform.position = Vector3.MoveTowards(transform.position, newTargetPosition, 0.1f);
+        if(transform.position.x-newTargetPosition.x < -0.5f || transform.position.z -newTargetPosition.z < -0.5f)
+        {
+            //transform.position = Vector3.Lerp(initialPosition, newTargetPosition, t);
+            Debug.Log(transform.position-newTargetPosition); 
+        }
+        
          // Beräkna den nya positionen för spelaren
         //Vector3 newPosition = Vector3.Lerp(initialPosition, newTargetPosition, elapsedTime / duration);
     

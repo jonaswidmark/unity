@@ -918,7 +918,7 @@ Transform:
   m_GameObject: {fileID: 265014527}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.88, y: 0.05, z: 7.01}
+  m_LocalPosition: {x: 30.98, y: 0.05, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -971,7 +971,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.36, y: 2.24, z: 4.13}
+  m_Size: {x: 5, y: 3, z: 4.5}
   m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &330585543
 GameObject:
@@ -2430,7 +2430,7 @@ Transform:
   m_GameObject: {fileID: 980864395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.3156658, z: -0, w: 0.9488705}
-  m_LocalPosition: {x: 3, y: 0, z: 0.8}
+  m_LocalPosition: {x: 3, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2480,7 +2480,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 32
+  m_Constraints: 36
   m_CollisionDetection: 2
 --- !u!136 &980864400
 CapsuleCollider:
@@ -2502,7 +2502,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &980864401
@@ -2827,7 +2827,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5

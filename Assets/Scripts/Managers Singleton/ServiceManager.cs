@@ -1,61 +1,57 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
 public class ServiceManager : MonoBehaviour
 {
     public static ServiceManager Instance { get; private set; }
-    //private Dictionary<string, Type> registeredServices = new Dictionary<string, Type>();
-    private Dictionary<string, IService> registeredServices = new Dictionary<string, IService>();
-    private Dictionary<string, Type> serviceTypes = new Dictionary<string, Type>();
+
+    private Dictionary<Type, IService> registeredServices = new Dictionary<Type, IService>();
 
     private void Awake()
     {
         if (Instance != null)
         {
-            Debug.Log("There's more than one ServiceManager! " + transform + " - " + Instance);
+            Debug.LogWarning("There's more than one ServiceManager instance!");
             Destroy(gameObject);
             return;
         }
         Instance = this;
     }
 
-    public void RegisterService<T>(string serviceName, T serviceInstance) where T : IService
-{
-    Debug.Log("RegisterService i Service Manager");
-    if (!registeredServices.ContainsKey(serviceName))
+    public void RegisterService<T>(T serviceInstance) where T : IService
     {
-        registeredServices.Add(serviceName, serviceInstance);
-        serviceTypes.Add(serviceName, typeof(T));
-    }
-    else
-    {
-        Debug.LogWarning("Service " + serviceName + " is already registered.");
-    }
-}
-
-    public T GetService<T>(string serviceName) where T : class, IService
-{
-    
-    if (registeredServices.ContainsKey(serviceName))
-    {
-        
-        Type serviceType = registeredServices[serviceName].GetType(); // Hämta typen av tjänsten
-        Type serviceTypeX = serviceTypes[serviceName];
-        
-        if (serviceType == typeof(T))
+        Type serviceType = typeof(T);
+        if (!registeredServices.ContainsKey(serviceType))
         {
-            return Activator.CreateInstance(serviceType) as T;
+            registeredServices.Add(serviceType, serviceInstance);
         }
         else
         {
-            Debug.LogWarning($"Service '{serviceName}' is not of type {typeof(T).Name}");
+            Debug.LogWarning($"Service {serviceType.Name} is already registered.");
+        }
+    }
+
+    public T GetService<T>() where T : class, IService
+    {
+        Type serviceType = typeof(T);
+        if (registeredServices.ContainsKey(serviceType))
+        {
+            IService service = registeredServices[serviceType];
+            if (service is T)
+            {
+                return service as T;
+            }
+            else
+            {
+                Debug.LogWarning($"Service {serviceType.Name} is not of type {typeof(T).Name}");
+                return null;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Service {serviceType.Name} is not registered.");
             return null;
         }
     }
-    else
-    {
-        Debug.LogWarning("Service " + serviceName + " is not registered.");
-        return null;
-    }
-}
 }

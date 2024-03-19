@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class ServiceLocator
 {/**
-    public static IService GetService(string serviceName)
+    public static IService GetService(string serviceName);
     public static T GetService<T>(string serviceName) where T : class, IService
     {
         ServiceManager serviceManager = ServiceManager.Instance;
@@ -26,5 +26,6 @@ public static class ServiceLocator
             Debug.LogWarning("ServiceManager is not initialized.");
             return null;
         }
-    }**/
+    }
+    **/
 }

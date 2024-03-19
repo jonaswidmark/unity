@@ -60,48 +60,7 @@ public class InputManager : MonoBehaviour
             OnMouseX?.Invoke(this, EventArgs.Empty);
         }
     }
-    /* public void OnMovementPerformed(InputAction.CallbackContext value)
-    {
-        moveVector = value.ReadValue<Vector3>();
-        if(moveVector.magnitude > 0f)
-        {
-            if(moveVector == new Vector3(-1,0,0))
-            {
-                isWalking = false;
-                OnIsMovingLeft?.Invoke(this, EventArgs.Empty);   
-            }
-            else if(moveVector == new Vector3(1,0,0))
-            {
-                isWalking = false;
-                OnIsMovingRight?.Invoke(this, EventArgs.Empty);   
-            }
-            else if(moveVector == new Vector3(0,1,0))
-            {
-                OnIsJumping?.Invoke(this, EventArgs.Empty);   
-            }
-            else if(moveVector == new Vector3(0,0,1))
-            {
-                isWalking = true;
-                OnIsMovingForward?.Invoke(this, EventArgs.Empty);
-            }
-            else if(moveVector == new Vector3(0,0,-1))
-            {
-                isWalking = true;
-                OnIsMovingBackwards?.Invoke(this, EventArgs.Empty);
-            }
-            
-        }
-        else if (moveVector.magnitude == 0)
-        {
-            isWalking = false;
-            OnNotMoving?.Invoke(this, EventArgs.Empty);
-        }
-    } */
-    /*  public void OnMovementCanceled(InputAction.CallbackContext value)
-     {
-         Debug.Log("Cancelled!");
-         //moveVector = Vector3.zero;
-     } */
+    
     public Vector3 GetMoveVector()
     {
         return moveVector;

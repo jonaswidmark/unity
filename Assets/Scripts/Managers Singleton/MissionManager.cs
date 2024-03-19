@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class MissionManager : MonoBehaviour
+public class MissionManager : MonoBehaviour, IService
 {
     public static MissionManager Instance { get; private set; }
     public event EventHandler<MissionEventArgs> OnMissionEnded;
@@ -25,6 +25,11 @@ public class MissionManager : MonoBehaviour
             return;
         }
         Instance = this;
+        
+    }
+    public string GetServiceName()
+    {
+        return "MissionManager";
     }
     private void SetActiveMission(MissionScriptableObject activeMission)
     {
