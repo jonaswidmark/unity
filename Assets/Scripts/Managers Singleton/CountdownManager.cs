@@ -13,7 +13,9 @@ public class CountdownManager : MonoBehaviour
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
     [SerializeField] private List<MissionTask> purposeList;
     [SerializeField] private Transform parentObject;
-
+    private MissionTask missionTask;
+    private GameObject missionTaskPrefab;
+    private CountdownScriptableObject countdownScriptableObject;
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
 
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
@@ -27,13 +29,40 @@ public class CountdownManager : MonoBehaviour
         }
         Instance = this;
     }
+    private void UpdateActiveComponents(){
+        if(missionTask == null)
+        {
+            return ;
+        }
+        
+        if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
+            {
+                for (int i = 0; i < countdownDictionary.Count; i++)
+                {
+                    var kvp = countdownDictionary.ElementAt(i);
+                    if (kvp.Key != null)
+                    {
+                        missionTaskPrefab = kvp.Key;
+                        countdownScriptableObject = kvp.Value;
+                    }
+                }
+            }
+        if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback)
+        {
+            
+            Debug.Log(missionTask.GetTitle());
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText("XXXXXXXX");
+        }
+    }
     public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
     {
         spawnedPrefab = null;
         countdownData = null;
+        this.missionTask = missionTask;
         if (prefabToSpawn != null && parentObject != null && countdownArray != null && missionTask != null)
         {
             spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
+            
             countdownData = CreateCountdownScriptableObject(initialTime, missionTask);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);
@@ -42,12 +71,17 @@ public class CountdownManager : MonoBehaviour
                 countdownArray.AddToCountdownStartedArray(spawnedPrefab, countdownData);
             }
         }
+        UpdateActiveComponents();
     }
     CountdownScriptableObject CreateCountdownScriptableObject(float initialTime, MissionTask missionTask)
     {
         CountdownScriptableObject countdownData = ScriptableObject.CreateInstance<CountdownScriptableObject>();
-        countdownData.StartCountdown(initialTime);
         countdownData.SetCountdownMissionTask(missionTask);
+        if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.predefinedTimer)
+        {
+            countdownData.StartCountdown(initialTime);
+        }
+        
         return countdownData;
     }
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
@@ -63,27 +97,31 @@ public class CountdownManager : MonoBehaviour
             {
                 countdownArray.AddToCountdownCompletedArray(pairToRemove.Key, pairToRemove.Value);
             }
-
+            UpdateActiveComponents();
         }
         string t = countdownData.GetCountdownMissionTask().GetKey();
         Debug.Log("Timer with task: " + t + " was completed!");
         Destroy(pairToRemove.Key);
         onMissionTaskComplete?.Invoke(this, EventArgs.Empty);
     }
-    void Update()
+    private void Update()
     {
-        if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
+        if(missionTaskPrefab == null || countdownScriptableObject == null)
         {
-            for (int i = 0; i < countdownDictionary.Count; i++)
+            return;
+        }
+        if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.predefinedTimer)
+        {
+            if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
             {
-                var kvp = countdownDictionary.ElementAt(i);
-                if (kvp.Key != null)
+                for (int i = 0; i < countdownDictionary.Count; i++)
                 {
-                    GameObject spawnedPrefab = kvp.Key;
-                    CountdownScriptableObject countdownData = kvp.Value;
-
-                    countdownData.UpdateCountdown();
-                    spawnedPrefab.GetComponent<Timer>().SetTimeText(DisplayTime(countdownData.GetTimeRemaining()));
+                    var kvp = countdownDictionary.ElementAt(i);
+                    if (kvp.Key != null)
+                    {
+                        countdownScriptableObject.UpdateCountdown();
+                        missionTaskPrefab.GetComponent<Timer>().SetTimeText(DisplayTime(countdownScriptableObject.GetTimeRemaining()));
+                    }
                 }
             }
         }

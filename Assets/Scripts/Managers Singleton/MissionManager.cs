@@ -14,6 +14,7 @@ public class MissionManager : MonoBehaviour, IService
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
+    private MissionTask activeMissionTask;
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private void Awake()
@@ -83,8 +84,10 @@ public class MissionManager : MonoBehaviour, IService
     {
         if(missionTasksStack.Count>0)
         {
+            //Debug.Log(missionTasksStack.FirstOrDefault());
             MissionTask nextissionTask = missionTasksStack.Pop();
             float timeToExecute = nextissionTask.TimeToExecute;
+            //Debug.Log(nextissionTask.GetTitle());
             countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
             InvokeMissionTaskEvents(nextissionTask);
         }

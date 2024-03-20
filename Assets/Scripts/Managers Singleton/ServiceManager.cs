@@ -32,7 +32,7 @@ public class ServiceManager : MonoBehaviour
         }
     }
 
-    public T GetService<T>() where T : class, IService
+    public T GetService<T>(string v) where T : class, IService
     {
         Type serviceType = typeof(T);
         if (registeredServices.ContainsKey(serviceType))

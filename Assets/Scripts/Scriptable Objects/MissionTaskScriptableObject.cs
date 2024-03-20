@@ -9,6 +9,19 @@ public class MissionTask : ScriptableObject
     [SerializeField] string title;
     [SerializeField] string toTransformTitle;
     [SerializeField] float timeToExecute;
+    public enum IsCompletedBy
+    {
+        predefinedTimer,
+        callback
+    }
+    [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
+    
+    public IsCompletedBy CompletedBy { get; private set; }
+    
+    public IsCompletedBy GetIsCompletedBy()
+    {
+        return isCompletedBy;
+    }
     public int Id
     {
         get { return id; }

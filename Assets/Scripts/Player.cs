@@ -80,13 +80,13 @@ public class Player : MonoBehaviour, IClickable
     float maxSpeed = 0.05f;
     // Beräkna totala avståndet till målet
     float totalDistance = Vector3.Distance(transform.position, targetTransform.position);
-    Debug.Log(totalDistance/0.05f * Time.deltaTime);
+    //Debug.Log(totalDistance/0.05f * Time.deltaTime);
     // Beräkna hur stor del av avståndet som redan har tagits
     float remainingDistance = totalDistance * (1.0f - Mathf.Clamp01(elapsedTime / duration));
 
     // Beräkna den nya hastigheten baserat på avståndet till målet
     float speed = Mathf.Lerp(minSpeed, maxSpeed, remainingDistance / totalDistance);
-    Debug.Log(speed);
+    //Debug.Log(speed);
     // Flytta spelaren med den nya hastigheten
     float step = speed * Time.deltaTime;
     transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, 0.05f);
