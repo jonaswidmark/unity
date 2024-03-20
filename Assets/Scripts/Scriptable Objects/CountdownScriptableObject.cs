@@ -39,11 +39,15 @@ public class CountdownScriptableObject : ScriptableObject
             }
             else
             {
-                OnCountdownFinished?.Invoke(this);
+                EndCountDown();
                 timeRemaining = 0;
                 timerIsRunning = false;
             }
         }
+    }
+    public void EndCountDown()
+    {
+        OnCountdownFinished?.Invoke(this);
     }
     public float GetTimeRemaining()
     {

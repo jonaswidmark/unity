@@ -72,6 +72,7 @@ public class Player : MonoBehaviour, IClickable
     if (IsTouchingTarget())
     {
         Debug.Log("IsTouchingTarget");
+        missionManager.EndCurrentMissiontaskCountdown();
         isMoving = false;
         OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
         return;

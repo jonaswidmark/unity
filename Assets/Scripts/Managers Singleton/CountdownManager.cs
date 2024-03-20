@@ -66,6 +66,7 @@ public class CountdownManager : MonoBehaviour
             countdownData = CreateCountdownScriptableObject(initialTime, missionTask);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);
+            missionTask.SetActiveCountdown(countdownData);
             if (!countdownArray.GetCountdownStartedArray().ContainsKey(spawnedPrefab))
             {
                 countdownArray.AddToCountdownStartedArray(spawnedPrefab, countdownData);
@@ -86,6 +87,7 @@ public class CountdownManager : MonoBehaviour
     }
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
     {
+        
         var pairToRemove = countdownDictionary.FirstOrDefault(pair => pair.Value == countdownData);
         if (!pairToRemove.Key || countdownArray != null)
         {
@@ -97,11 +99,12 @@ public class CountdownManager : MonoBehaviour
             {
                 countdownArray.AddToCountdownCompletedArray(pairToRemove.Key, pairToRemove.Value);
             }
-            UpdateActiveComponents();
+            
         }
         string t = countdownData.GetCountdownMissionTask().GetKey();
         Debug.Log("Timer with task: " + t + " was completed!");
         Destroy(pairToRemove.Key);
+        UpdateActiveComponents();
         onMissionTaskComplete?.Invoke(this, EventArgs.Empty);
     }
     private void Update()
@@ -124,6 +127,10 @@ public class CountdownManager : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText(missionTask.GetTitle());
         }
     }
     private string DisplayTime(float timeToDisplay)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   key: 
-  title: 
+  title: 5 seconds task
   toTransformTitle: 
   timeToExecute: 5
   isCompletedBy: 0

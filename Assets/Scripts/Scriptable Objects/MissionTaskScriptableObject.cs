@@ -9,6 +9,7 @@ public class MissionTask : ScriptableObject
     [SerializeField] string title;
     [SerializeField] string toTransformTitle;
     [SerializeField] float timeToExecute;
+    private CountdownScriptableObject activeCountdown;
     public enum IsCompletedBy
     {
         predefinedTimer,
@@ -58,6 +59,14 @@ public class MissionTask : ScriptableObject
     {
         get { return timeToExecute; }
         set { timeToExecute = value; }
+    }
+    public void SetActiveCountdown(CountdownScriptableObject activeCountdown)
+    {
+        this.activeCountdown = activeCountdown;
+    }
+    public CountdownScriptableObject GetActiveCountdown()
+    {
+        return activeCountdown;
     }
     
 }
