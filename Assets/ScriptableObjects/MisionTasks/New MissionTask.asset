@@ -16,5 +16,5 @@ MonoBehaviour:
   key: 
   title: 5 seconds task
   toTransformTitle: 
-  timeToExecute: 5
+  timeToExecute: 1
   isCompletedBy: 0
