@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IClickable
     private Collider playerCollider;
     private Vector3 closestTargetPoint;
     private Vector3 targetColliderVector;
-
+    private float timeToCrossFade = 0.2f;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,6 +49,8 @@ public class Player : MonoBehaviour, IClickable
         visualsManager.RemoveVisual(this);
         missionManager = MissionManager.Instance;
         missionManager.OnGoToTransform += MissionManager_OnGoToTransform;
+        missionManager.OnPlayAnimation += MissionManager_OnPlayAnimation;
+        missionManager.OnMissionTaskEnded += MissionManager_OnMissionTaskEnded;
         initialPosition = transform.position;
         playerCollider = transform.GetComponent<Collider>();
     }
@@ -58,37 +60,50 @@ public class Player : MonoBehaviour, IClickable
 
         
     }
-    private void FixedUpdate()
-{
-    if (!isMoving)
-        return;
-
-    Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
-    transform.position = newInitialPosition;
-
-    Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
-
-    float rotationSpeed = 230.0f;
-    bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
-    if (!rotationComplete) return;
-    
-    if (IsTouchingTarget() )
+    private void MissionManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
     {
-        Debug.Log("Is touching target");
-        float timeToCrossFade = 0.2f;
-        animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
-        missionManager.EndCurrentMissiontaskCountdown();
-        isMoving = false;
-        OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
-        return;
+        string playAnimation = e.missionTask.GetPlayAnimation();
+        if(playAnimation != null)
+        {
+            Debug.Log("Player recieved Idle anit´mation!");
+            //animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
+        }
     }
-    float moveTowardsSpeed = 0.05f;
-    transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveTowardsSpeed);
-    // This is an example of normalized distance based on collider size
-    //float distanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position)) - collisionRadius;
-    //float normalizedDistanceToTarget = Mathf.Clamp01(distanceToTarget / initialDistanceToTarget);
-    elapsedTime += Time.deltaTime;
-}
+    private void MissionManager_OnPlayAnimation(object sender, MissionTaskEventArgs e)
+    {
+        Debug.Log("player working animation: " + e.missionTask.GetPlayAnimation());
+        animator.CrossFade(e.missionTask.GetPlayAnimation(), timeToCrossFade);
+    }
+    private void FixedUpdate()
+    {
+        if (!isMoving)
+            return;
+
+        Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        transform.position = newInitialPosition;
+
+        Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
+
+        float rotationSpeed = 230.0f;
+        bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
+        if (!rotationComplete) return;
+        
+        if (IsTouchingTarget() )
+        {
+            //timeToCrossFade = 0.2f;
+            animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
+            missionManager.EndCurrentMissiontaskCountdown();
+            isMoving = false;
+            OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
+            return;
+        }
+        float moveTowardsSpeed = 0.05f;
+        transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveTowardsSpeed);
+        // This is an example of normalized distance based on collider size
+        //float distanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position)) - collisionRadius;
+        //float normalizedDistanceToTarget = Mathf.Clamp01(distanceToTarget / initialDistanceToTarget);
+        elapsedTime += Time.deltaTime;
+    }
 
     private bool IsTouchingTarget()
     {

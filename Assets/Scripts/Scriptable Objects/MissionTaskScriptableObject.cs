@@ -9,6 +9,7 @@ public class MissionTask : ScriptableObject
     [SerializeField] string title;
     [SerializeField] string toTransformTitle;
     [SerializeField] float timeToExecute;
+    [SerializeField] string playAnimation;
     private CountdownScriptableObject activeCountdown;
     public enum IsCompletedBy
     {
@@ -17,6 +18,10 @@ public class MissionTask : ScriptableObject
     }
     [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
     
+    public string GetPlayAnimation()
+    {
+        return playAnimation;
+    }
     public IsCompletedBy CompletedBy { get; private set; }
     
     public IsCompletedBy GetIsCompletedBy()

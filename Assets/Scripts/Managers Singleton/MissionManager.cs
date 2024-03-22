@@ -10,6 +10,8 @@ public class MissionManager : MonoBehaviour, IService
     public event EventHandler<MissionEventArgs> OnMissionEnded;
     public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
     public event EventHandler<MissionTaskEventArgs> OnGoToTransform;
+    public event EventHandler<MissionTaskEventArgs> OnPlayAnimation;
+    public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
     public event EventHandler<MissionEventArgs> OnNewMission;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
@@ -18,6 +20,7 @@ public class MissionManager : MonoBehaviour, IService
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private MissionTask nextissionTask;
+    private MissionTask currentMissionTask;
     private void Awake()
     {
         if (Instance != null)
@@ -68,6 +71,8 @@ public class MissionManager : MonoBehaviour, IService
     }
     private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
     {
+        MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(currentMissionTask);
+        OnMissionTaskEnded?.Invoke(this, eventArgs);
         InitializeNextMissionTask();
     }
     
@@ -97,15 +102,22 @@ public class MissionManager : MonoBehaviour, IService
     }
     private void InvokeMissionTaskEvents(MissionTask missionTask)
     {
+        currentMissionTask = missionTask;
+        MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
         if(goToTransform != null)
         {
-            MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
             OnGoToTransform?.Invoke(this, eventArgs);
         } 
+        string playAnimation = missionTask.GetPlayAnimation();
+        if(playAnimation != null)
+        {
+            OnPlayAnimation?.Invoke(this, eventArgs);
+        }
     }
     public void EndCurrentMissiontaskCountdown()
     {
+        
         nextissionTask.GetActiveCountdown().EndCountDown();
     }
     public void EndCurrentMission()
