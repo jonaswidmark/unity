@@ -16,5 +16,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c29b60abdc92b4a4fac8e605fabaeb4d, type: 2}
   - {fileID: 11400000, guid: 777f806b2239a1f489613c023f9b339e, type: 2}
   title: Build Shelter
+  previousVisualTransform: {fileID: 434698, guid: 9f34afb08d4d48c4b860e0b7634ce5b4,
+    type: 3}
+  newVisualTransform: {fileID: 7634810922765813701, guid: 72e74826db57611459aefd15ce3e4e42,
+    type: 3}
   isAvailable: 1
   missionOrder: 0

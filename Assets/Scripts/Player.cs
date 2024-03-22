@@ -74,7 +74,9 @@ public class Player : MonoBehaviour, IClickable
     
     if (IsTouchingTarget() )
     {
-        Debug.Log("IsTouchingTarget");
+        Debug.Log("Is touching target");
+        float timeToCrossFade = 0.2f;
+        animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
         missionManager.EndCurrentMissiontaskCountdown();
         isMoving = false;
         OnIsPlayerIdle?.Invoke(this, EventArgs.Empty);
@@ -82,10 +84,9 @@ public class Player : MonoBehaviour, IClickable
     }
     float moveTowardsSpeed = 0.05f;
     transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveTowardsSpeed);
-    float distanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position)) - collisionRadius;
-    float normalizedDistanceToTarget = Mathf.Clamp01(distanceToTarget / initialDistanceToTarget);
-    animator.SetFloat("distanceToTarget", normalizedDistanceToTarget);    
-    
+    // This is an example of normalized distance based on collider size
+    //float distanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position)) - collisionRadius;
+    //float normalizedDistanceToTarget = Mathf.Clamp01(distanceToTarget / initialDistanceToTarget);
     elapsedTime += Time.deltaTime;
 }
 
@@ -100,17 +101,13 @@ public class Player : MonoBehaviour, IClickable
             // Kontrollera om någon av kolliderarna tillhör målet
             if (collider.transform == targetTransform)
             {
-                // Returnera true om målet hittades
                 return true;
             }
         }
-
-        // Returnera false om målet inte hittades
         return false;
     }
     private void MissionManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
     {
-        
         initialPosition = transform.position;
         targetTransform = e.missionTask.GetToTransform();
         
@@ -126,9 +123,7 @@ public class Player : MonoBehaviour, IClickable
             
             targetColliderVector = new Vector3(targetCollider.bounds.size.x, targetCollider.bounds.size.y, targetCollider.bounds.size.z);
             initialDistanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position));
-            
             collisionRadius = Mathf.Max(targetCollider.bounds.size.x, targetCollider.bounds.size.y, targetCollider.bounds.size.z);
-            Debug.Log(collisionRadius);
         }
     }
     private bool RotateTowardsDirection(Vector3 targetDirection, float rotateSpeed)
@@ -140,15 +135,12 @@ public class Player : MonoBehaviour, IClickable
         // Kontrollera om vi är nära den önskade rotationen
         float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
         float thresholdAngle = 1.0f; // Ange en tröskelvinkel för att avgöra när rotationen är klar
-        //Debug.Log(angleDifference);
         if (angleDifference < thresholdAngle)
         {
-            // Rotationen är klar
             return true;
         }
         else
         {
-            // Fortsätt rotera
             return false;
         }
     }
@@ -181,16 +173,6 @@ public class Player : MonoBehaviour, IClickable
     {
         return Utils.WasSelected(this);
     }
-
-    
-    /* 
-    private void InputManager_OnMouseX(object sender, EventArgs e)
-    {
-        Vector2 mouseXDelta = inputManager.GetMouseXDelta();
-        float sensitivity = 0.6f;
-        transform.Rotate(Vector3.up,mouseXDelta.x * sensitivity);
-        //transform.Rotate(Vector3.left, mouseXDelta.y);
-    } */
     private void GroundedSettings()
     {
        /*  RaycastHit hit;
@@ -206,7 +188,6 @@ public class Player : MonoBehaviour, IClickable
             }
         } */
     }
-    
     public bool GetIsGrounded()
     {
         return isGrounded;
@@ -219,5 +200,4 @@ public class Player : MonoBehaviour, IClickable
     {
         return isMovingForward;
     }
-    
 }

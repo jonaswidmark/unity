@@ -4,6 +4,11 @@ using System.Collections.Generic;
 public static class Utils
 {
     private static IClickable selectedObject;
+
+    private static readonly Dictionary<string, string> stringResources = new Dictionary<string, string>
+    {
+        { "PlayerIdleAnimation", "Breathing Idle" },
+    };
     
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {
@@ -35,5 +40,16 @@ public static class Utils
         var availableMissions = missionList.Where(mission => mission.isAvailable);
         var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
         return sortedMissions.FirstOrDefault();
+    }
+    public static string GetString(string key)
+    {
+        if (stringResources.ContainsKey(key))
+        {
+            return stringResources[key];
+        }
+        else
+        {
+            return "String not found";
+        }
     }
 }

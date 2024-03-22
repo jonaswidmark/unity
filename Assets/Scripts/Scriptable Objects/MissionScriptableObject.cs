@@ -8,9 +8,21 @@ public class MissionScriptableObject : ScriptableObject, ITask
 {
     public List<ScriptableObject> missionTasks = new List<ScriptableObject>();
     [SerializeField] private string title;
+    [SerializeField] Transform previousVisualTransform;
+    [SerializeField] Transform newVisualTransform;
     public bool isAvailable;
-
     public int missionOrder;
+    
+    public Transform PreviousVisualTransform
+    {
+        get { return previousVisualTransform; }
+        set { previousVisualTransform = value; }
+    }
+    public Transform NewVisualTransform
+    {
+        get { return newVisualTransform; }
+        set { newVisualTransform = value; }
+    }
     
     public int MissionOrder
     {

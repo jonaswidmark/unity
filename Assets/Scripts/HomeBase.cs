@@ -11,6 +11,10 @@ public class HomeBase :  MonoBehaviour, IClickable
     private VisualsManager visualsManager;
     private MissionManager missionManager;
     private MissionScriptableObject activeMission;
+    [SerializeField] Transform currentPrefab;
+    [SerializeField] Transform homeBaseParent;
+    public float transitionDelay = 0.5f;
+    private MissionEventArgs missionEventArgs;
     
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
@@ -19,7 +23,22 @@ public class HomeBase :  MonoBehaviour, IClickable
         visualsManager = VisualsManager.Instance;
         inputManager.OnMouseSelect += InputManager_OnSelect;
         missionManager = MissionManager.Instance;
+        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
+        currentPrefab = Instantiate(currentPrefab, homeBaseParent);
+    }
+    private void MissionManager_OnMissionEnded(object sender, MissionEventArgs e)
+    {
+        missionEventArgs = e;
+        if(e.Mission.NewVisualTransform != null)
+        {
+            Destroy(currentPrefab.gameObject, transitionDelay);
+            Invoke("SpawnNewObject", transitionDelay);
+        }
+    }
+    private void SpawnNewObject()
+    {
+        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, homeBaseParent);
     }
     private void InputManager_OnSelect(object sender, EventArgs e)
     {

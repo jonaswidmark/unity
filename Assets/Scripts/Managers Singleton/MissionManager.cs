@@ -85,7 +85,6 @@ public class MissionManager : MonoBehaviour, IService
     {
         if(missionTasksStack.Count>0)
         {
-            //Debug.Log(missionTasksStack.FirstOrDefault());
             nextissionTask = missionTasksStack.Pop();
             float timeToExecute = nextissionTask.TimeToExecute;
             countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
@@ -93,8 +92,7 @@ public class MissionManager : MonoBehaviour, IService
         }
         else
         {
-            MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
-            OnMissionEnded?.Invoke(this, eventArgs);
+            EndCurrentMission();
         }
     }
     private void InvokeMissionTaskEvents(MissionTask missionTask)
@@ -109,5 +107,10 @@ public class MissionManager : MonoBehaviour, IService
     public void EndCurrentMissiontaskCountdown()
     {
         nextissionTask.GetActiveCountdown().EndCountDown();
+    }
+    public void EndCurrentMission()
+    {
+        MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
+        OnMissionEnded?.Invoke(this, eventArgs);
     }
 }
