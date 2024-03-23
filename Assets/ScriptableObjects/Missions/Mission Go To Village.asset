@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 352ee44170a408a47a281b5459f0f2da, type: 3}
-  m_Name: Mission Go Get Gold
+  m_Name: Mission Go To Village
   m_EditorClassIdentifier: 
   missionTasks:
-  - {fileID: 11400000, guid: 37ffec1da48e03b409b049570a2face2, type: 2}
-  - {fileID: 11400000, guid: 073b7bcc75cacc740bae3a84a8d32cea, type: 2}
-  title: Go get gold
+  - {fileID: 11400000, guid: 600bc829b2d704646bd3103e34e8ddda, type: 2}
+  title: Go To Village
   previousVisualTransform: {fileID: 0}
   newVisualTransform: {fileID: 0}
   isAvailable: 1

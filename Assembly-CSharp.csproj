@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\States\MissionState.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
+    <Compile Include="Assets\Scripts\Scene Object Scripts\Village.cs" />
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
