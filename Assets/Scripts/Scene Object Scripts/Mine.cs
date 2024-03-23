@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Mine : BaseSceneObject
 {
+    public override void StartAddon()
+    {
+        foreach(MissionScriptableObject mission in missionScriptableObjectList)
+        {
+            mission.MissionTransform = transform;
+        }
+    }
     public override void InputManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())

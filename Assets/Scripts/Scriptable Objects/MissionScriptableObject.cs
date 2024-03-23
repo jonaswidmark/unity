@@ -10,8 +10,14 @@ public class MissionScriptableObject : ScriptableObject
     [SerializeField] private string title;
     [SerializeField] Transform previousVisualTransform;
     [SerializeField] Transform newVisualTransform;
+    private Transform missionTransform;
     public bool isAvailable;
     public int missionOrder;
+    public Transform MissionTransform
+    {
+        get { return missionTransform; }
+        set { missionTransform = value; }
+    }
     
     public Transform PreviousVisualTransform
     {

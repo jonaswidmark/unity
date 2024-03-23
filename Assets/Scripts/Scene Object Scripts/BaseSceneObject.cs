@@ -16,7 +16,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     public float transitionDelay = 0.5f;
     protected MissionEventArgs missionEventArgs;
     
-    [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
+    [SerializeField] protected List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
     {
         inputManager = ServiceLocator.InputManager;
@@ -26,11 +26,16 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
         missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, transform);
+        StartAddon();
+    }
+    public virtual void StartAddon()
+    {
+
     }
     public virtual void MissionManager_OnMissionEnded(object sender, MissionEventArgs e)
     {
         missionEventArgs = e;
-        if(e.Mission.NewVisualTransform != null)
+        if(e.Mission.NewVisualTransform != null && e.Mission.MissionTransform == transform)
         {
             Destroy(currentPrefab.gameObject, transitionDelay);
             Invoke("SpawnNewObject", transitionDelay);
