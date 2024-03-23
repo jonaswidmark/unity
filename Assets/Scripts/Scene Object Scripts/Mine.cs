@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Mine : BaseSceneObject
@@ -19,7 +17,8 @@ public class Mine : BaseSceneObject
     }
     public override bool WasSelected()
     { 
-        Debug.Log("Mine: "+ Utils.WasSelected(this));
+        Debug.Log(parentTransform);
+        Debug.Log(transform);
         return Utils.WasSelected(this);
     }
     /* private void Start()

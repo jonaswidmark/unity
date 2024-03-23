@@ -38,7 +38,7 @@ public class HomeBase :  MonoBehaviour, IClickable
     }
     private void SpawnNewObject()
     {
-        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, homeBaseParent);
+        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, transform);
     }
     private void InputManager_OnSelect(object sender, EventArgs e)
     {

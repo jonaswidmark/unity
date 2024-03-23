@@ -16,6 +16,6 @@ MonoBehaviour:
   key: working_with_pickaxe
   title: working_with_pickaxe
   toTransformTitle: 
-  timeToExecute: 3
+  timeToExecute: 6
   playAnimation: Mining
   isCompletedBy: 0

@@ -25,7 +25,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
         missionManager = ServiceLocator.MissionManager;
         missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
-        currentPrefab = Instantiate(currentPrefab, parentTransform);
+        currentPrefab = Instantiate(currentPrefab, transform);
     }
     public virtual void MissionManager_OnMissionEnded(object sender, MissionEventArgs e)
     {
@@ -38,7 +38,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void SpawnNewObject()
     {
-        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, parentTransform);
+        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, transform);
     }
     public virtual void InputManager_OnSelect(object sender, EventArgs e)
     {
@@ -57,7 +57,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
         return Utils.WasSelected(this);
     }
     public virtual void UpdateMissionList()
-    {Debug.Log("UpdateMissionList");
+    {
         var nextMission = Utils.GetNextMission(missionScriptableObjectList);
         if (nextMission != null)
         {Debug.Log(nextMission);
