@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
     <Compile Include="Assets\Scripts\Services\CountdownManager.cs" />
+    <Compile Include="Assets\Scripts\Scene Object Scripts\BaseSceneObject.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
     <Compile Include="Assets\Scripts\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\States\MissionState.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
-    <Compile Include="Assets\Scripts\HomeBase.cs" />
     <Compile Include="Assets\Scripts\UI\ActionButtonUI.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\EventArgs.cs" />
@@ -75,12 +75,14 @@
     <Compile Include="Assets\Scripts\Services\StateMachine.cs" />
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />
     <Compile Include="Assets\Scripts\Scriptable Object Events\OnMissionTaskCompleteSO.cs" />
     <Compile Include="Assets\Scripts\Interfaces and BaseClasses\IClickable.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Services\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Scene Object Scripts\HomeBase.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObject.cs" />

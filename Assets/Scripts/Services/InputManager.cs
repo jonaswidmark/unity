@@ -8,7 +8,7 @@ public class InputManager : ServiceManager<InputManager>
     private InputAction mouseSelect = null;
     private Vector3 moveVector = Vector3.zero;
 
-    public event EventHandler OnMouseX;
+    //public event EventHandler OnMouseX;
     public event EventHandler OnMouseSelect;
     private Vector2 mouseXDelta;
 
@@ -40,7 +40,7 @@ public class InputManager : ServiceManager<InputManager>
         OnMouseSelect?.Invoke(this, EventArgs.Empty);
     }
 
-    public void OnMouseXAction(InputAction.CallbackContext context)
+    /* public void OnMouseXAction(InputAction.CallbackContext context)
     {
         Debug.Log("OnMouseXAction");
         mouseXDelta = context.ReadValue<Vector2>();
@@ -49,7 +49,7 @@ public class InputManager : ServiceManager<InputManager>
             OnMouseX?.Invoke(this, EventArgs.Empty);
         }
     }
-    
+     */
     public Vector3 GetMoveVector()
     {
         return moveVector;
