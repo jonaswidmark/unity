@@ -20,7 +20,6 @@ public class MissionManager : ServiceManager<MissionManager>
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private MissionTask nextissionTask;
     private MissionTask currentMissionTask;
-   
     private void SetActiveMission(MissionScriptableObject activeMission)
     {
         this.activeMission = activeMission;
