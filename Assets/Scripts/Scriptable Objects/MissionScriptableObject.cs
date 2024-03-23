@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Mission", menuName = "CustomObjects/Mission")]
-public class MissionScriptableObject : ScriptableObject, ITask
+public class MissionScriptableObject : ScriptableObject
 {
     public List<ScriptableObject> missionTasks = new List<ScriptableObject>();
     [SerializeField] private string title;

@@ -35,17 +35,6 @@ public class ActionManager : ServiceManager<ActionManager>
     {
         return "ActionManager";
     }
-    public void SetSelectedAction(BaseAction baseAction)
-    {
-        if(stateMachine.GetPlayerState().GetType() ==  typeof(IdleState) )
-        {
-            GetDerivedClass(baseAction);
-            IState missionState = new MissionState();
-            stateMachine.ChangeState(missionState);
-            //Debug.Log(stateMachine.GetPlayerState());
-        }
-        
-    }
 
     public void SetSelectedTransform(IClickable selectedTransform)
     {
@@ -56,7 +45,7 @@ public class ActionManager : ServiceManager<ActionManager>
     {
         return selectedTransform;
     }
-    public string GetDerivedClass<T>(T obj) where T : BaseAction
+    /* public string GetDerivedClass<T>(T obj) where T : BaseAction
     {
         Debug.Log("GetDerivedClass");
         // This is where the action is triggered!
@@ -64,6 +53,6 @@ public class ActionManager : ServiceManager<ActionManager>
         obj.TakeAction(onActionComplete);
 
         return currentActionName;
-    }
+    } */
     
 }
