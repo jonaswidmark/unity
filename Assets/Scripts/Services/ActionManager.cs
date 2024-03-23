@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionManager : MonoBehaviour
+public class ActionManager : ServiceManager<ActionManager>
 {
-    public static ActionManager Instance { get; private set; }
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
     private StateMachine stateMachine;
@@ -13,20 +12,11 @@ public class ActionManager : MonoBehaviour
     private InputManager inputService;
 
     private string currentActionName;
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one ActionManager! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    
     private void Start()
     {
-        stateMachine = StateMachine.Instance;
-        inputService = InputManager.Instance;
+        stateMachine = ServiceLocator.StateMachine;
+        inputService = ServiceLocator.InputManager;
         inputService.OnMouseSelect += InputManager_OnSelect;
     }
     private void InputManager_OnSelect(object sender, EventArgs e)

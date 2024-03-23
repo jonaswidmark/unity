@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : ServiceManager<InputManager>
 {
-    public static InputManager Instance { get; private set; }
     private PlayerInputActions playerInputActions = null;
     private InputAction mouseSelect = null;
     private Vector3 moveVector = Vector3.zero;
@@ -18,13 +14,6 @@ public class InputManager : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one InputManager! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
         playerInputActions = new PlayerInputActions();
     }
 

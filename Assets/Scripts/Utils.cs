@@ -12,12 +12,12 @@ public static class Utils
     
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {
-        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(ServiceLocator.InputManager.GetMouseScreenPosition());
         bool wasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<T>() != null;
         if (wasHit)
         {
             selectedObject = (IClickable)obj.GetComponent<T>();
-            ActionManager.Instance.SetSelectedTransform((IClickable) obj);
+            ServiceLocator.ActionManager.SetSelectedTransform((IClickable) obj);
         }
         return wasHit;
     }

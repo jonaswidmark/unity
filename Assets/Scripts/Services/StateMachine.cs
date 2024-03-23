@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine: MonoBehaviour
+public class StateMachine: ServiceManager<StateMachine>
 {
-    public static StateMachine Instance { get; private set; }
     private IState currentState;
     public event EventHandler OnMissionState;
     public event EventHandler OnIdleState;
@@ -13,19 +12,9 @@ public class StateMachine: MonoBehaviour
     [SerializeField] private MissionState missionState;
     private MissionManager missionManager;
 
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one StateMachine! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
     private void Start()
     {
-        missionManager = MissionManager.Instance;
+        missionManager = ServiceLocator.MissionManager;
         missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         IdleState = new IdleState();
         missionState = new MissionState();

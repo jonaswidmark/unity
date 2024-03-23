@@ -5,9 +5,8 @@ using System.Linq;
 using UnityEngine;
 
 
-public class CountdownManager : MonoBehaviour
+public class CountdownManager : ServiceManager<CountdownManager>
 {
-    public static CountdownManager Instance { get; private set; }
     public GameObject prefabToSpawn;
     public event EventHandler onMissionTaskComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
@@ -19,16 +18,7 @@ public class CountdownManager : MonoBehaviour
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
 
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one CountdownManager! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    
     private void UpdateActiveComponents(){
         if(missionTask == null)
         {
@@ -102,7 +92,6 @@ public class CountdownManager : MonoBehaviour
             
         }
         string t = countdownData.GetCountdownMissionTask().GetKey();
-        Debug.Log("Timer with task: " + t + " was completed!");
         Destroy(pairToRemove.Key);
         UpdateActiveComponents();
         onMissionTaskComplete?.Invoke(this, EventArgs.Empty);

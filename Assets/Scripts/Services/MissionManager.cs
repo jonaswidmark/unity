@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class MissionManager : MonoBehaviour, IService
+public class MissionManager : ServiceManager<MissionManager>
 {
-    public static MissionManager Instance { get; private set; }
     public event EventHandler<MissionEventArgs> OnMissionEnded;
     public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
     public event EventHandler<MissionTaskEventArgs> OnGoToTransform;
-    public event EventHandler<MissionTaskEventArgs> OnPlayAnimation;
+    public event EventHandler<MissionTaskEventArgs> OnPlayerAnimation;
     public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
     public event EventHandler<MissionEventArgs> OnNewMission;
     private CountdownManager countdownManager;
@@ -21,17 +20,6 @@ public class MissionManager : MonoBehaviour, IService
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private MissionTask nextissionTask;
     private MissionTask currentMissionTask;
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.Log("There's more than one MissionManager! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        
-    }
     public string GetServiceName()
     {
         return "MissionManager";
@@ -66,7 +54,7 @@ public class MissionManager : MonoBehaviour, IService
     }
     private void Start()
     {
-        countdownManager = CountdownManager.Instance;
+        countdownManager = ServiceLocator.CountdownManager;
         countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
     }
     private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
@@ -110,9 +98,9 @@ public class MissionManager : MonoBehaviour, IService
             OnGoToTransform?.Invoke(this, eventArgs);
         } 
         string playAnimation = missionTask.GetPlayAnimation();
-        if(playAnimation != null)
+        if(!string.IsNullOrEmpty(playAnimation))
         {
-            OnPlayAnimation?.Invoke(this, eventArgs);
+            OnPlayerAnimation?.Invoke(this, eventArgs);
         }
     }
     public void EndCurrentMissiontaskCountdown()

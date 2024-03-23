@@ -16,7 +16,7 @@ public class ActionButtonUI : MonoBehaviour
 
     private void Start()
     {
-        missionManager= MissionManager.Instance;
+        missionManager = ServiceLocator.MissionManager;
         missionManager.OnNewMission += MissionManager_OnNewMission;
         button.interactable = true;
         button.gameObject.SetActive(false);

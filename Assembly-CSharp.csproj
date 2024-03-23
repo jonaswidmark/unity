@@ -56,46 +56,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Scriptable Objects\GridScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\ActionManager.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\MissionManager.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Services\CountdownManager.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
     <Compile Include="Assets\Scripts\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\States\MissionState.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\Manager.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Actions\BaseAction.cs" />
-    <Compile Include="Assets\Scripts\Services\ServiceListContainer.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\GameManager.cs" />
     <Compile Include="Assets\Scripts\HomeBase.cs" />
     <Compile Include="Assets\Scripts\Actions\BuildAction.cs" />
     <Compile Include="Assets\Scripts\UI\ActionButtonUI.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Interfaces and BaseClasses\IService.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\VisualsManager.cs" />
-    <Compile Include="Assets\Scripts\Services\ServiceRegistrator.cs" />
+    <Compile Include="Assets\Scripts\Services\ActionManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionTaskScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Services\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Object Events\OnMissionTaskCompleteSO.cs" />
     <Compile Include="Assets\Scripts\Interfaces and BaseClasses\IClickable.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
+    <Compile Include="Assets\Scripts\Services\InputManager.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\MissionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
     <Compile Include="Assets\Scripts\Interfaces and BaseClasses\ITask.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\ServiceManager.cs" />
-    <Compile Include="Assets\Scripts\Managers Singleton\CountdownManager.cs" />
+    <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />
+    <Compile Include="Assets\Scripts\Services\ServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TerrainSampleAssets\ThirdPartyNotices.txt" />

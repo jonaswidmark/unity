@@ -18,7 +18,7 @@ public abstract class BaseAction : MonoBehaviour
     }
     protected virtual void Start()
     {
-        missionManager = MissionManager.Instance;
+        missionManager = ServiceLocator.MissionManager;
     }
     public IClickable GetSelectedObject()
     {

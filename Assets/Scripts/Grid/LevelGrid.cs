@@ -2,22 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGrid : MonoBehaviour
+public class LevelGrid : ServiceManager<LevelGrid>
 {
-    public static LevelGrid Instance {get; private set;}
     private GridSystem gridSystem;
     [SerializeField] private Transform gridObjectPrefab;
     [SerializeField] private GameObject gridObjectPrefabGO;
     [SerializeField] private GridScriptableObject gridScriptableObject;
     private void Awake()
     {
-        if(Instance != null)
-        {
-            Debug.Log("There's more than one LevelGrid! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return ;
-        }
-        Instance = this;
         gridSystem = new GridSystem(50, 50, 2f);
         gridScriptableObject.SetGridSystem(gridSystem);
         gridScriptableObject.CreateLevelGrids(gridObjectPrefab);

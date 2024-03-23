@@ -3,9 +3,8 @@ using System;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VisualsManager : MonoBehaviour
+public class VisualsManager : ServiceManager<VisualsManager>
 {
-    public static VisualsManager Instance {get; private set;}
     [SerializeField] private Transform selectedVisual;
     [SerializeField] private GameObject selectedVisualGameObject;
     [SerializeField] private List<Transform> nonResetVisualTransformList;
@@ -13,17 +12,6 @@ public class VisualsManager : MonoBehaviour
     private string SelectedVisualString = "SelectedVisual";
     private IClickable selectedTransform;
 
-    public void Awake()
-    {
-        if(Instance != null)
-        {
-            Debug.Log("There's more than one VisualsManager! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return ;
-        }
-        Instance = this;
-       
-    }
     public List<Transform> GetNonResetVisualTransformList()
     {
         return nonResetVisualTransformList;

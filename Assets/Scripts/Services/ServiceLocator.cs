@@ -1,31 +1,11 @@
-using UnityEngine;
-
 public static class ServiceLocator
-{/**
-    public static IService GetService(string serviceName);
-    public static T GetService<T>(string serviceName) where T : class, IService
-    {
-        ServiceManager serviceManager = ServiceManager.Instance;
-
-        if (serviceManager != null)
-        {
-            return serviceManager.GetService(serviceName);
-            T service = serviceManager.GetService<T>(serviceName);
-            if (service != null)
-            {
-                return service;
-            }
-            else
-            {
-                Debug.LogWarning($"Service '{serviceName}' not found or not of type {typeof(T).Name}");
-                return null;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("ServiceManager is not initialized.");
-            return null;
-        }
-    }
-    **/
+{
+    public static InputManager InputManager => InputManager.Instance;
+    public static MissionManager MissionManager => MissionManager.Instance;
+    public static StateMachine StateMachine => StateMachine.Instance;
+    public static ActionManager ActionManager => ActionManager.Instance;
+    public static CountdownManager CountdownManager => CountdownManager.Instance;
+    public static GameManager GameManager => GameManager.Instance;
+    public static VisualsManager VisualsManager => VisualsManager.Instance;
+    public static LevelGrid LevelGrid => LevelGrid.Instance;
 }

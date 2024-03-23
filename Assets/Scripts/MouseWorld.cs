@@ -18,7 +18,7 @@ public class MouseWorld : MonoBehaviour
     }
     public static Vector3 GetPosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(ServiceLocator.InputManager.GetMouseScreenPosition());
         Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, Instance.mousePlaneLayerMask);
         
         return raycastHit.point;
@@ -26,7 +26,7 @@ public class MouseWorld : MonoBehaviour
     public void GetTest()
     {
         //Ray ray = Camera.main.ScreenPointToRay(UnityEngine.InputSystem.Mouse.current.position.ReadValue());
-        Ray ray = Camera.main.ScreenPointToRay(InputManager.Instance.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(ServiceLocator.InputManager.GetMouseScreenPosition());
         Debug.Log(Physics.Raycast(ray));
     }
 }

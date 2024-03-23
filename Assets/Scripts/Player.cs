@@ -43,13 +43,13 @@ public class Player : MonoBehaviour, IClickable
     }
     private void Start()
     {
-        inputManager = InputManager.Instance;
+        inputManager = ServiceLocator.InputManager;
         inputManager.OnMouseSelect += InputManager_OnSelect;
-        visualsManager = VisualsManager.Instance;
+        visualsManager = ServiceLocator.VisualsManager;
         visualsManager.RemoveVisual(this);
-        missionManager = MissionManager.Instance;
+        missionManager = ServiceLocator.MissionManager;
         missionManager.OnGoToTransform += MissionManager_OnGoToTransform;
-        missionManager.OnPlayAnimation += MissionManager_OnPlayAnimation;
+        missionManager.OnPlayerAnimation += MissionManager_OnPlayerAnimation;
         missionManager.OnMissionTaskEnded += MissionManager_OnMissionTaskEnded;
         initialPosition = transform.position;
         playerCollider = transform.GetComponent<Collider>();
@@ -65,13 +65,12 @@ public class Player : MonoBehaviour, IClickable
         string playAnimation = e.missionTask.GetPlayAnimation();
         if(playAnimation != null)
         {
-            Debug.Log("Player recieved Idle anit´mation!");
-            //animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
+            timeToCrossFade = 0.5f;
+            animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
         }
     }
-    private void MissionManager_OnPlayAnimation(object sender, MissionTaskEventArgs e)
+    private void MissionManager_OnPlayerAnimation(object sender, MissionTaskEventArgs e)
     {
-        Debug.Log("player working animation: " + e.missionTask.GetPlayAnimation());
         animator.CrossFade(e.missionTask.GetPlayAnimation(), timeToCrossFade);
     }
     private void FixedUpdate()

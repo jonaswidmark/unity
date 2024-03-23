@@ -19,10 +19,10 @@ public class HomeBase :  MonoBehaviour, IClickable
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
     {
-        inputManager = InputManager.Instance;
-        visualsManager = VisualsManager.Instance;
+        inputManager = ServiceLocator.InputManager;
+        visualsManager = ServiceLocator.VisualsManager;
         inputManager.OnMouseSelect += InputManager_OnSelect;
-        missionManager = MissionManager.Instance;
+        missionManager = ServiceLocator.MissionManager;
         missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, homeBaseParent);
