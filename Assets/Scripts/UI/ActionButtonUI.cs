@@ -15,6 +15,21 @@ public class ActionButtonUI : MonoBehaviour
     private void Start()
     {
         missionManager = ServiceLocator.MissionManager;
+        missionManager.OnNewMission += missionManager_OnNewMission;
+        missionManager.OnNewMissionInitialized += missionManager_OnNewMissionInitialized;
+        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
+        SetDisable();
+    }
+    private void missionManager_OnNewMission(object sender, MissionEventArgs e)
+    {
+        SetNewMission(e.Mission);
+    }
+    private void missionManager_OnNewMissionInitialized(object sender, EventArgs e)
+    {
+        SetDisable();
+    }
+    private void MissionManager_OnMissionEnded(object sender, EventArgs e)
+    {
         SetDisable();
     }
     public void SetNewMission(MissionScriptableObject missionToStart)
