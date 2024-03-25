@@ -7,7 +7,6 @@ public class ActionManager : ServiceManager<ActionManager>
 {
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
-    private StateMachine stateMachine;
     private IClickable selectedTransform;
     private InputManager inputService;
 
@@ -15,7 +14,6 @@ public class ActionManager : ServiceManager<ActionManager>
     
     private void Start()
     {
-        stateMachine = ServiceLocator.StateMachine;
         inputService = ServiceLocator.InputManager;
         inputService.OnMouseSelect += InputManager_OnSelect;
     }

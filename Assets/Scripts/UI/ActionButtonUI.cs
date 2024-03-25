@@ -10,31 +10,28 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Button button;
     [SerializeField] private GameObject buttonContainer;
-    [SerializeField] private IClickable selectedObject;
     private MissionManager missionManager;
-    [SerializeField] private MissionScriptableObject missionToStart;
 
     private void Start()
     {
         missionManager = ServiceLocator.MissionManager;
-        missionManager.OnNewMission += MissionManager_OnNewMission;
-        button.interactable = true;
-        button.gameObject.SetActive(false);
+        SetDisable();
     }
-    private void SetNewMission(MissionScriptableObject missionToStart)
+    public void SetNewMission(MissionScriptableObject missionToStart)
     {
-        
-        button.gameObject.SetActive(true);
-        button.interactable = true;
+        SetEnable();
         button.onClick.AddListener(() => {
                 missionManager.InitializeMission();
         });
         textMeshPro.text = missionToStart.Title;
     }
-
-    private void MissionManager_OnNewMission(object sender, MissionEventArgs e)
+    public void SetDisable()
     {
-        missionToStart = e.Mission;
-        SetNewMission(missionToStart);
+        button.interactable = false;
+    }
+    public void SetEnable()
+    {
+        button.gameObject.SetActive(true);
+        button.interactable = true;
     }
 }

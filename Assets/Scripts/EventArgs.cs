@@ -21,3 +21,13 @@ public class MissionEventArgs : EventArgs
     }
     public string Title => Mission.Title;
 }
+/* 
+public class IStateArgs : EventArgs
+{
+    public IStateArgs IStateSO { get; }
+    public IStateArgs(IStateSO iStateSO)
+    {
+        IStateSO = (IStateArgs)iStateSO;
+    }
+    
+} */

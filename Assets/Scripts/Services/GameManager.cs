@@ -1,29 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : ServiceManager<GameManager>
 {
-    private IState currentState;
-    [SerializeField] private Transform homeBasePrefab;
-    void Start()
+    private IStateSO currentState;
+    private StateManager stateManager;
+    private MissionManager missionManager;
+    [SerializeField] Transform actionButton;
+    private ActionButtonUI actionButtonUI;
+    
+    private void Start()
     {
-        //CreateHomeBase();
+        stateManager = ServiceLocator.StateManager;
+        missionManager = ServiceLocator.MissionManager;
+        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
+        missionManager.OnNewMission += missionManager_OnNewMission;
+        missionManager.OnNewMissionInitialized += missionManager_OnNewMissionInitialized;
+        actionButtonUI = actionButton.GetComponent<ActionButtonUI>();
     }
-    void CreateHomeBase()
+    private void missionManager_OnNewMissionInitialized(object sender, EventArgs e)
     {
-        GridPosition homeBasePosition = new GridPosition(2, 2);
-        Vector3 offset = new Vector3(0,0.01f,0);
-        Transform spawnedTransform;
-        ServiceLocator.LevelGrid.PlaceTransformAtGridPosition(homeBasePosition,homeBasePrefab,offset, out spawnedTransform);
-        spawnedTransform.rotation = Quaternion.Euler(90, 0, 0);
+        actionButtonUI.SetDisable();
     }
-    public void SetPlayerState(IState currentState)
+    private void missionManager_OnNewMission(object sender, MissionEventArgs e)
     {
-        this.currentState = currentState;
+        actionButtonUI.SetNewMission(e.Mission);
+      
     }
-    public IState GetPlayerState()
+    private void MissionManager_OnMissionEnded(object sender, EventArgs e)
     {
+        stateManager.SetIdleState();
+        actionButtonUI.SetDisable();
+    }
+    public IStateSO GetPlayerState()
+    {
+        currentState = stateManager.GetPlayerState();
         return currentState;
     }
 }

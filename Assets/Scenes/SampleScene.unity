@@ -1858,7 +1858,7 @@ GameObject:
   - component: {fileID: 715224181}
   - component: {fileID: 715224182}
   m_Layer: 0
-  m_Name: StateMachine
+  m_Name: StateManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1891,6 +1891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0881a1402e22248934549bbb334be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleState: {fileID: 11400000, guid: 3e2cc64a8203347419188eb751bc272f, type: 2}
+  MissionState: {fileID: 11400000, guid: 73b1f5248c40190499e558ce28b2c0a2, type: 2}
 --- !u!1001 &743367307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2370,8 +2372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d502ccf087d0c47a35e49f5c4dfcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeBasePrefab: {fileID: 5172506835104655529, guid: c36419001f5407146aa747fe3b3471c3,
-    type: 3}
+  actionButton: {fileID: 1341655856}
 --- !u!1 &980864395
 GameObject:
   m_ObjectHideFlags: 0

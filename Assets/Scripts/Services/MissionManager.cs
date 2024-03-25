@@ -12,6 +12,7 @@ public class MissionManager : ServiceManager<MissionManager>
     public event EventHandler<MissionTaskEventArgs> OnPlayerAnimation;
     public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
     public event EventHandler<MissionEventArgs> OnNewMission;
+    public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
@@ -38,7 +39,7 @@ public class MissionManager : ServiceManager<MissionManager>
         
         if (firstMission != null)
         {
-            SetActiveMission(firstMission);
+            SetNewMissionAction(firstMission);
             MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
             OnUpdatedMissionList?.Invoke(this,eventArgs);
         }
@@ -62,6 +63,8 @@ public class MissionManager : ServiceManager<MissionManager>
     
     public void InitializeMission()
     {
+        MissionEventArgs missionEventArgs = new MissionEventArgs(activeMission);
+        OnNewMissionInitialized?.Invoke(this, missionEventArgs);
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();
         foreach(MissionTask missionTask in missionTasks)
@@ -88,6 +91,7 @@ public class MissionManager : ServiceManager<MissionManager>
     {
         currentMissionTask = missionTask;
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
+        
         Transform goToTransform = missionTask.GetToTransform();
         if(goToTransform != null)
         {
