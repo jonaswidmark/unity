@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Village.cs" />
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventHandlerSO.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionScriptableObject.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Services\InputManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\HomeBase.cs" />
+    <Compile Include="Assets\Scripts\Services\GameEventManager.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />

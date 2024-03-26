@@ -32,8 +32,7 @@ public class EventManager : ServiceManager<EventManager>
         OnNewMissionSO.OnRaiseMissionEvent += OnNewMissionSO_OnRaiseMissionEvent;
         OnNewMissionInitializedSO.OnRaiseMissionEvent += OnNewMissionInitializedSO_OnRaiseMissionEvent;
     }
-    
-    /** Hierarchy: mission -> mission task -> countdown (countdown or callback) **/
+    /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
     private void OnMouseSelectSO_OnRaiseEvent(object sender, EventArgs e)
     {
         /** Left click mouse in the scene, selecting objekts **/
