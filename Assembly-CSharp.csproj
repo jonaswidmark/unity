@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\System\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\BaseSceneObject.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventArgsSO.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
     <Compile Include="Assets\Scripts\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\States\MissionState.cs" />

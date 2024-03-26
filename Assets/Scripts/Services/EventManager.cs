@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class EventManager : ServiceManager<EventManager>
 {
-    private InputManager inputManager;
+    [SerializeField] EventArgsSO OnMouseSelectSO;
     public event EventHandler OnMouseSelect;
-    private CountdownManager countdownManager;
+    [SerializeField] EventArgsSO OnCountDownOrCallbackComplete;
     public event EventHandler OnMissionTaskComplete;
-    private MissionManager missionManager;
+    [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
     public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
     public event EventHandler<MissionTaskEventArgs> OnGoToTransform;
     [SerializeField] EventMissionTaskEventArgsSO OnGoToTransformSO;
     public event EventHandler<MissionTaskEventArgs> OnPlayerAnimation;
+    [SerializeField] EventMissionTaskEventArgsSO OnPlayerAnimationSO;
     public event EventHandler<MissionEventArgs> OnMissionEnded;
     [SerializeField] EventMissionEventArgsSO OnMissionEndedSO;
     public event EventHandler<MissionEventArgs> OnNewMission;
@@ -22,32 +23,28 @@ public class EventManager : ServiceManager<EventManager>
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
     private void Start()
     {
-        inputManager = ServiceLocator.InputManager;
-        inputManager = ServiceLocator.InputManager;
-        inputManager.OnMouseSelect += InputManager_OnSelect;
-        countdownManager = ServiceLocator.CountdownManager;
-        countdownManager.OnMissionTaskComplete += CountdownManager_OnMissionTaskComplete;
-        missionManager = ServiceLocator.MissionManager;
+        OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
+        OnCountDownOrCallbackComplete.OnRaiseEvent += OnCountDownOrCallbackComplete_OnRaiseEvent;
         OnGoToTransformSO.OnRaiseMissionTaskEvent += OnGoToTransformSO_OnRaiseMissionTaskEvent;
-        missionManager.OnPlayerAnimation += MissionManager_OnPlayerAnimation;
-        missionManager.OnMissionTaskEnded += MissionManager_OnMissionTaskEnded;
+        OnPlayerAnimationSO.OnRaiseMissionTaskEvent += OnPlayerAnimationSO_OnRaiseMissionTaskEvent;
+        OnMissionTaskEndedSO.OnRaiseMissionTaskEvent += OnMissionTaskEndedSO_OnRaiseMissionTaskEvent;
         OnMissionEndedSO.OnRaiseMissionEvent += OnMissionEndedSO_OnRaiseMissionEvent;
         OnNewMissionSO.OnRaiseMissionEvent += OnNewMissionSO_OnRaiseMissionEvent;
         OnNewMissionInitializedSO.OnRaiseMissionEvent += OnNewMissionInitializedSO_OnRaiseMissionEvent;
     }
     
     /** Hierarchy: mission -> mission task -> countdown (countdown or callback) **/
-    private void InputManager_OnSelect(object sender, EventArgs e)
+    private void OnMouseSelectSO_OnRaiseEvent(object sender, EventArgs e)
     {
         /** Left click mouse in the scene, selecting objekts **/
         OnMouseSelect?.Invoke(sender, EventArgs.Empty);
     }
-    private void CountdownManager_OnMissionTaskComplete(object sender, EventArgs e)
+    private void OnCountDownOrCallbackComplete_OnRaiseEvent(object sender, EventArgs e)
     {
         /** Attached to a Mission task. can be a countdown or a callback **/
         OnMissionTaskComplete?.Invoke(sender, EventArgs.Empty);
     }
-    private void MissionManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
+    private void OnMissionTaskEndedSO_OnRaiseMissionTaskEvent(object sender, MissionTaskEventArgs e)
     {
         /** Mission task, as part of a mission **/
         OnMissionTaskEnded?.Invoke(sender, e);
@@ -57,7 +54,7 @@ public class EventManager : ServiceManager<EventManager>
         /** If mission task is a desplacement, go to transform **/
         OnGoToTransform?.Invoke(sender, e);
     }
-    private void MissionManager_OnPlayerAnimation(object sender, MissionTaskEventArgs e)
+    private void OnPlayerAnimationSO_OnRaiseMissionTaskEvent(object sender, MissionTaskEventArgs e)
     {
         /** Invoked when a mision task has a player animation attached (as a string name on the scriptable object) **/
         OnPlayerAnimation?.Invoke(sender, e);

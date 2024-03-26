@@ -9,8 +9,8 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventMissionEventArgsSO OnMissionEndedSO;
     //public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
     [SerializeField] EventMissionTaskEventArgsSO OnGoToTransformSO;
-    public event EventHandler<MissionTaskEventArgs> OnPlayerAnimation;
-    public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
+    [SerializeField] EventMissionTaskEventArgsSO OnPlayerAnimationSO;
+    [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
     private EventManager eventManager;
@@ -56,8 +56,7 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     private void EventManager_OnMissionTaskComplete(object sender, EventArgs e)
     {
-        MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(currentMissionTask);
-        OnMissionTaskEnded?.Invoke(this, eventArgs);
+        OnMissionTaskEndedSO.RaiseEvent(currentMissionTask);
         InitializeNextMissionTask();
     }
     
@@ -99,7 +98,7 @@ public class MissionManager : ServiceManager<MissionManager>
         string playAnimation = missionTask.GetPlayAnimation();
         if(!string.IsNullOrEmpty(playAnimation))
         {
-            OnPlayerAnimation?.Invoke(this, eventArgs);
+            OnPlayerAnimationSO.RaiseEvent(eventArgs.missionTask);
         }
     }
     public void EndCurrentMissiontaskCountdown()

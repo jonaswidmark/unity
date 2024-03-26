@@ -718,6 +718,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnMissionEndedSO: {fileID: 11400000, guid: 4327aa0bd1ebfc54292e94682009f9d7, type: 2}
   OnGoToTransformSO: {fileID: 11400000, guid: 05b97134cdba25f409c84955fc6b1c83, type: 2}
+  OnPlayerAnimationSO: {fileID: 11400000, guid: a6fd6dd4d3c4e0e43b4e21a4f5414b91,
+    type: 2}
+  OnMissionTaskEndedSO: {fileID: 11400000, guid: 95f14e06d495f074e83d64a7f53c18ef,
+    type: 2}
   OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
   OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
     type: 2}
@@ -2539,6 +2543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faee114b74a73f54f9b994e482b07e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
 --- !u!1 &1056951855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3634,6 +3639,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 1097990258112842970, guid: 4aa192ccb4a894940a8efbc7abff2d2d,
     type: 3}
+  OnCountDownOrCallbackComplete: {fileID: 11400000, guid: 122350e4438175048a6bd6533bf542aa,
+    type: 2}
   countdownArray: {fileID: 11400000, guid: 48926bf48f0d80e4ab682e5c762d32f6, type: 2}
   purposeList:
   - {fileID: 11400000, guid: 844d64009bfa0b642839dc5fe131bdfd, type: 2}
@@ -3810,7 +3817,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc75d572f6cdce4d9955be15ab78caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
+  OnCountDownOrCallbackComplete: {fileID: 11400000, guid: 122350e4438175048a6bd6533bf542aa,
+    type: 2}
+  OnMissionTaskEndedSO: {fileID: 11400000, guid: 95f14e06d495f074e83d64a7f53c18ef,
+    type: 2}
   OnGoToTransformSO: {fileID: 11400000, guid: 05b97134cdba25f409c84955fc6b1c83, type: 2}
+  OnPlayerAnimationSO: {fileID: 11400000, guid: a6fd6dd4d3c4e0e43b4e21a4f5414b91,
+    type: 2}
   OnMissionEndedSO: {fileID: 11400000, guid: 4327aa0bd1ebfc54292e94682009f9d7, type: 2}
   OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
   OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,

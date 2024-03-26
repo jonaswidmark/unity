@@ -8,7 +8,7 @@ using UnityEngine;
 public class CountdownManager : ServiceManager<CountdownManager>
 {
     public GameObject prefabToSpawn;
-    public event EventHandler OnMissionTaskComplete;
+    [SerializeField] EventArgsSO OnCountDownOrCallbackComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
     [SerializeField] private List<MissionTask> purposeList;
     [SerializeField] private Transform parentObject;
@@ -91,7 +91,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
         string t = countdownData.GetCountdownMissionTask().GetKey();
         Destroy(pairToRemove.Key);
         UpdateActiveComponents();
-        OnMissionTaskComplete?.Invoke(this, EventArgs.Empty);
+        OnCountDownOrCallbackComplete.RaiseEvent(EventArgs.Empty);
     }
     private void Update()
     {

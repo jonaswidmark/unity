@@ -7,7 +7,7 @@ public class InputManager : ServiceManager<InputManager>
     private PlayerInputActions playerInputActions = null;
     private InputAction mouseSelect = null;
     private Vector3 moveVector = Vector3.zero;
-    public event EventHandler OnMouseSelect;
+    [SerializeField] EventArgsSO OnMouseSelectSO;
     private Vector2 mouseXDelta;
 
     public void Awake()
@@ -33,7 +33,7 @@ public class InputManager : ServiceManager<InputManager>
     }
     public void OnMouseSelectAction(InputAction.CallbackContext context)
     {
-        OnMouseSelect?.Invoke(this, EventArgs.Empty);
+        OnMouseSelectSO.RaiseEvent(EventArgs.Empty);
     }
     public Vector3 GetMoveVector()
     {
