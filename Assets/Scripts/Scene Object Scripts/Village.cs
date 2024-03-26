@@ -11,7 +11,7 @@ public class Village : BaseSceneObject
             mission.MissionTransform = transform;
         }
     }
-    public override void InputManager_OnSelect(object sender, EventArgs e)
+    public override void EventManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())
         {
@@ -25,7 +25,6 @@ public class Village : BaseSceneObject
     }
     public override bool WasSelected()
     { 
-        Debug.Log("village: "+ Utils.WasSelected(this));
         return Utils.WasSelected(this);
     }
 }

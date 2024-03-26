@@ -8,4 +8,5 @@ public static class ServiceLocator
     public static GameManager GameManager => GameManager.Instance;
     public static VisualsManager VisualsManager => VisualsManager.Instance;
     public static LevelGrid LevelGrid => LevelGrid.Instance;
+    public static EventManager EventManager => EventManager.Instance;
 }

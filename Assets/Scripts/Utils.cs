@@ -9,7 +9,6 @@ public static class Utils
     {
         { "PlayerIdleAnimation", "Breathing Idle" },
     };
-    
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(ServiceLocator.InputManager.GetMouseScreenPosition());

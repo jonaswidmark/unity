@@ -11,24 +11,26 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private GameObject buttonContainer;
     private MissionManager missionManager;
+    private EventManager eventManager;
 
     private void Start()
     {
+        eventManager = ServiceLocator.EventManager;
         missionManager = ServiceLocator.MissionManager;
-        missionManager.OnNewMission += missionManager_OnNewMission;
-        missionManager.OnNewMissionInitialized += missionManager_OnNewMissionInitialized;
-        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
+        eventManager.OnNewMission += eventManager_OnNewMission;
+        eventManager.OnNewMissionInitialized += eventManager_OnNewMissionInitialized;
+        eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         SetDisable();
     }
-    private void missionManager_OnNewMission(object sender, MissionEventArgs e)
+    private void eventManager_OnNewMission(object sender, MissionEventArgs e)
     {
         SetNewMission(e.Mission);
     }
-    private void missionManager_OnNewMissionInitialized(object sender, EventArgs e)
+    private void eventManager_OnNewMissionInitialized(object sender, EventArgs e)
     {
         SetDisable();
     }
-    private void MissionManager_OnMissionEnded(object sender, EventArgs e)
+    private void EventManager_OnMissionEnded(object sender, EventArgs e)
     {
         SetDisable();
     }

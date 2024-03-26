@@ -47,10 +47,5 @@ public class StateManager: ServiceManager<StateManager>
         }
         SetCurrentState(newState);
     }
-
-    /* public void Update()
-    {
-        currentState?.Update();
-    } */
 }
 

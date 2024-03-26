@@ -1,46 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class HomeBase :  MonoBehaviour, IClickable
+public class HomeBase :  BaseSceneObject, IClickable
 {
-    
-    private InputManager inputManager;
-    private VisualsManager visualsManager;
-    private MissionManager missionManager;
-    private MissionScriptableObject activeMission;
-    [SerializeField] Transform currentPrefab;
-    [SerializeField] Transform homeBaseParent;
-    public float transitionDelay = 0.5f;
-    private MissionEventArgs missionEventArgs;
-    
-    [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
-    private void Start()
+    public override void StartAddon()
     {
-        inputManager = ServiceLocator.InputManager;
-        visualsManager = ServiceLocator.VisualsManager;
-        inputManager.OnMouseSelect += InputManager_OnSelect;
-        missionManager = ServiceLocator.MissionManager;
-        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
-        visualsManager.RemoveVisual(this);
-        currentPrefab = Instantiate(currentPrefab, homeBaseParent);
-    }
-    private void MissionManager_OnMissionEnded(object sender, MissionEventArgs e)
-    {
-        missionEventArgs = e;
-        if(e.Mission.NewVisualTransform != null)
+        foreach(MissionScriptableObject mission in missionScriptableObjectList)
         {
-            Destroy(currentPrefab.gameObject, transitionDelay);
-            Invoke("SpawnNewObject", transitionDelay);
+            mission.MissionTransform = transform;
         }
     }
-    private void SpawnNewObject()
-    {
-        currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, transform);
-    }
-    private void InputManager_OnSelect(object sender, EventArgs e)
+    public override void EventManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())
         {
@@ -52,40 +22,8 @@ public class HomeBase :  MonoBehaviour, IClickable
             visualsManager.RemoveVisual(this);
         }
     }
-    protected bool WasSelected()
+    public override bool WasSelected()
     { 
         return Utils.WasSelected(this);
     }
-    public void UpdateMissionList()
-    {
-        var nextMission = Utils.GetNextMission(missionScriptableObjectList);
-        if (nextMission != null)
-        {
-            SetActiveMission(nextMission);
-            missionManager.SetNewMissionAction(nextMission);
-        }
-        else
-        {
-            Debug.Log("Inga tillgängliga missioner hittades.");
-        }
-    }
-    private void SetActiveMission(MissionScriptableObject activeMission)
-    {
-        this.activeMission = activeMission;
-    }
-    public Transform ObjectTransform
-    {
-        get
-        {
-            return transform;
-        }
-    }
-    public GameObject ObjectGameObject
-    {
-        get
-        {
-            return gameObject;
-        }
-    }
-
 }

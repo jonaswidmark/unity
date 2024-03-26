@@ -7,15 +7,14 @@ public class GameManager : ServiceManager<GameManager>
 {
     private IStateSO currentState;
     private StateManager stateManager;
-    private MissionManager missionManager;
+    private EventManager eventManager;
     private void Start()
     {
         stateManager = ServiceLocator.StateManager;
-        missionManager = ServiceLocator.MissionManager;
-        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
-       
+        eventManager = ServiceLocator.EventManager;
+        eventManager.OnMissionEnded += EventManager_OnMissionEnded;
     }
-    private void MissionManager_OnMissionEnded(object sender, EventArgs e)
+    private void EventManager_OnMissionEnded(object sender, EventArgs e)
     {
         stateManager.SetIdleState();
     }

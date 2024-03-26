@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour, IClickable
 {
-    private InputManager inputManager;
+    private EventManager eventManager;
     private VisualsManager visualsManager;
     private MissionManager missionManager;
     private Rigidbody rb = null;
@@ -43,14 +43,14 @@ public class Player : MonoBehaviour, IClickable
     }
     private void Start()
     {
-        inputManager = ServiceLocator.InputManager;
-        inputManager.OnMouseSelect += InputManager_OnSelect;
+        eventManager = ServiceLocator.EventManager;
+        eventManager.OnMouseSelect += EventManager_OnSelect;
         visualsManager = ServiceLocator.VisualsManager;
         visualsManager.RemoveVisual(this);
         missionManager = ServiceLocator.MissionManager;
-        missionManager.OnGoToTransform += MissionManager_OnGoToTransform;
-        missionManager.OnPlayerAnimation += MissionManager_OnPlayerAnimation;
-        missionManager.OnMissionTaskEnded += MissionManager_OnMissionTaskEnded;
+        eventManager.OnGoToTransform += EventManager_OnGoToTransform;
+        eventManager.OnPlayerAnimation += EventManager_OnPlayerAnimation;
+        eventManager.OnMissionTaskEnded += EventManager_OnMissionTaskEnded;
         initialPosition = transform.position;
         playerCollider = transform.GetComponent<Collider>();
     }
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IClickable
 
         
     }
-    private void MissionManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
+    private void EventManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
     {
         string playAnimation = e.missionTask.GetPlayAnimation();
         if(playAnimation != null)
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IClickable
             animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
         }
     }
-    private void MissionManager_OnPlayerAnimation(object sender, MissionTaskEventArgs e)
+    private void EventManager_OnPlayerAnimation(object sender, MissionTaskEventArgs e)
     {
         animator.CrossFade(e.missionTask.GetPlayAnimation(), timeToCrossFade);
     }
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour, IClickable
         }
         return false;
     }
-    private void MissionManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
+    private void EventManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
     {
         initialPosition = transform.position;
         targetTransform = e.missionTask.GetToTransform();
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour, IClickable
             return gameObject;
         }
     }
-    private void InputManager_OnSelect(object sender, EventArgs e)
+    private void EventManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())
         {

@@ -11,7 +11,6 @@ public class VisualsManager : ServiceManager<VisualsManager>
     private Transform visualParent;
     private string SelectedVisualString = "SelectedVisual";
     private IClickable selectedTransform;
-
     public List<Transform> GetNonResetVisualTransformList()
     {
         return nonResetVisualTransformList;
@@ -27,9 +26,7 @@ public class VisualsManager : ServiceManager<VisualsManager>
         {
             parent = clickableObject.ObjectGameObject.transform.parent.gameObject;
         }
-        
         Transform childTransform = clickableObject.ObjectTransform.Find(SelectedVisualString);
-
         if(childTransform)
         {
             childTransform.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -60,5 +57,4 @@ public class VisualsManager : ServiceManager<VisualsManager>
     {
         return selectedTransform;
     }
-   
 }

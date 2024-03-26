@@ -8,7 +8,7 @@ using UnityEngine;
 public class CountdownManager : ServiceManager<CountdownManager>
 {
     public GameObject prefabToSpawn;
-    public event EventHandler onMissionTaskComplete;
+    public event EventHandler OnMissionTaskComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
     [SerializeField] private List<MissionTask> purposeList;
     [SerializeField] private Transform parentObject;
@@ -24,7 +24,6 @@ public class CountdownManager : ServiceManager<CountdownManager>
         {
             return ;
         }
-        
         if (countdownArray != null && countdownArray.GetCountdownActiveArray().Count > 0)
             {
                 for (int i = 0; i < countdownDictionary.Count; i++)
@@ -39,9 +38,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
             }
         if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback)
         {
-            
-            Debug.Log(missionTask.GetTitle());
-            missionTaskPrefab.GetComponent<Timer>().SetTimeText("XXXXXXXX");
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText(missionTask.Title);
         }
     }
     public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
@@ -94,7 +91,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
         string t = countdownData.GetCountdownMissionTask().GetKey();
         Destroy(pairToRemove.Key);
         UpdateActiveComponents();
-        onMissionTaskComplete?.Invoke(this, EventArgs.Empty);
+        OnMissionTaskComplete?.Invoke(this, EventArgs.Empty);
     }
     private void Update()
     {

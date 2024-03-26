@@ -7,7 +7,7 @@ using UnityEngine;
 public class BaseSceneObject :  MonoBehaviour, IClickable
 {
     
-    protected InputManager inputManager;
+    protected EventManager eventManager;
     protected VisualsManager visualsManager;
     protected MissionManager missionManager;
     protected MissionScriptableObject activeMission;
@@ -15,24 +15,23 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     [SerializeField] protected Transform parentTransform;
     public float transitionDelay = 0.5f;
     protected MissionEventArgs missionEventArgs;
-    
     [SerializeField] protected List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
     {
-        inputManager = ServiceLocator.InputManager;
+        eventManager = ServiceLocator.EventManager;
         visualsManager = ServiceLocator.VisualsManager;
-        inputManager.OnMouseSelect += InputManager_OnSelect;
+        eventManager.OnMouseSelect += EventManager_OnSelect;
         missionManager = ServiceLocator.MissionManager;
-        missionManager.OnMissionEnded += MissionManager_OnMissionEnded;
+        eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, transform);
         StartAddon();
     }
     public virtual void StartAddon()
     {
-
+        /** Used by derived classes **/
     }
-    public virtual void MissionManager_OnMissionEnded(object sender, MissionEventArgs e)
+    public virtual void EventManager_OnMissionEnded(object sender, MissionEventArgs e)
     {
         missionEventArgs = e;
         if(e.Mission.NewVisualTransform != null && e.Mission.MissionTransform == transform)
@@ -45,7 +44,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     {
         currentPrefab = Instantiate(missionEventArgs.Mission.NewVisualTransform, transform);
     }
-    public virtual void InputManager_OnSelect(object sender, EventArgs e)
+    public virtual void EventManager_OnSelect(object sender, EventArgs e)
     {
         if(WasSelected())
         {

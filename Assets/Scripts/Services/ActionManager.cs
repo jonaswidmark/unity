@@ -8,26 +8,11 @@ public class ActionManager : ServiceManager<ActionManager>
     public static event EventHandler OnAnySelected;
     public Action onActionComplete;
     private IClickable selectedTransform;
-    private InputManager inputService;
+    
 
     private string currentActionName;
     
-    private void Start()
-    {
-        inputService = ServiceLocator.InputManager;
-        inputService.OnMouseSelect += InputManager_OnSelect;
-    }
-    private void InputManager_OnSelect(object sender, EventArgs e)
-    {
-        /* if(WasOtherSelected())
-        {
-            RemoveVisual();
-        }
-        if(WasSelected())
-        {
-            SetVisual();
-        } */
-    }
+    
     
     public string GetServiceName()
     {

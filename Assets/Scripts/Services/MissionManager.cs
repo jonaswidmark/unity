@@ -13,6 +13,7 @@ public class MissionManager : ServiceManager<MissionManager>
     public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
     public event EventHandler<MissionEventArgs> OnNewMission;
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
+    private EventManager eventManager;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
@@ -21,6 +22,12 @@ public class MissionManager : ServiceManager<MissionManager>
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private MissionTask nextissionTask;
     private MissionTask currentMissionTask;
+    private void Start()
+    {
+        eventManager = ServiceLocator.EventManager;
+        eventManager.OnMissionTaskComplete += EventManager_OnMissionTaskComplete;
+        countdownManager = ServiceLocator.CountdownManager;
+    }
     private void SetActiveMission(MissionScriptableObject activeMission)
     {
         this.activeMission = activeMission;
@@ -49,12 +56,7 @@ public class MissionManager : ServiceManager<MissionManager>
             Debug.Log("Inga tillgängliga missioner hittades.");
         }
     }
-    private void Start()
-    {
-        countdownManager = ServiceLocator.CountdownManager;
-        countdownManager.onMissionTaskComplete += CountdownManager_onMissionTaskComplete;
-    }
-    private void CountdownManager_onMissionTaskComplete(object sender, EventArgs e)
+    private void EventManager_OnMissionTaskComplete(object sender, EventArgs e)
     {
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(currentMissionTask);
         OnMissionTaskEnded?.Invoke(this, eventArgs);
