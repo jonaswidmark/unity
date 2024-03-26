@@ -6,13 +6,13 @@ using System.Linq;
 
 public class MissionManager : ServiceManager<MissionManager>
 {
-    public event EventHandler<MissionEventArgs> OnMissionEnded;
-    public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
-    public event EventHandler<MissionTaskEventArgs> OnGoToTransform;
+    [SerializeField] EventMissionEventArgsSO OnMissionEndedSO;
+    //public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
+    [SerializeField] EventMissionTaskEventArgsSO OnGoToTransformSO;
     public event EventHandler<MissionTaskEventArgs> OnPlayerAnimation;
     public event EventHandler<MissionTaskEventArgs> OnMissionTaskEnded;
-    public event EventHandler<MissionEventArgs> OnNewMission;
-    public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
+    [SerializeField] EventMissionEventArgsSO OnNewMissionSO;
+    [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
     private EventManager eventManager;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
@@ -35,8 +35,7 @@ public class MissionManager : ServiceManager<MissionManager>
     public void SetNewMissionAction(MissionScriptableObject mission)
     {
         SetActiveMission(mission);
-        MissionEventArgs eventArgs = new MissionEventArgs(mission);
-        OnNewMission?.Invoke(this,eventArgs);
+        OnNewMissionSO.RaiseEvent(mission);
     }
     public void UpdateMissionList()
     {
@@ -47,12 +46,11 @@ public class MissionManager : ServiceManager<MissionManager>
         if (firstMission != null)
         {
             SetNewMissionAction(firstMission);
-            MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
-            OnUpdatedMissionList?.Invoke(this,eventArgs);
+            //MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
+            //OnUpdatedMissionList?.Invoke(this,eventArgs);
         }
         else
         {
-            
             Debug.Log("Inga tillgängliga missioner hittades.");
         }
     }
@@ -65,8 +63,7 @@ public class MissionManager : ServiceManager<MissionManager>
     
     public void InitializeMission()
     {
-        MissionEventArgs missionEventArgs = new MissionEventArgs(activeMission);
-        OnNewMissionInitialized?.Invoke(this, missionEventArgs);
+        OnNewMissionInitializedSO.RaiseEvent(activeMission);
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();
         foreach(MissionTask missionTask in missionTasks)
@@ -97,7 +94,7 @@ public class MissionManager : ServiceManager<MissionManager>
         Transform goToTransform = missionTask.GetToTransform();
         if(goToTransform != null)
         {
-            OnGoToTransform?.Invoke(this, eventArgs);
+            OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);
         } 
         string playAnimation = missionTask.GetPlayAnimation();
         if(!string.IsNullOrEmpty(playAnimation))
@@ -113,6 +110,6 @@ public class MissionManager : ServiceManager<MissionManager>
     public void EndCurrentMission()
     {
         MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
-        OnMissionEnded?.Invoke(this, eventArgs);
+        OnMissionEndedSO.RaiseEvent(eventArgs.Mission);
     }
 }

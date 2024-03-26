@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\State\MissionStateScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
     <Compile Include="Assets\Scripts\Services\CountdownManager.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventMissionEventArgsSO.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\BaseSceneObject.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
@@ -81,7 +82,6 @@
     <Compile Include="Assets\Scripts\Interfaces\IStateSO.cs" />
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects\Events\OnMissionTaskCompleteSO.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\Services\EventManager.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceManager.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventMissionTaskEventArgsSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TerrainSampleAssets\ThirdPartyNotices.txt" />

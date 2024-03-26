@@ -716,6 +716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209b5e50ea4e0dd4fa786b3d25b200b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMissionEndedSO: {fileID: 11400000, guid: 4327aa0bd1ebfc54292e94682009f9d7, type: 2}
+  OnGoToTransformSO: {fileID: 11400000, guid: 05b97134cdba25f409c84955fc6b1c83, type: 2}
+  OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
+  OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
+    type: 2}
   parentObject: {fileID: 71331730}
   missionScriptableObjectList: []
 --- !u!1 &258318453
@@ -3805,6 +3810,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc75d572f6cdce4d9955be15ab78caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnGoToTransformSO: {fileID: 11400000, guid: 05b97134cdba25f409c84955fc6b1c83, type: 2}
+  OnMissionEndedSO: {fileID: 11400000, guid: 4327aa0bd1ebfc54292e94682009f9d7, type: 2}
+  OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
+  OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
+    type: 2}
 --- !u!1 &1873864303
 GameObject:
   m_ObjectHideFlags: 0
