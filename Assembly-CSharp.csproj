@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
+    <Compile Include="Assets\Scripts\Services\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionTaskScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\EventManager.cs" />
