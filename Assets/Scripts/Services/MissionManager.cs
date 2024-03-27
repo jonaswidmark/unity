@@ -34,6 +34,7 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     public void SetNewMissionAction(MissionScriptableObject mission)
     {
+        Debug.Log("Set mission :  " + mission);
         SetActiveMission(mission);
         OnNewMissionSO.RaiseEvent(mission);
     }
@@ -46,6 +47,7 @@ public class MissionManager : ServiceManager<MissionManager>
         if (firstMission != null)
         {
             SetNewMissionAction(firstMission);
+            Debug.Log("Updated mission list :  " + firstMission);
             //MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
             //OnUpdatedMissionList?.Invoke(this,eventArgs);
         }
@@ -62,6 +64,7 @@ public class MissionManager : ServiceManager<MissionManager>
     
     public void InitializeMission()
     {
+        Debug.Log("Mission: " +activeMission + " activated!");
         OnNewMissionInitializedSO.RaiseEvent(activeMission);
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();

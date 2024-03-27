@@ -36,6 +36,7 @@ public class ActionButtonUI : MonoBehaviour
     }
     public void SetNewMission(MissionScriptableObject missionToStart)
     {
+        button.onClick.RemoveAllListeners();
         SetEnable();
         button.onClick.AddListener(() => {
                 missionManager.InitializeMission();
