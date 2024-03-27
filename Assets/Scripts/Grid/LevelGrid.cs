@@ -8,9 +8,12 @@ public class LevelGrid : ServiceManager<LevelGrid>
     [SerializeField] private Transform gridObjectPrefab;
     [SerializeField] private GameObject gridObjectPrefabGO;
     [SerializeField] private GridScriptableObject gridScriptableObject;
+    [SerializeField] private int gridXSize;
+    [SerializeField] private int gridYSize;
+    [SerializeField] private float cellYSize;
     private void Awake()
     {
-        gridSystem = new GridSystem(50, 50, 2f);
+        gridSystem = new GridSystem(gridXSize, gridYSize, cellYSize);
         gridScriptableObject.SetGridSystem(gridSystem);
         gridScriptableObject.CreateLevelGrids(gridObjectPrefab);
     }
