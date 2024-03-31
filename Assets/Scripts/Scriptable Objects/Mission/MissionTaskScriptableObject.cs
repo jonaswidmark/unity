@@ -11,6 +11,7 @@ public class MissionTask : ScriptableObject
     [SerializeField] float timeToExecute;
     [SerializeField] string playAnimation;
     private CountdownScriptableObject activeCountdown;
+    [SerializeField] string showText;
     public enum IsCompletedBy
     {
         predefinedTimer,
@@ -42,6 +43,11 @@ public class MissionTask : ScriptableObject
     {
         get { return title; }
         private set { title = value; }
+    }
+    public string ShowText
+    {
+        get { return showText; }
+        private set { showText = value; }
     }
     public Transform GetToTransform()
     {

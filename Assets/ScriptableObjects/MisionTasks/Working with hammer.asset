@@ -18,4 +18,5 @@ MonoBehaviour:
   toTransformTitle: 
   timeToExecute: 5
   playAnimation: Working
+  showText: 
   isCompletedBy: 0

@@ -17,4 +17,6 @@ MonoBehaviour:
   title: Go to Home Base
   toTransformTitle: HomeBase
   timeToExecute: 15
+  playAnimation: 
+  showText: Going to homebase
   isCompletedBy: 1

@@ -38,7 +38,29 @@ public class CountdownManager : ServiceManager<CountdownManager>
             }
         if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback)
         {
-            missionTaskPrefab.GetComponent<Timer>().SetTimeText(missionTask.Title);
+            
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask));
+        }
+    }
+    private string GetTextToDisplay(MissionTask missionTask)
+    {
+        string textToDisplay = missionTask.Title;
+            
+        if(!string.IsNullOrEmpty(missionTask.ShowText))
+        {
+            textToDisplay = missionTask.ShowText;
+        }
+        return textToDisplay;
+    }
+    private bool HasTextToDisplay(MissionTask missionTask)
+    {
+        if(!string.IsNullOrEmpty(missionTask.ShowText))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
@@ -109,14 +131,21 @@ public class CountdownManager : ServiceManager<CountdownManager>
                     if (kvp.Key != null)
                     {
                         countdownScriptableObject.UpdateCountdown();
-                        missionTaskPrefab.GetComponent<Timer>().SetTimeText(DisplayTime(countdownScriptableObject.GetTimeRemaining()));
+                        if(!HasTextToDisplay(missionTask))
+                        {
+                            missionTaskPrefab.GetComponent<Timer>().SetTimeText(DisplayTime(countdownScriptableObject.GetTimeRemaining()));
+                        }
+                        else
+                        {
+                            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask));
+                        }
                     }
                 }
             }
         }
         else
         {
-            missionTaskPrefab.GetComponent<Timer>().SetTimeText(missionTask.GetTitle());
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask));
         }
     }
     private string DisplayTime(float timeToDisplay)
