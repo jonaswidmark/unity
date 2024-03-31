@@ -16,7 +16,9 @@ MonoBehaviour:
   key: working_with_hammer
   title: Working with hammer
   toTransformTitle: 
-  timeToExecute: 5
+  timeToExecute: 25
+  showTimer: 1
   playAnimation: Working
-  showText: 
+  textToDisplay: 
+  showText: 1
   isCompletedBy: 0

@@ -9,9 +9,11 @@ public class MissionTask : ScriptableObject
     [SerializeField] string title;
     [SerializeField] string toTransformTitle;
     [SerializeField] float timeToExecute;
+    [SerializeField] bool showTimer;
     [SerializeField] string playAnimation;
     private CountdownScriptableObject activeCountdown;
-    [SerializeField] string showText;
+    [SerializeField] string textToDisplay;
+    [SerializeField] bool showText;
     public enum IsCompletedBy
     {
         predefinedTimer,
@@ -44,10 +46,20 @@ public class MissionTask : ScriptableObject
         get { return title; }
         private set { title = value; }
     }
-    public string ShowText
+    public string TextToDisplay
+    {
+        get { return textToDisplay; }
+        private set { textToDisplay = value; }
+    }
+    public bool ShowText
     {
         get { return showText; }
         private set { showText = value; }
+    }
+    public bool ShowTimer
+    {
+        get { return showTimer; }
+        private set { showTimer = value; }
     }
     public Transform GetToTransform()
     {
