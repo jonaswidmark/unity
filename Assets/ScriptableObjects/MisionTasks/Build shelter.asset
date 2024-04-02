@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: Working with hammer
+  m_Name: Build shelter
   m_EditorClassIdentifier: 
   id: 0
   key: working_with_hammer
-  title: Working with hammer
+  title: Build shelter
   toTransformTitle: 
-  timeToExecute: 25
+  timeToExecute: 15
   showTimer: 1
   playAnimation: Working
   textToDisplay: 
   showText: 1
+  placing: {x: 0, y: 0}
   isCompletedBy: 0

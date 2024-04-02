@@ -16,9 +16,8 @@ public class CountdownManager : ServiceManager<CountdownManager>
     private GameObject missionTaskPrefab;
     private CountdownScriptableObject countdownScriptableObject;
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
-
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
-    
+    private Vector3 newTransformPosition = new Vector3(0,0,0);
     private void UpdateActiveComponents(){
         if(missionTask == null)
         {
@@ -51,16 +50,22 @@ public class CountdownManager : ServiceManager<CountdownManager>
         }
         return textToDisplay;
     }
-    
-    public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData)
+    public void SpawnPrefab(float initialTime, MissionTask missionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countdownData, Vector2 countdownsPlacing = default)
     {
+        if (countdownsPlacing != Vector2.zero)
+        {
+            float newXPlacingOfCountdown = countdownsPlacing.x;
+            float newYPlacingOfCountdown = countdownsPlacing.y;
+            newTransformPosition = new Vector3(newXPlacingOfCountdown, newYPlacingOfCountdown, 0);
+        } 
+       
         spawnedPrefab = null;
         countdownData = null;
         this.missionTask = missionTask;
         if (prefabToSpawn != null && parentObject != null && countdownArray != null && missionTask != null)
         {
             spawnedPrefab = Instantiate(prefabToSpawn, parentObject);
-            
+            spawnedPrefab.transform.localPosition = newTransformPosition;
             countdownData = CreateCountdownScriptableObject(initialTime, missionTask);
             countdownData.OnCountdownFinished += HandleCountdownFinished;
             countdownDictionary.Add(spawnedPrefab, countdownData);

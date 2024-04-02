@@ -80,7 +80,7 @@ public class MissionManager : ServiceManager<MissionManager>
         {
             nextissionTask = missionTasksStack.Pop();
             float timeToExecute = nextissionTask.TimeToExecute;
-            countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject);
+            countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject, nextissionTask.Placing);
             InvokeMissionTaskEvents(nextissionTask);
         }
         else

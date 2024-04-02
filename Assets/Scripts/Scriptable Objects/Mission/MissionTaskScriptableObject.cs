@@ -14,6 +14,7 @@ public class MissionTask : ScriptableObject
     private CountdownScriptableObject activeCountdown;
     [SerializeField] string textToDisplay;
     [SerializeField] bool showText;
+    [SerializeField] Vector2 placing;
     public enum IsCompletedBy
     {
         predefinedTimer,
@@ -60,6 +61,11 @@ public class MissionTask : ScriptableObject
     {
         get { return showTimer; }
         private set { showTimer = value; }
+    }
+    public Vector2 Placing
+    {
+        get { return placing; }
+        private set { placing = value; }
     }
     public Transform GetToTransform()
     {
