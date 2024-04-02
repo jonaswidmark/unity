@@ -4,16 +4,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New MissionTask", menuName = "CustomObjects/MissionTask")]
 public class MissionTask : ScriptableObject
 {
+    [Header("Basic parameters")]
     [SerializeField] int id;
     [SerializeField] string key;
     [SerializeField] string title;
+    [Header("Title of target Transform")]
     [SerializeField] string toTransformTitle;
+    [Header("Timer options")]
     [SerializeField] float timeToExecute;
     [SerializeField] bool showTimer;
+    [Header("Title of optional animation in Animator")]
     [SerializeField] string playAnimation;
     private CountdownScriptableObject activeCountdown;
+    [Header("Text to display")]
     [SerializeField] string textToDisplay;
     [SerializeField] bool showText;
+    [Header("X and Y for local placing offset \nfrom default upper left corner")]
     [SerializeField] Vector2 placing;
     public enum IsCompletedBy
     {
