@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mission Go Get Gold
   m_EditorClassIdentifier: 
   missionTasks:
+  - {fileID: 11400000, guid: c29b60abdc92b4a4fac8e605fabaeb4d, type: 2}
   - {fileID: 11400000, guid: 37ffec1da48e03b409b049570a2face2, type: 2}
   - {fileID: 11400000, guid: 073b7bcc75cacc740bae3a84a8d32cea, type: 2}
   title: Go get gold
