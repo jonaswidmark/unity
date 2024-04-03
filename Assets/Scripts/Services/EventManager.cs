@@ -21,6 +21,7 @@ public class EventManager : ServiceManager<EventManager>
     [SerializeField] EventMissionEventArgsSO OnNewMissionSO;
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
+    [SerializeField] EventStringArgsSO OnKeyPressedSO;
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -31,8 +32,13 @@ public class EventManager : ServiceManager<EventManager>
         OnMissionEndedSO.OnRaiseMissionEvent += OnMissionEndedSO_OnRaiseMissionEvent;
         OnNewMissionSO.OnRaiseMissionEvent += OnNewMissionSO_OnRaiseMissionEvent;
         OnNewMissionInitializedSO.OnRaiseMissionEvent += OnNewMissionInitializedSO_OnRaiseMissionEvent;
+        OnKeyPressedSO.OnRaiseStringEvent += OnKeyPressedSO_OnRaiseStringEvent;
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
+    private void OnKeyPressedSO_OnRaiseStringEvent(object sender, StringEventArgs e)
+    {
+        Debug.Log("Key: " + e.StringArg);
+    }
     private void OnMouseSelectSO_OnRaiseEvent(object sender, EventArgs e)
     {
         /** Left click mouse in the scene, selecting objekts **/

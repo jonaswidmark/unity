@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\ActionManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventStringArgsSO.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStateSO.cs" />
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />

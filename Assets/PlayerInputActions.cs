@@ -53,6 +53,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""type"": ""Button"",
+                    ""id"": ""41a3e9b3-26ee-4de2-8d82-08d2d32e4a3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,149 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""MouseSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5d713e2-119e-4209-a577-d2172aaf733d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30cdef8a-de84-4f50-a63a-fb2a53857265"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd5d86e3-5f95-4d4b-8e8a-6c1481c9683d"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e7d9502-b367-4341-bc92-2365d10f9c18"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d03a4fa8-8abf-46a0-8656-627ccc229589"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8d0938d-74f2-43b9-8ae9-c61f55df2578"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7e46442-88fc-4625-95df-0943709bb82e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b560b689-8241-4cdc-80c7-edbc57916086"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05c3147c-da7d-4ce7-8567-f2c1a484c73e"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f4eda6b-0f88-4448-b6c3-56a3240f041c"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""387008ed-71cc-42ec-be5d-d1983b383884"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c69d1d3-294f-428f-9f82-ae33ff9f8c30"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f4a0ce7-fc21-4efd-bb75-b9b45cacb63a"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -116,6 +268,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_MouseX = m_Player.FindAction("MouseX", throwIfNotFound: true);
         m_Player_MouseY = m_Player.FindAction("MouseY", throwIfNotFound: true);
         m_Player_MouseSelect = m_Player.FindAction("MouseSelect", throwIfNotFound: true);
+        m_Player_Keyboard = m_Player.FindAction("Keyboard", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -180,6 +333,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MouseX;
     private readonly InputAction m_Player_MouseY;
     private readonly InputAction m_Player_MouseSelect;
+    private readonly InputAction m_Player_Keyboard;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -187,6 +341,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @MouseX => m_Wrapper.m_Player_MouseX;
         public InputAction @MouseY => m_Wrapper.m_Player_MouseY;
         public InputAction @MouseSelect => m_Wrapper.m_Player_MouseSelect;
+        public InputAction @Keyboard => m_Wrapper.m_Player_Keyboard;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -205,6 +360,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MouseSelect.started += instance.OnMouseSelect;
             @MouseSelect.performed += instance.OnMouseSelect;
             @MouseSelect.canceled += instance.OnMouseSelect;
+            @Keyboard.started += instance.OnKeyboard;
+            @Keyboard.performed += instance.OnKeyboard;
+            @Keyboard.canceled += instance.OnKeyboard;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -218,6 +376,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MouseSelect.started -= instance.OnMouseSelect;
             @MouseSelect.performed -= instance.OnMouseSelect;
             @MouseSelect.canceled -= instance.OnMouseSelect;
+            @Keyboard.started -= instance.OnKeyboard;
+            @Keyboard.performed -= instance.OnKeyboard;
+            @Keyboard.canceled -= instance.OnKeyboard;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -249,11 +410,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
         void OnMouseSelect(InputAction.CallbackContext context);
+        void OnKeyboard(InputAction.CallbackContext context);
     }
-
-    public static implicit operator PlayerInputActions(InputAction v)
-    {
-        throw new NotImplementedException();
-    }
-
 }

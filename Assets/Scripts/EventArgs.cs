@@ -21,6 +21,15 @@ public class MissionEventArgs : EventArgs
     }
     public string Title => Mission.Title;
 }
+public class StringEventArgs : EventArgs
+{
+    public string StringArg { get; }
+    public StringEventArgs(string stringArg)
+    {
+        StringArg = stringArg;
+    }
+    public string String => StringArg;
+}
 /* 
 public class IStateArgs : EventArgs
 {

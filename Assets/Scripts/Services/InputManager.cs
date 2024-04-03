@@ -5,8 +5,10 @@ public class InputManager : ServiceManager<InputManager>
 {
     private PlayerInputActions playerInputActions = null;
     private InputAction mouseSelect = null;
+    private InputAction keyboardPressed = null;
     private Vector3 moveVector = Vector3.zero;
     [SerializeField] EventArgsSO OnMouseSelectSO;
+    [SerializeField] EventStringArgsSO OnKeyPressedSO;
     private Vector2 mouseXDelta;
     public void Awake()
     {
@@ -18,11 +20,25 @@ public class InputManager : ServiceManager<InputManager>
 
         mouseSelect = playerInputActions.Player.MouseSelect;
         mouseSelect.performed += OnMouseSelectAction;
+        keyboardPressed = playerInputActions.Player.Keyboard;
+        keyboardPressed.performed += OnKeyPressedAction;
     }
     private void OnDisable()
     {
         playerInputActions.Disable();
         mouseSelect.performed -= OnMouseSelectAction;
+        keyboardPressed.performed -= OnKeyPressedAction;
+    }
+    public void OnKeyPressedAction(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            string keyPressed = context.action.name;
+            string controlPath = context.control.path;
+            string[] pathParts = controlPath.Split('/');
+            string buttonName = pathParts[pathParts.Length - 1];
+            OnKeyPressedSO.RaiseEvent(buttonName);
+        }
     }
     public Vector2 GetMouseScreenPosition()
     {
