@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IClickable
     private bool isInMovement = false;
     private bool isMovingForward = false;
     private bool isGrounded = false;
-    
+
     [SerializeField] private LayerMask floor;
     private Transform targetTransform;
     public float duration = 15.0f; // Antal sekunder det tar att nå målet
@@ -58,12 +58,12 @@ public class Player : MonoBehaviour, IClickable
     {
         //GroundedSettings();
 
-        
+
     }
     private void EventManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
     {
         string playAnimation = e.missionTask.GetPlayAnimation();
-        if(playAnimation != null)
+        if (playAnimation != null)
         {
             timeToCrossFade = 0.5f;
             animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
@@ -86,8 +86,8 @@ public class Player : MonoBehaviour, IClickable
         float rotationSpeed = 230.0f;
         bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
         if (!rotationComplete) return;
-        
-        if (IsTouchingTarget() )
+
+        if (IsTouchingTarget())
         {
             //timeToCrossFade = 0.2f;
             animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
@@ -124,17 +124,17 @@ public class Player : MonoBehaviour, IClickable
     {
         initialPosition = transform.position;
         targetTransform = e.missionTask.GetToTransform();
-        
+
         elapsedTime = 0f;
         duration = e.missionTask.TimeToExecute;
         isMoving = true;
         OnIsPlayerWalking?.Invoke(this, EventArgs.Empty);
-        
+
         targetCollider = targetTransform.GetComponent<Collider>();
         if (targetCollider != null)
         {
             closestTargetPoint = targetCollider.ClosestPoint(transform.position);
-            
+
             targetColliderVector = new Vector3(targetCollider.bounds.size.x, targetCollider.bounds.size.y, targetCollider.bounds.size.z);
             initialDistanceToTarget = Vector3.Distance(playerCollider.ClosestPointOnBounds(transform.position), targetCollider.ClosestPointOnBounds(targetTransform.position));
             collisionRadius = Mathf.Max(targetCollider.bounds.size.x, targetCollider.bounds.size.y, targetCollider.bounds.size.z);
@@ -143,9 +143,9 @@ public class Player : MonoBehaviour, IClickable
     private bool RotateTowardsDirection(Vector3 targetDirection, float rotateSpeed)
     {
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-        
+
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-        
+
         // Kontrollera om vi är nära den önskade rotationen
         float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
         float thresholdAngle = 1.0f; // Ange en tröskelvinkel för att avgöra när rotationen är klar
@@ -174,11 +174,11 @@ public class Player : MonoBehaviour, IClickable
     }
     private void EventManager_OnSelect(object sender, EventArgs e)
     {
-        if(WasSelected())
+        if (WasSelected())
         {
             visualsManager.SetVisual(this);
         }
-        else 
+        else
         {
             visualsManager.RemoveVisual(this);
         }
@@ -189,18 +189,18 @@ public class Player : MonoBehaviour, IClickable
     }
     private void GroundedSettings()
     {
-       /*  RaycastHit hit;
-        float raycastDistance = 3f;
-        float groundedApproximate = 0.1f;
-        isGrounded = false;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, floor) 
-        || transform.position == new Vector3(transform.position.x,0,transform.position.z))
-        {
-            if(hit.distance <= groundedApproximate)
-            {
-                isGrounded = true;
-            }
-        } */
+        /*  RaycastHit hit;
+         float raycastDistance = 3f;
+         float groundedApproximate = 0.1f;
+         isGrounded = false;
+         if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, floor) 
+         || transform.position == new Vector3(transform.position.x,0,transform.position.z))
+         {
+             if(hit.distance <= groundedApproximate)
+             {
+                 isGrounded = true;
+             }
+         } */
     }
     public bool GetIsGrounded()
     {

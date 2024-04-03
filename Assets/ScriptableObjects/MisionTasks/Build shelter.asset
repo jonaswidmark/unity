@@ -16,7 +16,7 @@ MonoBehaviour:
   key: working_with_hammer
   title: Build shelter
   toTransformTitle: 
-  timeToExecute: 15
+  timeToExecute: 5
   showTimer: 1
   playAnimation: Working
   textToDisplay: 

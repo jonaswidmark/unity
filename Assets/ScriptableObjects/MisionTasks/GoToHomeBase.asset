@@ -16,7 +16,10 @@ MonoBehaviour:
   key: 
   title: Go to Home Base
   toTransformTitle: HomeBase
-  timeToExecute: 15
+  timeToExecute: 0
+  showTimer: 0
   playAnimation: 
-  showText: Going to homebase
+  textToDisplay: 
+  showText: 0
+  placing: {x: 0, y: 0}
   isCompletedBy: 1

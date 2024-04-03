@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class InputManager : ServiceManager<InputManager>
 {
     private PlayerInputActions playerInputActions = null;
@@ -9,12 +8,10 @@ public class InputManager : ServiceManager<InputManager>
     private Vector3 moveVector = Vector3.zero;
     [SerializeField] EventArgsSO OnMouseSelectSO;
     private Vector2 mouseXDelta;
-
     public void Awake()
     {
         playerInputActions = new PlayerInputActions();
     }
-
     private void OnEnable()
     {
         playerInputActions.Enable();

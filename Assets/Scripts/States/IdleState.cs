@@ -11,7 +11,7 @@ public interface IState
 
 public class IdleState : IState
 {
-    private MissionManager missionManager = MissionManager.Instance;
+    private MissionManager missionManager = ServiceLocator.MissionManager;
     public void Enter()
     {
         // Logik för att gå in i tillståndet "Idle"

@@ -1,3 +1,5 @@
+using UnityEngine.Rendering.HighDefinition;
+
 public static class ServiceLocator
 {
     public static InputManager InputManager => InputManager.Instance;
@@ -10,4 +12,5 @@ public static class ServiceLocator
     public static LevelGrid LevelGrid => LevelGrid.Instance;
     public static EventManager EventManager => EventManager.Instance;
     public static CameraManager CameraManager => CameraManager.Instance;
+    public static MouseWorld MouseWorld => MouseWorld.Instance;
 }

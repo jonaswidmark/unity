@@ -34,7 +34,6 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     public void SetNewMissionAction(MissionScriptableObject mission)
     {
-        Debug.Log("Set mission :  " + mission);
         SetActiveMission(mission);
         OnNewMissionSO.RaiseEvent(mission);
     }
@@ -47,7 +46,6 @@ public class MissionManager : ServiceManager<MissionManager>
         if (firstMission != null)
         {
             SetNewMissionAction(firstMission);
-            Debug.Log("Updated mission list :  " + firstMission);
             //MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
             //OnUpdatedMissionList?.Invoke(this,eventArgs);
         }
@@ -61,10 +59,8 @@ public class MissionManager : ServiceManager<MissionManager>
         OnMissionTaskEndedSO.RaiseEvent(currentMissionTask);
         InitializeNextMissionTask();
     }
-    
     public void InitializeMission()
     {
-        Debug.Log("Mission: " +activeMission + " activated!");
         OnNewMissionInitializedSO.RaiseEvent(activeMission);
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();
@@ -92,7 +88,6 @@ public class MissionManager : ServiceManager<MissionManager>
     {
         currentMissionTask = missionTask;
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
-        
         Transform goToTransform = missionTask.GetToTransform();
         if(goToTransform != null)
         {
@@ -106,7 +101,6 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     public void EndCurrentMissiontaskCountdown()
     {
-        
         nextissionTask.GetActiveCountdown().EndCountDown();
     }
     public void EndCurrentMission()

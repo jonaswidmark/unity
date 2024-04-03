@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: Working with pickaxe
+  m_Name: MiningForGold
   m_EditorClassIdentifier: 
   id: 0
   key: working_with_pickaxe
-  title: working_with_pickaxe
+  title: Mining for gold
   toTransformTitle: 
   timeToExecute: 6
+  showTimer: 1
   playAnimation: Mining
+  textToDisplay: Minging for gold
+  showText: 1
+  placing: {x: 0, y: 0}
   isCompletedBy: 0
