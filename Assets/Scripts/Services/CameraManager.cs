@@ -8,24 +8,53 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] float movementTime;
     [SerializeField] Vector3 newPosition;
     private EventManager eventManager;
+    private enum CameraState
+    {
+        KeyPressed,
+        KeyReleased
+    }
+    private CameraState currentState;
+    private string keyPressedOrReleased;
     private void Start()
     {
+        currentState = CameraState.KeyReleased;
         newPosition = transform.position;
         eventManager = ServiceLocator.EventManager;
         eventManager.OnKeyPressed += EventManager_OnKeyPressed;
         eventManager.OnKeyReleased += EventManager_OnKeyReleased;
     }
+    private void Update()
+    {
+        switch (currentState)
+        {
+            case CameraState.KeyPressed:
+                HandleMovementInput(keyPressedOrReleased);
+                break;
+            case CameraState.KeyReleased:
+                break;
+        }
+    }
+    public void TransitionToKeyPressedState()
+    {
+        currentState = CameraState.KeyPressed;
+    }
+
+    public void TransitionToKeyReleasedState()
+    {
+        currentState = CameraState.KeyReleased;
+    }
     private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     {
-        HandleMovementInput(e.StringArg);
+        keyPressedOrReleased = e.StringArg;
+        TransitionToKeyPressedState();
     }
     private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
-        Debug.Log("Key released in cameramenager");
+        keyPressedOrReleased = e.StringArg;
+        TransitionToKeyReleasedState();
     }
     private void HandleMovementInput(string keyPressed)
     {
-        Debug.Log(keyPressed);
         if(keyPressed =="w" || keyPressed == "upArrow")
         {
             newPosition += (transform.forward * movementSpeed);
