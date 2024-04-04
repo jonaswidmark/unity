@@ -1,41 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraManager : ServiceManager<CameraManager>
 {
-    public List<Transform> cameras; // Lista med kameratransformer att växla mellan
-    private int currentCameraIndex = 0;
-    [SerializeField] Transform target; // Spelarens transform, som kameran kommer att rotera runt
-    public float rotationSpeed = 1f; // Hastighet för kamerarotationen
-    public Vector3 offset = new Vector3(0f, 2f, -5f); // Avståndet från spelaren som kameran kommer att placeras
-
+    [SerializeField] float movementSpeed;
+    [SerializeField] float movementTime;
+    [SerializeField] Vector3 newPosition;
+    private EventManager eventManager;
     private void Start()
     {
-        // Aktivera den första kameran och inaktivera resten vid start
-        SwitchCamera(currentCameraIndex);
+        newPosition = transform.position;
+        eventManager = ServiceLocator.EventManager;
+        eventManager.OnKeyPressed += EventManager_OnKeyPressed;
+        eventManager.OnKeyReleased += EventManager_OnKeyReleased;
     }
-    private void LateUpdate()
+    private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     {
-        //Debug.Log("Camera update");
-        // Beräkna önskad rotationshastighet för att rotera kameran runt spelaren
-        float desiredRotation = rotationSpeed * Time.deltaTime;
-
-        // Rota kameran runt spelaren baserat på den önskade rotationshastigheten
-        transform.RotateAround(target.position, Vector3.up, desiredRotation);
-
-        // Uppdatera kamerans position så att den alltid är på rätt avstånd från spelaren
-        transform.position = target.position + offset;
-
-        // Se till att kameran tittar mot spelaren
-        transform.LookAt(target.position);
+        HandleMovementInput(e.StringArg);
     }
-    void SwitchCamera(int index)
+    private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
-        // Loopa igenom alla kameror
-        for (int i = 0; i < cameras.Count; i++)
+        Debug.Log("Key released in cameramenager");
+    }
+    private void HandleMovementInput(string keyPressed)
+    {
+        Debug.Log(keyPressed);
+        if(keyPressed =="w" || keyPressed == "upArrow")
         {
-            // Aktivera kameran om dess index matchar det angivna indexet, annars inaktivera den
-            cameras[i].gameObject.SetActive(i == index);
+            newPosition += (transform.forward * movementSpeed);
         }
+        if(keyPressed =="s" || keyPressed == "downArrow")
+        {
+            newPosition += (transform.forward * -movementSpeed);
+        }
+        if(keyPressed =="d" || keyPressed == "rightArrow")
+        {
+            newPosition += (transform.right * movementSpeed);
+        }
+        if(keyPressed =="a" || keyPressed == "leftArrow")
+        {
+            newPosition += (transform.right * -movementSpeed);
+        }
+        transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
     }
 }

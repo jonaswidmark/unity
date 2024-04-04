@@ -9,6 +9,7 @@ public class InputManager : ServiceManager<InputManager>
     private Vector3 moveVector = Vector3.zero;
     [SerializeField] EventArgsSO OnMouseSelectSO;
     [SerializeField] EventStringArgsSO OnKeyPressedSO;
+    [SerializeField] EventStringArgsSO OnKeyReleasedSO;
     private Vector2 mouseXDelta;
     public void Awake()
     {
@@ -31,13 +32,24 @@ public class InputManager : ServiceManager<InputManager>
     }
     public void OnKeyPressedAction(InputAction.CallbackContext context)
     {
-        if (context.action.triggered)
+        if(context.performed)
         {
-            string keyPressed = context.action.name;
-            string controlPath = context.control.path;
-            string[] pathParts = controlPath.Split('/');
-            string buttonName = pathParts[pathParts.Length - 1];
-            OnKeyPressedSO.RaiseEvent(buttonName);
+            if (context.ReadValue<float>() == 1)
+            {
+                //string keyPressed = context.action.name;
+                string controlPath = context.control.path;
+                string[] pathParts = controlPath.Split('/');
+                string buttonName = pathParts[pathParts.Length - 1];
+                OnKeyPressedSO.RaiseEvent(buttonName);
+            }
+            else 
+            {
+                //string keyPressed = context.action.name;
+                string controlPath = context.control.path;
+                string[] pathParts = controlPath.Split('/');
+                string buttonName = pathParts[pathParts.Length - 1];
+                OnKeyReleasedSO.RaiseEvent(buttonName);
+            }
         }
     }
     public Vector2 GetMouseScreenPosition()

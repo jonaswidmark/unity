@@ -22,6 +22,9 @@ public class EventManager : ServiceManager<EventManager>
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
     [SerializeField] EventStringArgsSO OnKeyPressedSO;
+    public event EventHandler<StringEventArgs> OnKeyPressed;
+    [SerializeField] EventStringArgsSO OnKeyReleasedSO;
+    public event EventHandler<StringEventArgs> OnKeyReleased;
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -33,11 +36,18 @@ public class EventManager : ServiceManager<EventManager>
         OnNewMissionSO.OnRaiseMissionEvent += OnNewMissionSO_OnRaiseMissionEvent;
         OnNewMissionInitializedSO.OnRaiseMissionEvent += OnNewMissionInitializedSO_OnRaiseMissionEvent;
         OnKeyPressedSO.OnRaiseStringEvent += OnKeyPressedSO_OnRaiseStringEvent;
+        OnKeyReleasedSO.OnRaiseStringEvent += OnKeyReleasedSO_OnRaiseStringEvent;
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
     private void OnKeyPressedSO_OnRaiseStringEvent(object sender, StringEventArgs e)
     {
-        Debug.Log("Key: " + e.StringArg);
+        /** Used for camera movement, key presed state **/
+        OnKeyPressed?.Invoke(sender, e);
+    }
+    private void OnKeyReleasedSO_OnRaiseStringEvent(object sender, StringEventArgs e)
+    {
+        /** Used for camera movement, key released state **/
+        OnKeyReleased?.Invoke(sender, e);
     }
     private void OnMouseSelectSO_OnRaiseEvent(object sender, EventArgs e)
     {
