@@ -1933,7 +1933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632ab1dba98ec524cbd54c6c08f7fc3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  normalSpeed: 0.5
+  fastSpeed: 1
+  movementSpeed: 0.5
   movementTime: 5
   newPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &715224179
@@ -2763,6 +2765,7 @@ MonoBehaviour:
   OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
   OnKeyPressedSO: {fileID: 11400000, guid: 55535f22b91f06642922a41ea4436f82, type: 2}
   OnKeyReleasedSO: {fileID: 11400000, guid: f21478373faffcf48a96a8f117c4d391, type: 2}
+  OnWASDPressedSO: {fileID: 11400000, guid: 725f9b0f3333c5e49ab160367adfac42, type: 2}
 --- !u!1 &1056951855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,37 +3576,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1527991499
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1527991500}
-  m_Layer: 0
-  m_Name: CameraManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1527991500
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527991499}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.17364816, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -0.1, y: -12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1555972240}
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
 --- !u!1 &1555972239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3634,7 +3606,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1030448487}
-  - {fileID: 1527991500}
   - {fileID: 1809665572}
   - {fileID: 1507833915}
   - {fileID: 1698730137}
@@ -4086,6 +4057,7 @@ MonoBehaviour:
     type: 2}
   OnKeyPressedSO: {fileID: 11400000, guid: 55535f22b91f06642922a41ea4436f82, type: 2}
   OnKeyReleasedSO: {fileID: 11400000, guid: f21478373faffcf48a96a8f117c4d391, type: 2}
+  OnWASDPressedSO: {fileID: 11400000, guid: 725f9b0f3333c5e49ab160367adfac42, type: 2}
 --- !u!1 &1873864303
 GameObject:
   m_ObjectHideFlags: 0

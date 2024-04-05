@@ -4,10 +4,15 @@ using UnityEngine.Rendering;
 
 public class CameraManager : ServiceManager<CameraManager>
 {
+    [SerializeField] float normalSpeed;
+    [SerializeField] float fastSpeed;
     [SerializeField] float movementSpeed;
     [SerializeField] float movementTime;
     [SerializeField] Vector3 newPosition;
+    [SerializeField] Quaternion newRotation;
+    [SerializeField] float rotationAmount;
     private EventManager eventManager;
+    private Vector2 wasdNormalized = Vector2.zero;
     private enum CameraState
     {
         KeyPressed,
@@ -19,9 +24,11 @@ public class CameraManager : ServiceManager<CameraManager>
     {
         currentState = CameraState.KeyReleased;
         newPosition = transform.position;
+        newRotation = transform.rotation;
         eventManager = ServiceLocator.EventManager;
         eventManager.OnKeyPressed += EventManager_OnKeyPressed;
         eventManager.OnKeyReleased += EventManager_OnKeyReleased;
+        eventManager.OnWASDPressed += EventManager_OnWASDPressed;
     }
     private void Update()
     {
@@ -38,19 +45,38 @@ public class CameraManager : ServiceManager<CameraManager>
     {
         currentState = CameraState.KeyPressed;
     }
-
     public void TransitionToKeyReleasedState()
     {
         currentState = CameraState.KeyReleased;
     }
-    private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
+    private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
-        keyPressedOrReleased = e.StringArg;
+        wasdNormalized = e.Vector2Arg.normalized;
+        // TODO: apply normalized vector on movement in HandleMovementInput
+    }
+    private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
+    { 
+        Debug.Log(e.StringArg);
+        if(e.StringArg == "shift")
+        {
+            movementSpeed = fastSpeed;
+        }
+        else
+        {
+            keyPressedOrReleased = e.StringArg;
+        }
         TransitionToKeyPressedState();
     }
     private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
-        keyPressedOrReleased = e.StringArg;
+        if(e.StringArg == "shift")
+        {
+            movementSpeed = normalSpeed;
+        }
+        else
+        {
+            keyPressedOrReleased = e.StringArg;
+        }
         TransitionToKeyReleasedState();
     }
     private void HandleMovementInput(string keyPressed)

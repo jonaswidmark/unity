@@ -25,6 +25,8 @@ public class EventManager : ServiceManager<EventManager>
     public event EventHandler<StringEventArgs> OnKeyPressed;
     [SerializeField] EventStringArgsSO OnKeyReleasedSO;
     public event EventHandler<StringEventArgs> OnKeyReleased;
+    [SerializeField] EventVector2ArgsSO OnWASDPressedSO;
+    public event EventHandler<Vector2EventArgs> OnWASDPressed;
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -37,8 +39,14 @@ public class EventManager : ServiceManager<EventManager>
         OnNewMissionInitializedSO.OnRaiseMissionEvent += OnNewMissionInitializedSO_OnRaiseMissionEvent;
         OnKeyPressedSO.OnRaiseStringEvent += OnKeyPressedSO_OnRaiseStringEvent;
         OnKeyReleasedSO.OnRaiseStringEvent += OnKeyReleasedSO_OnRaiseStringEvent;
+        OnWASDPressedSO.OnRaiseVector2Event += OnWASDPressedSO_OnRaiseVector2Event;
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
+    private void OnWASDPressedSO_OnRaiseVector2Event(object sender, Vector2EventArgs e)
+    {
+        /** When WASD, we want a Vector2 value to register multiple button commands **/
+        OnWASDPressed?.Invoke(sender, e);
+    }
     private void OnKeyPressedSO_OnRaiseStringEvent(object sender, StringEventArgs e)
     {
         /** Used for camera movement, key presed state **/

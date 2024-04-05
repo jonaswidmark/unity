@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\State\IdleStateScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventVector2ArgsSO.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\ActionManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />

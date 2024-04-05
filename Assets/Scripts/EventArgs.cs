@@ -30,6 +30,15 @@ public class StringEventArgs : EventArgs
     }
     public string String => StringArg;
 }
+public class Vector2EventArgs : EventArgs
+{
+    public Vector2 Vector2Arg { get; }
+    public Vector2EventArgs(Vector2 vector2Arg)
+    {
+        Vector2Arg = vector2Arg;
+    }
+    public Vector2 Vector2 => Vector2Arg;
+}
 /* 
 public class IStateArgs : EventArgs
 {
