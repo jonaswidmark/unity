@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,12 +12,18 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 newPosition;
     [SerializeField] Quaternion newRotation;
     [SerializeField] float rotationAmount;
+    [SerializeField] Transform cameraTransform;
+    [SerializeField] Vector3 zoomAmount;
+    [SerializeField] Vector3 newZoom;
+    [SerializeField] Vector3 dragStartPosition;
+    [SerializeField] Vector3 dragCurrentPosition;
     private EventManager eventManager;
     private Vector2 wasdNormalized = Vector2.zero;
     private enum CameraState
     {
         KeyPressed,
-        KeyReleased
+        KeyReleased,
+        MouseClicked
     }
     private CameraState currentState;
     private string keyPressedOrReleased;
@@ -25,10 +32,12 @@ public class CameraManager : ServiceManager<CameraManager>
         currentState = CameraState.KeyReleased;
         newPosition = transform.position;
         newRotation = transform.rotation;
+        newZoom = cameraTransform.localPosition;
         eventManager = ServiceLocator.EventManager;
         eventManager.OnKeyPressed += EventManager_OnKeyPressed;
         eventManager.OnKeyReleased += EventManager_OnKeyReleased;
         eventManager.OnWASDPressed += EventManager_OnWASDPressed;
+        eventManager.OnMouseSelect += EventManager_OnMouseSelect;
     }
     private void Update()
     {
@@ -38,6 +47,9 @@ public class CameraManager : ServiceManager<CameraManager>
                 HandleMovementInput(keyPressedOrReleased);
                 break;
             case CameraState.KeyReleased:
+                break;
+            case CameraState.MouseClicked:
+                HandleMouseCLicked();
                 break;
         }
     }
@@ -49,6 +61,14 @@ public class CameraManager : ServiceManager<CameraManager>
     {
         currentState = CameraState.KeyReleased;
     }
+    public void TransitionToMouseClickedState()
+    {
+        currentState = CameraState.MouseClicked;
+    }
+    private void EventManager_OnMouseSelect(object sender, EventArgs e)
+    {
+        currentState = CameraState.MouseClicked;
+    }
     private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
         wasdNormalized = e.Vector2Arg.normalized;
@@ -56,7 +76,6 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     { 
-        Debug.Log(e.StringArg);
         if(e.StringArg == "shift")
         {
             movementSpeed = fastSpeed;
@@ -79,6 +98,10 @@ public class CameraManager : ServiceManager<CameraManager>
         }
         TransitionToKeyReleasedState();
     }
+    private void HandleMouseCLicked()
+    {
+        Debug.Log("Mouseclicked state");
+    }
     private void HandleMovementInput(string keyPressed)
     {
         if(keyPressed =="w" || keyPressed == "upArrow")
@@ -97,6 +120,32 @@ public class CameraManager : ServiceManager<CameraManager>
         {
             newPosition += (transform.right * -movementSpeed);
         }
+        if(keyPressed == "q")
+        {
+            newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
+        }
+        if(keyPressed == "e")
+        {
+            newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
+        }
+        if(keyPressed == "r")
+        {
+            float minY = 2f;
+            if(newZoom.y > minY)
+            {
+                newZoom += zoomAmount;
+            }
+        }
+        if(keyPressed == "f")
+        {
+            float maxY = 161.2f;
+            if(newZoom.y < maxY)
+            {
+                newZoom -= zoomAmount;
+            }
+        }
         transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
     }
 }

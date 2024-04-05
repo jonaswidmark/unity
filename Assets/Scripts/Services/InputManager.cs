@@ -43,7 +43,7 @@ public class InputManager : ServiceManager<InputManager>
     }
     public void OnKeyPressedAction(InputAction.CallbackContext context)
     {
-        
+        /** Any key in the Action map pressed or released **/
         if(context.performed)
         {
             if (context.ReadValue<float>() == 1)
@@ -51,12 +51,10 @@ public class InputManager : ServiceManager<InputManager>
                 string controlPath = context.control.path;
                 string[] pathParts = controlPath.Split('/');
                 string buttonName = pathParts[pathParts.Length - 1];
-                Debug.Log("Input manager: "+ buttonName);
                 OnKeyPressedSO.RaiseEvent(buttonName);
             }
             else 
             {
-                //string keyPressed = context.action.name;
                 string controlPath = context.control.path;
                 string[] pathParts = controlPath.Split('/');
                 string buttonName = pathParts[pathParts.Length - 1];

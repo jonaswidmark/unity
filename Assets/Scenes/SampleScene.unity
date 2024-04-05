@@ -1938,6 +1938,11 @@ MonoBehaviour:
   movementSpeed: 0.5
   movementTime: 5
   newPosition: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  rotationAmount: 0.5
+  cameraTransform: {fileID: 330585546}
+  zoomAmount: {x: 0, y: -1, z: 1}
+  newZoom: {x: 0, y: 0, z: 0}
 --- !u!1 &715224179
 GameObject:
   m_ObjectHideFlags: 0

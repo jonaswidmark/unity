@@ -229,6 +229,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "7a912f99-7f0f-45e2-8878-a04f956dc4dc",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "9e5cb06a-b121-4b4f-b81a-6fce1f050027",
                     "path": "2DVector",
