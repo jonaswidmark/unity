@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class InputManager : ServiceManager<InputManager>
 {
     private PlayerInputActions playerInputActions = null;
+
     private InputAction mouseSelect = null;
     private InputAction keyboardPressed = null;
     private InputAction wasdPressed = null;
@@ -14,6 +15,7 @@ public class InputManager : ServiceManager<InputManager>
     [SerializeField] EventStringArgsSO OnKeyPressedSO;
     [SerializeField] EventStringArgsSO OnKeyReleasedSO;
     [SerializeField] EventVector2ArgsSO OnWASDPressedSO;
+    [SerializeField] EventArgsSO OnMouseReleasedEventArgsSO;
     private Vector2 mouseXDelta;
     public void Awake()
     {
@@ -68,7 +70,15 @@ public class InputManager : ServiceManager<InputManager>
     }
     public void OnMouseSelectAction(InputAction.CallbackContext context)
     {
-        OnMouseSelectSO.RaiseEvent(EventArgs.Empty);
+        if (context.ReadValueAsButton())
+        {
+            OnMouseSelectSO.RaiseEvent(EventArgs.Empty);
+        }
+        else if (!context.ReadValueAsButton())
+        {
+            OnMouseReleasedEventArgsSO.RaiseEvent(EventArgs.Empty);
+        }
+        
     }
     public Vector3 GetMoveVector()
     {

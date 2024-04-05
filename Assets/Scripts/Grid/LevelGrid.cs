@@ -17,6 +17,10 @@ public class LevelGrid : ServiceManager<LevelGrid>
         gridScriptableObject.SetGridSystem(gridSystem);
         gridScriptableObject.CreateLevelGrids(gridObjectPrefab);
     }
+    public Vector3 GetLevelGridVector3()
+    {
+        return new Vector3(gridXSize, gridYSize, cellYSize);
+    }
     public void PlaceTransformAtGridPosition(GridPosition gridPosition, Transform transform, Vector3 offsetPlacing, out Transform spawnedTransform)
     {
         SetTransformAtGridPosition(gridPosition, transform);

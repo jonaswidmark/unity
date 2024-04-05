@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class CameraManager : ServiceManager<CameraManager>
@@ -38,6 +39,7 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnKeyReleased += EventManager_OnKeyReleased;
         eventManager.OnWASDPressed += EventManager_OnWASDPressed;
         eventManager.OnMouseSelect += EventManager_OnMouseSelect;
+        eventManager.OnMouseReleased += EventManager_OnMouseReleased;
     }
     private void Update()
     {
@@ -53,6 +55,7 @@ public class CameraManager : ServiceManager<CameraManager>
                 break;
         }
     }
+    
     public void TransitionToKeyPressedState()
     {
         currentState = CameraState.KeyPressed;
@@ -68,6 +71,10 @@ public class CameraManager : ServiceManager<CameraManager>
     private void EventManager_OnMouseSelect(object sender, EventArgs e)
     {
         currentState = CameraState.MouseClicked;
+    }
+    private void EventManager_OnMouseReleased(object sender, EventArgs e)
+    {
+        currentState = CameraState.KeyReleased;
     }
     private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
@@ -100,7 +107,7 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseCLicked()
     {
-        Debug.Log("Mouseclicked state");
+        Debug.Log("Handle mouse clicked");
     }
     private void HandleMovementInput(string keyPressed)
     {

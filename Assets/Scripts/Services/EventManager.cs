@@ -7,6 +7,8 @@ public class EventManager : ServiceManager<EventManager>
 {
     [SerializeField] EventArgsSO OnMouseSelectSO;
     public event EventHandler OnMouseSelect;
+    [SerializeField] EventArgsSO OnMouseReleasedEventArgsSO;
+    public event EventHandler OnMouseReleased;
     [SerializeField] EventArgsSO OnCountDownOrCallbackComplete;
     public event EventHandler OnMissionTaskComplete;
     [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
@@ -30,6 +32,7 @@ public class EventManager : ServiceManager<EventManager>
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
+        OnMouseReleasedEventArgsSO.OnRaiseEvent += OnMouseReleasedEventArgsSO_OnRaiseEvent;
         OnCountDownOrCallbackComplete.OnRaiseEvent += OnCountDownOrCallbackComplete_OnRaiseEvent;
         OnGoToTransformSO.OnRaiseMissionTaskEvent += OnGoToTransformSO_OnRaiseMissionTaskEvent;
         OnPlayerAnimationSO.OnRaiseMissionTaskEvent += OnPlayerAnimationSO_OnRaiseMissionTaskEvent;
@@ -61,6 +64,11 @@ public class EventManager : ServiceManager<EventManager>
     {
         /** Left click mouse in the scene, selecting objekts **/
         OnMouseSelect?.Invoke(sender, EventArgs.Empty);
+    }
+    private void OnMouseReleasedEventArgsSO_OnRaiseEvent(object sender, EventArgs e)
+    {
+        /** Left click mouse released in the scene **/
+        OnMouseReleased?.Invoke(sender, EventArgs.Empty);
     }
     private void OnCountDownOrCallbackComplete_OnRaiseEvent(object sender, EventArgs e)
     {

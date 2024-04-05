@@ -1943,6 +1943,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   zoomAmount: {x: 0, y: -1, z: 1}
   newZoom: {x: 0, y: 0, z: 0}
+  dragStartPosition: {x: 0, y: 0, z: 0}
+  dragCurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &715224179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,6 +2773,8 @@ MonoBehaviour:
   OnKeyPressedSO: {fileID: 11400000, guid: 55535f22b91f06642922a41ea4436f82, type: 2}
   OnKeyReleasedSO: {fileID: 11400000, guid: f21478373faffcf48a96a8f117c4d391, type: 2}
   OnWASDPressedSO: {fileID: 11400000, guid: 725f9b0f3333c5e49ab160367adfac42, type: 2}
+  OnMouseReleasedEventArgsSO: {fileID: 11400000, guid: 1b0f35edbe2e51049868d20f617cc7f0,
+    type: 2}
 --- !u!1 &1056951855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,6 +4053,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
+  OnMouseReleasedEventArgsSO: {fileID: 11400000, guid: 1b0f35edbe2e51049868d20f617cc7f0,
+    type: 2}
   OnCountDownOrCallbackComplete: {fileID: 11400000, guid: 122350e4438175048a6bd6533bf542aa,
     type: 2}
   OnMissionTaskEndedSO: {fileID: 11400000, guid: 95f14e06d495f074e83d64a7f53c18ef,
