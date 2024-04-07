@@ -20,6 +20,9 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 dragCurrentPosition;
     private EventManager eventManager;
     private Vector2 wasdNormalized = Vector2.zero;
+    private MouseWorld mouseWorld;
+   
+
     private enum CameraState
     {
         KeyPressed,
@@ -41,6 +44,10 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnMouseSelect += EventManager_OnMouseSelect;
         eventManager.OnMouseReleased += EventManager_OnMouseReleased;
     }
+    private void OnEnable()
+    {
+        mouseWorld = ServiceLocator.MouseWorld;
+    }
     private void Update()
     {
         switch (currentState)
@@ -51,7 +58,7 @@ public class CameraManager : ServiceManager<CameraManager>
             case CameraState.KeyReleased:
                 break;
             case CameraState.MouseClicked:
-                HandleMouseCLicked();
+                HandleMouseDown();
                 break;
         }
     }
@@ -70,6 +77,7 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnMouseSelect(object sender, EventArgs e)
     {
+        HandleMouseCLicked();
         currentState = CameraState.MouseClicked;
     }
     private void EventManager_OnMouseReleased(object sender, EventArgs e)
@@ -107,7 +115,25 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseCLicked()
     {
-        Debug.Log("Handle mouse clicked");
+        Plane plane = new Plane(Vector3.up, Vector3.zero);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float entry;
+        if(plane.Raycast(ray, out entry))
+        {
+            dragStartPosition = ray.GetPoint(entry);
+        }
+    }
+    private void HandleMouseDown()
+    {
+        Plane plane = new Plane(Vector3.up, Vector3.zero);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float entry;
+        if(plane.Raycast(ray, out entry))
+        {
+            dragCurrentPosition = ray.GetPoint(entry);
+            newPosition = transform.position + dragStartPosition - dragCurrentPosition;
+        }
+        transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
     }
     private void HandleMovementInput(string keyPressed)
     {
