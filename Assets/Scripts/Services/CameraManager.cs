@@ -27,7 +27,7 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 missionTaskCameraLocalPosition;
     [SerializeField] Quaternion missionTaskCameraRotation;
     [SerializeField] float missionTaskMovementSpeed = 1.5f;
-
+    private MissionManager missionManager;
     private enum CameraState
     {
         Idle,
@@ -54,7 +54,8 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnCameraPosition += EventManager_OnCameraPosition;
         eventManager.OnCameraLocalPosition += EventManager_OnCameraLocalPosition;
         missionTaskCameraPosition = transform.position;
-        //missionTaskCameraRotation = transform.rotation;
+        missionTaskCameraRotation = transform.rotation;
+        missionManager = ServiceLocator.MissionManager;
 
     }
     private void Update()
@@ -197,6 +198,16 @@ public class CameraManager : ServiceManager<CameraManager>
         transform.position = Vector3.Lerp(transform.position, missionTaskCameraPosition, missionTaskMovementSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, missionTaskCameraRotation, missionTaskMovementSpeed * Time.deltaTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, missionTaskCameraLocalPosition, missionTaskMovementSpeed * Time.deltaTime);
+        float threshold = 1.0f;
+        if (
+        Vector3.Distance(transform.position, missionTaskCameraPosition) < threshold
+        && Quaternion.Angle(transform.rotation, missionTaskCameraRotation) < threshold
+        && Vector3.Distance(cameraTransform.localPosition, missionTaskCameraLocalPosition) < threshold
+        )
+        {
+            missionManager.EndCurrentMissiontaskCountdown();
+            TransitionToIdleState();
+        }
     }
     private void HandleMovementInput(string keyPressed)
     {
@@ -243,6 +254,5 @@ public class CameraManager : ServiceManager<CameraManager>
         transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
-        Debug.Log(cameraTransform.localPosition);
     }
 }

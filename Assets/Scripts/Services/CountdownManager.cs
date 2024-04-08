@@ -90,7 +90,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
     }
     void HandleCountdownFinished(CountdownScriptableObject countdownData)
     {
-        
+        Debug.Log("HandleCountdownFinished "+countdownData.GetCountdownMissionTask());
         var pairToRemove = countdownDictionary.FirstOrDefault(pair => pair.Value == countdownData);
         if (!pairToRemove.Key || countdownArray != null)
         {
@@ -104,7 +104,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
             }
             
         }
-        string t = countdownData.GetCountdownMissionTask().GetKey();
+        //string t = countdownData.GetCountdownMissionTask().GetKey();
         Destroy(pairToRemove.Key);
         UpdateActiveComponents();
         OnCountDownOrCallbackComplete.RaiseEvent(EventArgs.Empty);

@@ -93,16 +93,22 @@ public class MissionManager : ServiceManager<MissionManager>
         currentMissionTask = missionTask;
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
-        if(!missionTask.CameraRotation.Equals(Quaternion.identity))
+        if( missionTask.CameraRotation.x != 0 || 
+            missionTask.CameraRotation.y != 0 || 
+            missionTask.CameraRotation.z != 0)
         {
+            Debug.Log("CameraRotation: "+missionTask.CameraRotation);
+            Debug.Log(Quaternion.identity);
             OnCameraRotationSO.RaiseEvent(missionTask.CameraRotation);
         }
         if(missionTask.CameraPosition != Vector3.zero)
         {
+            Debug.Log("Position: "+missionTask.CameraPosition);
             OnCameraPositionSO.RaiseEvent(missionTask.CameraPosition);
         }
         if(missionTask.CameraLocalPosition != Vector3.zero)
         {
+            Debug.Log("CameraLocalPosition: "+missionTask.CameraLocalPosition);
             OnCameraLocalPositionSO.RaiseEvent(missionTask.CameraLocalPosition);
         }
         if(goToTransform != null)
