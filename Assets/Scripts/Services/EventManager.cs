@@ -29,6 +29,12 @@ public class EventManager : ServiceManager<EventManager>
     public event EventHandler<StringEventArgs> OnKeyReleased;
     [SerializeField] EventVector2ArgsSO OnWASDPressedSO;
     public event EventHandler<Vector2EventArgs> OnWASDPressed;
+    [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
+    public event EventHandler<QuaternionEventArgs> OnCameraRotation;
+    [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
+    public event EventHandler<Vector3EventArgs> OnCameraPosition;
+    [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
+    public event EventHandler<Vector3EventArgs> OnCameraLocalPosition;
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -43,8 +49,26 @@ public class EventManager : ServiceManager<EventManager>
         OnKeyPressedSO.OnRaiseStringEvent += OnKeyPressedSO_OnRaiseStringEvent;
         OnKeyReleasedSO.OnRaiseStringEvent += OnKeyReleasedSO_OnRaiseStringEvent;
         OnWASDPressedSO.OnRaiseVector2Event += OnWASDPressedSO_OnRaiseVector2Event;
+        OnCameraRotationSO.OnRaiseQuaternionEvent += OnCameraRotationSO_OnRaiseQuaternionEvent;
+        OnCameraPositionSO.OnRaiseVector3Event += OnCameraPositionSO_OnRaiseVector3Event;
+        OnCameraLocalPositionSO.OnRaiseVector3Event += OnCameraLocalPositionSO_OnRaiseVector3Event;
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
+    private void OnCameraRotationSO_OnRaiseQuaternionEvent(object sender, QuaternionEventArgs e)
+    {
+        /** Camera rig to rotation **/
+        OnCameraRotation?.Invoke(sender, e);
+    }
+    private void OnCameraPositionSO_OnRaiseVector3Event(object sender, Vector3EventArgs e)
+    {
+        /** Camera rig to position **/
+        OnCameraPosition?.Invoke(sender, e);
+    }
+    private void OnCameraLocalPositionSO_OnRaiseVector3Event(object sender, Vector3EventArgs e)
+    {
+        /** Camera to local position **/
+        OnCameraLocalPosition?.Invoke(sender, e);
+    }
     private void OnWASDPressedSO_OnRaiseVector2Event(object sender, Vector2EventArgs e)
     {
         /** When WASD, we want a Vector2 value to register multiple button commands **/

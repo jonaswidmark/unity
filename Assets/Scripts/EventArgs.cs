@@ -42,9 +42,18 @@ public class Vector2EventArgs : EventArgs
 public class Vector3EventArgs : EventArgs
 {
     public Vector3 Vector3Arg { get; }
-    public Vector3EventArgs(Vector2 vector3Arg)
+    public Vector3EventArgs(Vector3 vector3Arg)
     {
         Vector3Arg = vector3Arg;
     }
     public Vector3 Vector3 => Vector3Arg;
+}
+public class QuaternionEventArgs : EventArgs
+{
+    public Quaternion QuaternionArg { get; }
+    public QuaternionEventArgs(Quaternion quaternion3Arg)
+    {
+        QuaternionArg = quaternion3Arg;
+    }
+    public Quaternion Quaternion => QuaternionArg;
 }

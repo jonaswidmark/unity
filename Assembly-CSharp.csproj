@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventHandlerSO.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventQuaternionArgsSO.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\StateManager.cs" />

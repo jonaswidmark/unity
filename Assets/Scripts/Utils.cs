@@ -7,7 +7,7 @@ public static class Utils
 
     private static readonly Dictionary<string, string> stringResources = new Dictionary<string, string>
     {
-        { "PlayerIdleAnimation", "Breathing Idle" },
+        { "PlayerIdleAnimation", "Breathing Idle" }, { "PlayerSleepingAnimation", "Sleeping" }
     };
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {

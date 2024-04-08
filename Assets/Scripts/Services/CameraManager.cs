@@ -20,11 +20,18 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 dragCurrentPosition;
     private EventManager eventManager;
     private Vector2 wasdNormalized = Vector2.zero;
-    private MouseWorld mouseWorld;
-   
+    [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
+    [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
+    [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
+    [SerializeField] Vector3 missionTaskCameraPosition;
+    [SerializeField] Vector3 missionTaskCameraLocalPosition;
+    [SerializeField] Quaternion missionTaskCameraRotation;
+    [SerializeField] float missionTaskMovementSpeed = 1.5f;
 
     private enum CameraState
     {
+        Idle,
+        MissionTask,
         KeyPressed,
         KeyReleased,
         MouseClicked
@@ -43,26 +50,41 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnWASDPressed += EventManager_OnWASDPressed;
         eventManager.OnMouseSelect += EventManager_OnMouseSelect;
         eventManager.OnMouseReleased += EventManager_OnMouseReleased;
-    }
-    private void OnEnable()
-    {
-        mouseWorld = ServiceLocator.MouseWorld;
+        eventManager.OnCameraRotation += EventManager_OnCameraRotation;
+        eventManager.OnCameraPosition += EventManager_OnCameraPosition;
+        eventManager.OnCameraLocalPosition += EventManager_OnCameraLocalPosition;
+        missionTaskCameraPosition = transform.position;
+        //missionTaskCameraRotation = transform.rotation;
+
     }
     private void Update()
     {
         switch (currentState)
         {
+            case CameraState.Idle:
+                break;
+            case CameraState.MissionTask:
+                HandleMissionTask();
+                break;
             case CameraState.KeyPressed:
                 HandleMovementInput(keyPressedOrReleased);
                 break;
             case CameraState.KeyReleased:
+                TransitionToIdleState();
                 break;
             case CameraState.MouseClicked:
                 HandleMouseDown();
                 break;
         }
     }
-    
+    public void TransitionToIdleState()
+    {
+        currentState = CameraState.Idle;
+    }
+    public void TransitionToMissionTaskState()
+    {
+        currentState = CameraState.MissionTask;
+    }
     public void TransitionToKeyPressedState()
     {
         currentState = CameraState.KeyPressed;
@@ -75,6 +97,21 @@ public class CameraManager : ServiceManager<CameraManager>
     {
         currentState = CameraState.MouseClicked;
     }
+    private void EventManager_OnCameraRotation(object sender, QuaternionEventArgs e)
+    {
+        missionTaskCameraRotation = e.QuaternionArg;
+        TransitionToMissionTaskState();
+    }
+    private void EventManager_OnCameraPosition(object sender, Vector3EventArgs e)
+    {
+        missionTaskCameraPosition = e.Vector3Arg;
+        TransitionToMissionTaskState();
+    }
+    private void EventManager_OnCameraLocalPosition(object sender, Vector3EventArgs e)
+    {
+        missionTaskCameraLocalPosition = e.Vector3Arg;
+        TransitionToMissionTaskState();
+    }
     private void EventManager_OnMouseSelect(object sender, EventArgs e)
     {
         HandleMouseCLicked();
@@ -86,11 +123,19 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
+        /* if(currentState == CameraState.MissionTask)
+        {
+            return;
+        } */
         wasdNormalized = e.Vector2Arg.normalized;
         // TODO: apply normalized vector on movement in HandleMovementInput
     }
     private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     { 
+        /* if(currentState == CameraState.MissionTask)
+        {
+            return;
+        } */
         if(e.StringArg == "shift")
         {
             movementSpeed = fastSpeed;
@@ -103,6 +148,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
+        /* if(currentState == CameraState.MissionTask)
+        {
+            return;
+        } */
         if(e.StringArg == "shift")
         {
             movementSpeed = normalSpeed;
@@ -115,6 +164,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseCLicked()
     {
+        /* if(currentState == CameraState.MissionTask)
+        {
+            return;
+        } */
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float entry;
@@ -125,6 +178,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseDown()
     {
+        /* if(currentState == CameraState.MissionTask)
+        {
+            return;
+        } */
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float entry;
@@ -134,6 +191,12 @@ public class CameraManager : ServiceManager<CameraManager>
             newPosition = transform.position + dragStartPosition - dragCurrentPosition;
         }
         transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
+    }
+    private void HandleMissionTask()
+    {
+        transform.position = Vector3.Lerp(transform.position, missionTaskCameraPosition, missionTaskMovementSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, missionTaskCameraRotation, missionTaskMovementSpeed * Time.deltaTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, missionTaskCameraLocalPosition, missionTaskMovementSpeed * Time.deltaTime);
     }
     private void HandleMovementInput(string keyPressed)
     {
@@ -180,5 +243,6 @@ public class CameraManager : ServiceManager<CameraManager>
         transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
+        Debug.Log(cameraTransform.localPosition);
     }
 }

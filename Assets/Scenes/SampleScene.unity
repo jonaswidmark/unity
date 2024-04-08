@@ -725,8 +725,10 @@ MonoBehaviour:
   OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
   OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
     type: 2}
-  OnCameraPosition: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
-  OnCameraRotation: {fileID: 11400000, guid: c1d497f8a222fba4ca29f79e39e8efca, type: 2}
+  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
+  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
   parentObject: {fileID: 71331730}
   missionScriptableObjectList: []
 --- !u!1 &263180175
@@ -1947,6 +1949,14 @@ MonoBehaviour:
   newZoom: {x: 0, y: 0, z: 0}
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
+  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
+  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
+  missionTaskCameraPosition: {x: 0, y: 0, z: 0}
+  missionTaskCameraLocalPosition: {x: 0, y: 0, z: 0}
+  missionTaskCameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  missionTaskMovementSpeed: 1.5
 --- !u!1 &715224179
 GameObject:
   m_ObjectHideFlags: 0
@@ -4076,6 +4086,10 @@ MonoBehaviour:
   OnKeyPressedSO: {fileID: 11400000, guid: 55535f22b91f06642922a41ea4436f82, type: 2}
   OnKeyReleasedSO: {fileID: 11400000, guid: f21478373faffcf48a96a8f117c4d391, type: 2}
   OnWASDPressedSO: {fileID: 11400000, guid: 725f9b0f3333c5e49ab160367adfac42, type: 2}
+  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
+  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
 --- !u!1 &1873864303
 GameObject:
   m_ObjectHideFlags: 0

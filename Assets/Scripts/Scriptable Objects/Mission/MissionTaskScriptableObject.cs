@@ -28,7 +28,8 @@ public class MissionTask : ScriptableObject
     [SerializeField] Vector2 placing;
     [Header("Camera placement")]
     [SerializeField] Vector3 cameraPosition;
-    [SerializeField] Vector3 cameraRotation;
+    [SerializeField] Vector3 cameraLocalPosition;
+    [SerializeField] Quaternion cameraRotation;
     
     
     public string GetPlayAnimation()
@@ -81,7 +82,12 @@ public class MissionTask : ScriptableObject
         get { return cameraPosition; }
         private set { cameraPosition = value; }
     }
-    public Vector3 CameraRotation
+    public Vector3 CameraLocalPosition
+    {
+        get { return cameraLocalPosition; }
+        private set { cameraLocalPosition = value; }
+    }
+    public Quaternion CameraRotation
     {
         get { return cameraRotation; }
         private set { cameraRotation = value; }

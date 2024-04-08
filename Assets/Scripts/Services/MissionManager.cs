@@ -13,8 +13,9 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
-    [SerializeField] EventVector3ArgsSO OnCameraPosition;
-    [SerializeField] EventVector3ArgsSO OnCameraRotation;
+    [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
+    [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
+    [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
 
     private EventManager eventManager;
     private CountdownManager countdownManager;
@@ -92,7 +93,18 @@ public class MissionManager : ServiceManager<MissionManager>
         currentMissionTask = missionTask;
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
-        Debug.Log(missionTask.CameraPosition);
+        if(!missionTask.CameraRotation.Equals(Quaternion.identity))
+        {
+            OnCameraRotationSO.RaiseEvent(missionTask.CameraRotation);
+        }
+        if(missionTask.CameraPosition != Vector3.zero)
+        {
+            OnCameraPositionSO.RaiseEvent(missionTask.CameraPosition);
+        }
+        if(missionTask.CameraLocalPosition != Vector3.zero)
+        {
+            OnCameraLocalPositionSO.RaiseEvent(missionTask.CameraLocalPosition);
+        }
         if(goToTransform != null)
         {
             OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);
