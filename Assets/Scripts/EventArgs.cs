@@ -39,13 +39,12 @@ public class Vector2EventArgs : EventArgs
     }
     public Vector2 Vector2 => Vector2Arg;
 }
-/* 
-public class IStateArgs : EventArgs
+public class Vector3EventArgs : EventArgs
 {
-    public IStateArgs IStateSO { get; }
-    public IStateArgs(IStateSO iStateSO)
+    public Vector3 Vector3Arg { get; }
+    public Vector3EventArgs(Vector2 vector3Arg)
     {
-        IStateSO = (IStateArgs)iStateSO;
+        Vector3Arg = vector3Arg;
     }
-    
-} */
+    public Vector3 Vector3 => Vector3Arg;
+}

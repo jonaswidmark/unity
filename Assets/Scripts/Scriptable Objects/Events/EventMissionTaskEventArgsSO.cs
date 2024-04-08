@@ -5,7 +5,6 @@ using System;
 public class EventMissionTaskEventArgsSO : ScriptableObject
 {
     public event EventHandler<MissionTaskEventArgs> OnRaiseMissionTaskEvent;
-
     public void RaiseEvent(MissionTask missionTask)
     {
         OnRaiseMissionTaskEvent?.Invoke(this, new MissionTaskEventArgs(missionTask));

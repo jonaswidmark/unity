@@ -9,11 +9,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, IClickable
+public class Player : BaseSceneObject, IClickable
 {
-    private EventManager eventManager;
+    /* private EventManager eventManager;
     private VisualsManager visualsManager;
-    private MissionManager missionManager;
+    private MissionManager missionManager; */
     private Rigidbody rb = null;
     public event EventHandler OnIsPlayerWalking;
     public event EventHandler OnIsPlayerIdle;
@@ -158,33 +158,27 @@ public class Player : MonoBehaviour, IClickable
             return false;
         }
     }
-    public Transform ObjectTransform
+    public override void StartAddon()
     {
-        get
+        foreach(MissionScriptableObject mission in missionScriptableObjectList)
         {
-            return transform;
+            mission.MissionTransform = transform;
         }
     }
-    public GameObject ObjectGameObject
+    public override void EventManager_OnSelect(object sender, EventArgs e)
     {
-        get
-        {
-            return gameObject;
-        }
-    }
-    private void EventManager_OnSelect(object sender, EventArgs e)
-    {
-        if (WasSelected())
+        if(WasSelected())
         {
             visualsManager.SetVisual(this);
+            UpdateMissionList();
         }
-        else
+        else if(Utils.WhatClickableInterfaceSelected() != null)
         {
             visualsManager.RemoveVisual(this);
         }
     }
-    public bool WasSelected()
-    {
+    public override bool WasSelected()
+    { 
         return Utils.WasSelected(this);
     }
     private void GroundedSettings()

@@ -13,6 +13,9 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionSO;
     [SerializeField] EventMissionEventArgsSO OnNewMissionInitializedSO;
+    [SerializeField] EventVector3ArgsSO OnCameraPosition;
+    [SerializeField] EventVector3ArgsSO OnCameraRotation;
+
     private EventManager eventManager;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
@@ -89,6 +92,7 @@ public class MissionManager : ServiceManager<MissionManager>
         currentMissionTask = missionTask;
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
+        Debug.Log(missionTask.CameraPosition);
         if(goToTransform != null)
         {
             OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);

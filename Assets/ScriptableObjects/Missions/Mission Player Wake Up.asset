@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352ee44170a408a47a281b5459f0f2da, type: 3}
+  m_Name: Mission Player Wake Up
+  m_EditorClassIdentifier: 
+  missionTasks:
+  - {fileID: 11400000, guid: 5f5a0b1d4aaef2147b0eab463e2cf151, type: 2}
+  title: Wake up
+  previousVisualTransform: {fileID: 0}
+  newVisualTransform: {fileID: 0}
+  isAvailable: 1
+  missionOrder: 0

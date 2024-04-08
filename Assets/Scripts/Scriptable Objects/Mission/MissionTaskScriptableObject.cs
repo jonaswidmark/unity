@@ -4,11 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New MissionTask", menuName = "CustomObjects/MissionTask")]
 public class MissionTask : ScriptableObject
 {
-    [Header("Basic parameters")]
+    public enum IsCompletedBy
+    {
+        predefinedTimer,
+        callback
+    }
+    [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
     [SerializeField] int id;
     [SerializeField] string key;
     [SerializeField] string title;
-    [Header("Title of target Transform")]
+    [Header("Title of player target Transform")]
     [SerializeField] string toTransformTitle;
     [Header("Timer options")]
     [SerializeField] float timeToExecute;
@@ -21,12 +26,10 @@ public class MissionTask : ScriptableObject
     [SerializeField] bool showText;
     [Header("X and Y for local placing offset \nfrom default upper left corner")]
     [SerializeField] Vector2 placing;
-    public enum IsCompletedBy
-    {
-        predefinedTimer,
-        callback
-    }
-    [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
+    [Header("Camera placement")]
+    [SerializeField] Vector3 cameraPosition;
+    [SerializeField] Vector3 cameraRotation;
+    
     
     public string GetPlayAnimation()
     {
@@ -72,6 +75,16 @@ public class MissionTask : ScriptableObject
     {
         get { return placing; }
         private set { placing = value; }
+    }
+    public Vector3 CameraPosition
+    {
+        get { return cameraPosition; }
+        private set { cameraPosition = value; }
+    }
+    public Vector3 CameraRotation
+    {
+        get { return cameraRotation; }
+        private set { cameraRotation = value; }
     }
     public Transform GetToTransform()
     {

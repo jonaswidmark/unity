@@ -87,7 +87,6 @@
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Services\InputManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\HomeBase.cs" />
@@ -95,7 +94,9 @@
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventVector3ArgsSO.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
+    <Compile Include="Assets\Scripts\Scene Object Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Services\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionTaskScriptableObject.cs" />

@@ -725,6 +725,8 @@ MonoBehaviour:
   OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
   OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
     type: 2}
+  OnCameraPosition: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraRotation: {fileID: 11400000, guid: c1d497f8a222fba4ca29f79e39e8efca, type: 2}
   parentObject: {fileID: 71331730}
   missionScriptableObjectList: []
 --- !u!1 &263180175
@@ -2656,6 +2658,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadac62e801c16f4d90ab09d9356c6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPrefab: {fileID: 0}
+  parentTransform: {fileID: 0}
+  transitionDelay: 0.5
+  missionScriptableObjectList:
+  - {fileID: 11400000, guid: 94b81cd222daeb44497446f15d850505, type: 2}
   animator: {fileID: 743367309}
   floor:
     serializedVersion: 2

@@ -12,7 +12,6 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private GameObject buttonContainer;
     private MissionManager missionManager;
     private EventManager eventManager;
-
     private void Start()
     {
         eventManager = ServiceLocator.EventManager;
