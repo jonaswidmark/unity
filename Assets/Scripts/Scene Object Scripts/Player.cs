@@ -36,6 +36,7 @@ public class Player : BaseSceneObject, IClickable
     private Vector3 closestTargetPoint;
     private Vector3 targetColliderVector;
     private float timeToCrossFade = 0.2f;
+    [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,6 +54,10 @@ public class Player : BaseSceneObject, IClickable
         eventManager.OnMissionTaskEnded += EventManager_OnMissionTaskEnded;
         initialPosition = transform.position;
         playerCollider = transform.GetComponent<Collider>();
+        AnimationCompleteListener animationCompleteListener = animator.GetBehaviour<AnimationCompleteListener>();
+        animationCompleteListener.OnAnimationComplete += OnAnimationComplete;
+        animator.CrossFade("SleepIdle", 0f);
+        playerDataScriptableObject.SetPlayerObject(this);
     }
     private void Update()
     {
@@ -60,17 +65,26 @@ public class Player : BaseSceneObject, IClickable
 
 
     }
+    public void OnAnimationComplete()
+    {
+        missionManager.EndCurrentMissiontaskCountdown();
+    }
     private void EventManager_OnMissionTaskEnded(object sender, MissionTaskEventArgs e)
     {
         string playAnimation = e.missionTask.GetPlayAnimation();
         if (playAnimation != null)
         {
-            timeToCrossFade = 0.5f;
-            animator.CrossFade(Utils.GetString("PlayerIdleAnimation"), timeToCrossFade);
+            //timeToCrossFade = 0.5f;
+            //animator.CrossFade("Breathing Idle", timeToCrossFade);
         }
     }
     private void EventManager_OnPlayerAnimation(object sender, MissionTaskEventArgs e)
     {
+        if(e.missionTask.UseTimeToCrossFade || e.missionTask.TimeToCrossFade != 0)
+        {
+            timeToCrossFade = e.missionTask.TimeToCrossFade;
+        }
+        Debug.Log("Animation: "+e.missionTask.GetPlayAnimation());
         animator.CrossFade(e.missionTask.GetPlayAnimation(), timeToCrossFade);
     }
     private void FixedUpdate()

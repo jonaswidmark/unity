@@ -12,14 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
   m_Name: GoToHomeBase
   m_EditorClassIdentifier: 
+  isCompletedBy: 1
   id: 0
   key: 
   title: Go to Home Base
   toTransformTitle: HomeBase
   timeToExecute: 0
   showTimer: 0
-  playAnimation: 
+  playAnimation: Walking
+  timeToCrossFade: 0
+  useTimeToCrossFade: 0
   textToDisplay: 
   showText: 0
   placing: {x: 0, y: 0}
-  isCompletedBy: 1
+  cameraPosition: {x: 0, y: 0, z: 0}
+  cameraLocalPosition: {x: 0, y: 0, z: 0}
+  cameraRotation: {x: 0, y: 0, z: 0, w: 0}

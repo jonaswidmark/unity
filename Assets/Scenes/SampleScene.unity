@@ -2619,6 +2619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d502ccf087d0c47a35e49f5c4dfcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDataScriptableObject: {fileID: 11400000, guid: f9f8f47c64131384c894b5e8784db35e,
+    type: 2}
 --- !u!1 &980864395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2650,7 @@ Transform:
   m_GameObject: {fileID: 980864395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.3156658, z: -0, w: 0.9488705}
-  m_LocalPosition: {x: 3, y: 0, z: 2}
+  m_LocalPosition: {x: 3, y: -0.06, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2679,6 +2681,8 @@ MonoBehaviour:
     m_Bits: 64
   duration: 3
   collisionRadius: 0.5
+  playerDataScriptableObject: {fileID: 11400000, guid: f9f8f47c64131384c894b5e8784db35e,
+    type: 2}
 --- !u!54 &980864398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2704,7 +2708,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 36
+  m_Constraints: 32
   m_CollisionDetection: 2
 --- !u!136 &980864400
 CapsuleCollider:
@@ -2725,10 +2729,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.5877596
+  m_Height: 3.8091178
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0.000000003145507, y: 1.8744276, z: 0.08775963}
 --- !u!114 &980864401
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class GameManager : ServiceManager<GameManager>
     private IStateSO currentState;
     private StateManager stateManager;
     private EventManager eventManager;
+    [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
     private void Start()
     {
         stateManager = ServiceLocator.StateManager;

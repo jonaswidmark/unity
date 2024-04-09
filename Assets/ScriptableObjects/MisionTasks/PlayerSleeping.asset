@@ -17,11 +17,13 @@ MonoBehaviour:
   key: player_sleeing
   title: Player Sleeping
   toTransformTitle: 
-  timeToExecute: 5
+  timeToExecute: 1
   showTimer: 1
-  playAnimation: SleepingIdle
-  textToDisplay: 
-  showText: 0
+  playAnimation: SleepIdle
+  timeToCrossFade: 0
+  useTimeToCrossFade: 1
+  textToDisplay: Sleeping
+  showText: 1
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

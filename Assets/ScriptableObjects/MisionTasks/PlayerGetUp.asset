@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: GoToVillage
+  m_Name: PlayerGetUp
   m_EditorClassIdentifier: 
-  isCompletedBy: 1
+  isCompletedBy: 0
   id: 0
-  key: go_to_village
-  title: Go To Village
-  toTransformTitle: Village
-  timeToExecute: 0
+  key: player_get_up
+  title: Player Get Up
+  toTransformTitle: 
+  timeToExecute: 10
   showTimer: 0
-  playAnimation: Walking
-  timeToCrossFade: 0
-  useTimeToCrossFade: 0
-  textToDisplay: 
-  showText: 0
+  playAnimation: GettingUp
+  timeToCrossFade: 1
+  useTimeToCrossFade: 1
+  textToDisplay: Getting up
+  showText: 1
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

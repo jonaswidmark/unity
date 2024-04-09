@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: GoToVillage
+  m_Name: PlayerIdle
   m_EditorClassIdentifier: 
-  isCompletedBy: 1
+  isCompletedBy: 0
   id: 0
-  key: go_to_village
-  title: Go To Village
-  toTransformTitle: Village
-  timeToExecute: 0
+  key: player_idle
+  title: Player Idle
+  toTransformTitle: 
+  timeToExecute: 0.5
   showTimer: 0
-  playAnimation: Walking
-  timeToCrossFade: 0
-  useTimeToCrossFade: 0
+  playAnimation: Breathing Idle
+  timeToCrossFade: 0.5
+  useTimeToCrossFade: 1
   textToDisplay: 
   showText: 0
   placing: {x: 0, y: 0}

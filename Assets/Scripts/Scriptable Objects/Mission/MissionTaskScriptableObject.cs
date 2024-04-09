@@ -20,6 +20,8 @@ public class MissionTask : ScriptableObject
     [SerializeField] bool showTimer;
     [Header("Title of optional animation in Animator")]
     [SerializeField] string playAnimation;
+    [SerializeField] float timeToCrossFade;
+    [SerializeField] bool useTimeToCrossFade = false;
     private CountdownScriptableObject activeCountdown;
     [Header("Text to display")]
     [SerializeField] string textToDisplay;
@@ -96,6 +98,17 @@ public class MissionTask : ScriptableObject
     {
         GameObject obj = GameObject.Find(toTransformTitle);
         return obj != null ? obj.transform : null;
+    }
+    public float TimeToCrossFade
+    {
+        get { return timeToCrossFade;}
+        private set 
+        { timeToCrossFade = value;}
+    }
+    public bool UseTimeToCrossFade
+    {
+        get { return useTimeToCrossFade;}
+        set { useTimeToCrossFade = value;}
     }
     public int GetId()
     {
