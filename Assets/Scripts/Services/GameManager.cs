@@ -7,13 +7,15 @@ public class GameManager : ServiceManager<GameManager>
 {
     private StateManager stateManager;
     private EventManager eventManager;
+    public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
+    public event EventHandler<MissionEventArgs> OnMissionEnded;
     [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
     public enum PlayerState
     {
         Idle,
         OnMission,
     }
-    private PlayerState currentState = PlayerState.Idle;
+    private string currentState = "Idle";
     
     private void Start()
     {
@@ -23,22 +25,23 @@ public class GameManager : ServiceManager<GameManager>
         eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         eventManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
     }
-    private void EventManager_OnPlayerStatsUpdate(object sender, EventArgs e)
-    {
-        Debug.Log("Game Manager: ");
-    }
-    private void EventManager_OnNewMissionInitialized(object sender, EventArgs e)
-    {
-        currentState = PlayerState.OnMission;
-    }
-    private void EventManager_OnMissionEnded(object sender, EventArgs e)
-    {
-        stateManager.SetIdleState();
-    }
-    
-    public PlayerState GetPlayerState()
+    private string GetCurrentPlayerState()
     {
         return currentState;
+    }
+    private void EventManager_OnPlayerStatsUpdate(object sender, EventArgs e)
+    {
+        currentState = playerDataScriptableObject.GetPlayerStats().currentState.ToString();
+    }
+    private void EventManager_OnNewMissionInitialized(object sender, MissionEventArgs e)
+    {
+        /** Invoked when a new mission is initialized **/
+        OnNewMissionInitialized?.Invoke(sender, e);
+    }
+    private void EventManager_OnMissionEnded(object sender, MissionEventArgs e)
+    {
+        OnMissionEnded?.Invoke(sender, e);
+        //stateManager.SetIdleState();
     }
     /* public IStateSO GetPlayerState()
     {

@@ -73,6 +73,7 @@ public class Player : BaseSceneObject, IClickable
         animationCompleteListener.OnAnimationComplete += OnAnimationComplete;
         animator.CrossFade("SleepIdle", 0f);
         playerDataScriptableObject.SetPlayerObject(this);
+        playerStats.currentState = currentState;
     }
     private void Update()
     {
@@ -90,6 +91,7 @@ public class Player : BaseSceneObject, IClickable
     }
     private void UpdatePlayerStats()
     {
+        playerStats.currentState = currentState;
         playerDataScriptableObject.SetPlayerStats(playerStats);
         OnPlayerStatsUpdateSO.RaiseEvent(EventArgs.Empty);
     }

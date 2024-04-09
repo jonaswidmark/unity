@@ -12,6 +12,10 @@ public class HomeBase :  BaseSceneObject, IClickable
     }
     public override void EventManager_OnSelect(object sender, EventArgs e)
     {
+        if(!isSelectable)
+        {
+            return;
+        }
         if(WasSelected())
         {
             visualsManager.SetVisual(this);

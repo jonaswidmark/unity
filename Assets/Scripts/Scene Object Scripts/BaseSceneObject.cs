@@ -8,6 +8,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
 {
     
     protected EventManager eventManager;
+    protected GameManager gameManager;
     protected VisualsManager visualsManager;
     protected MissionManager missionManager;
     protected MissionScriptableObject activeMission;
@@ -15,14 +16,17 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     [SerializeField] protected Transform parentTransform;
     public float transitionDelay = 0.5f;
     protected MissionEventArgs missionEventArgs;
+    protected bool isSelectable = false;
     [SerializeField] protected List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private void Start()
     {
         eventManager = ServiceLocator.EventManager;
         visualsManager = ServiceLocator.VisualsManager;
+        gameManager = ServiceLocator.GameManager;
         eventManager.OnMouseSelect += EventManager_OnSelect;
         missionManager = ServiceLocator.MissionManager;
-        eventManager.OnMissionEnded += EventManager_OnMissionEnded;
+        gameManager.OnNewMissionInitialized += GameManager_OnNewMissionInitialized;
+        gameManager.OnMissionEnded += GameManager_OnMissionEnded;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, transform);
         StartAddon();
@@ -31,7 +35,11 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     {
         /** Used by derived classes **/
     }
-    public virtual void EventManager_OnMissionEnded(object sender, MissionEventArgs e)
+    public virtual void GameManager_OnNewMissionInitialized(object sender, MissionEventArgs missionEventArgs)
+    {
+        isSelectable = false;
+    }
+    public virtual void GameManager_OnMissionEnded(object sender, MissionEventArgs e)
     {
         missionEventArgs = e;
         if(e.Mission.NewVisualTransform != null && e.Mission.MissionTransform == transform)
@@ -39,6 +47,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
             Destroy(currentPrefab.gameObject, transitionDelay);
             Invoke("SpawnNewObject", transitionDelay);
         }
+        isSelectable = true;
     }
     public virtual void SpawnNewObject()
     {
@@ -46,6 +55,11 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void EventManager_OnSelect(object sender, EventArgs e)
     {
+        Debug.Log("Base scene objects: "+ isSelectable);
+        if(!isSelectable)
+        {
+            return;
+        }
         if(WasSelected())
         {
             visualsManager.SetVisual(this);

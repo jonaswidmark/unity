@@ -115,6 +115,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnMouseSelect(object sender, EventArgs e)
     {
+        if(currentState == CameraState.MissionTask)
+        {
+            return;
+        }
         HandleMouseCLicked();
         currentState = CameraState.MouseClicked;
     }
@@ -124,19 +128,19 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
-        /* if(currentState == CameraState.MissionTask)
+        if(currentState == CameraState.MissionTask)
         {
             return;
-        } */
+        }
         wasdNormalized = e.Vector2Arg.normalized;
         // TODO: apply normalized vector on movement in HandleMovementInput
     }
     private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     { 
-        /* if(currentState == CameraState.MissionTask)
+        if(currentState == CameraState.MissionTask)
         {
             return;
-        } */
+        }
         if(e.StringArg == "shift")
         {
             movementSpeed = fastSpeed;
@@ -149,10 +153,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
-        /* if(currentState == CameraState.MissionTask)
+        if(currentState == CameraState.MissionTask)
         {
             return;
-        } */
+        }
         if(e.StringArg == "shift")
         {
             movementSpeed = normalSpeed;
@@ -165,10 +169,6 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseCLicked()
     {
-        /* if(currentState == CameraState.MissionTask)
-        {
-            return;
-        } */
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float entry;
@@ -179,10 +179,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseDown()
     {
-        /* if(currentState == CameraState.MissionTask)
+        if(currentState == CameraState.MissionTask)
         {
             return;
-        } */
+        }
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float entry;
