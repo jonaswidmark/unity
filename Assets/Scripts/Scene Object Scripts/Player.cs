@@ -37,6 +37,19 @@ public class Player : BaseSceneObject, IClickable
     private Vector3 targetColliderVector;
     private float timeToCrossFade = 0.2f;
     [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
+    [SerializeField] EventArgsSO OnPlayerStatsUpdateSO;
+    public enum PlayerState
+    {
+        Idle,
+        OnMission,
+    }
+    private PlayerState currentState = PlayerState.Idle;
+    [System.Serializable]
+    public struct PlayerStats
+    {
+        public PlayerState currentState;
+    }
+    public PlayerStats playerStats;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,6 +65,8 @@ public class Player : BaseSceneObject, IClickable
         eventManager.OnGoToTransform += EventManager_OnGoToTransform;
         eventManager.OnPlayerAnimation += EventManager_OnPlayerAnimation;
         eventManager.OnMissionTaskEnded += EventManager_OnMissionTaskEnded;
+        eventManager.OnNewMissionInitialized += EventManager_OnNewMissionInitialized;
+        eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         initialPosition = transform.position;
         playerCollider = transform.GetComponent<Collider>();
         AnimationCompleteListener animationCompleteListener = animator.GetBehaviour<AnimationCompleteListener>();
@@ -64,6 +79,33 @@ public class Player : BaseSceneObject, IClickable
         //GroundedSettings();
 
 
+    }
+    private void EventManager_OnNewMissionInitialized(object sender, EventArgs e)
+    {
+        TransitionToPlayerStateOnMission();
+    }
+    private void EventManager_OnMissionEnded(object sender, EventArgs e)
+    {
+        TransitionToPlayerStateIdle();
+    }
+    private void UpdatePlayerStats()
+    {
+        playerDataScriptableObject.SetPlayerStats(playerStats);
+        OnPlayerStatsUpdateSO.RaiseEvent(EventArgs.Empty);
+    }
+    private void TransitionToPlayerStateIdle()
+    {
+        currentState = PlayerState.Idle;
+        UpdatePlayerStats();
+    }
+    private void TransitionToPlayerStateOnMission()
+    {
+        currentState = PlayerState.OnMission;
+        UpdatePlayerStats();
+    }
+    public PlayerState GetPlayerState()
+    {
+        return currentState;
     }
     public void OnAnimationComplete()
     {

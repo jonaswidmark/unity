@@ -35,6 +35,8 @@ public class EventManager : ServiceManager<EventManager>
     public event EventHandler<Vector3EventArgs> OnCameraPosition;
     [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
     public event EventHandler<Vector3EventArgs> OnCameraLocalPosition;
+    public event EventHandler OnPlayerStatsUpdate;
+    [SerializeField] EventArgsSO OnPlayerStatsUpdateSO;
     private void Start()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -52,8 +54,14 @@ public class EventManager : ServiceManager<EventManager>
         OnCameraRotationSO.OnRaiseQuaternionEvent += OnCameraRotationSO_OnRaiseQuaternionEvent;
         OnCameraPositionSO.OnRaiseVector3Event += OnCameraPositionSO_OnRaiseVector3Event;
         OnCameraLocalPositionSO.OnRaiseVector3Event += OnCameraLocalPositionSO_OnRaiseVector3Event;
+        OnPlayerStatsUpdateSO.OnRaiseEvent += OnPlayerStatsUpdateSO_OnRaiseEvent;
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
+    private void OnPlayerStatsUpdateSO_OnRaiseEvent(object sender, EventArgs e)
+    {
+        /** Player Stats (struct) updated **/
+        OnPlayerStatsUpdate?.Invoke(sender, e);
+    }
     private void OnCameraRotationSO_OnRaiseQuaternionEvent(object sender, QuaternionEventArgs e)
     {
         /** Camera rig to rotation **/

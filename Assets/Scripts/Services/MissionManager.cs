@@ -16,7 +16,6 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
     [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
     [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
-
     private EventManager eventManager;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;

@@ -2683,6 +2683,10 @@ MonoBehaviour:
   collisionRadius: 0.5
   playerDataScriptableObject: {fileID: 11400000, guid: f9f8f47c64131384c894b5e8784db35e,
     type: 2}
+  OnPlayerStatsUpdateSO: {fileID: 11400000, guid: 3baa1a06014e5624097e5dc3a2d5c107,
+    type: 2}
+  playerStats:
+    currentState: 0
 --- !u!54 &980864398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4093,6 +4097,8 @@ MonoBehaviour:
   OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
   OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
   OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
+  OnPlayerStatsUpdateSO: {fileID: 11400000, guid: 3baa1a06014e5624097e5dc3a2d5c107,
     type: 2}
 --- !u!1 &1873864303
 GameObject:
