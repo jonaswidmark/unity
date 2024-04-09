@@ -21,7 +21,7 @@ MonoBehaviour:
   showTimer: 0
   playAnimation: Walking
   timeToCrossFade: 0
-  useTimeToCrossFade: 0
+  useTimeToCrossFade: 1
   textToDisplay: 
   showText: 0
   placing: {x: 0, y: 0}

@@ -84,7 +84,6 @@ public class Player : BaseSceneObject, IClickable
         {
             timeToCrossFade = e.missionTask.TimeToCrossFade;
         }
-        Debug.Log("Animation: "+e.missionTask.GetPlayAnimation());
         animator.CrossFade(e.missionTask.GetPlayAnimation(), timeToCrossFade);
     }
     private void FixedUpdate()

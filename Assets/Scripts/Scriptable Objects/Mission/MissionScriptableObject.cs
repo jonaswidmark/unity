@@ -7,6 +7,7 @@ using UnityEngine;
 public class MissionScriptableObject : ScriptableObject
 {
     public List<ScriptableObject> missionTasks = new List<ScriptableObject>();
+    public List<ScriptableObject> missionsAvailable = new List<ScriptableObject>();
     [SerializeField] private string title;
     [SerializeField] Transform previousVisualTransform;
     [SerializeField] Transform newVisualTransform;
@@ -18,7 +19,6 @@ public class MissionScriptableObject : ScriptableObject
         get { return missionTransform; }
         set { missionTransform = value; }
     }
-    
     public Transform PreviousVisualTransform
     {
         get { return previousVisualTransform; }
@@ -29,7 +29,6 @@ public class MissionScriptableObject : ScriptableObject
         get { return newVisualTransform; }
         set { newVisualTransform = value; }
     }
-    
     public int MissionOrder
     {
         get { return missionOrder; }
@@ -48,15 +47,18 @@ public class MissionScriptableObject : ScriptableObject
     {
         return GetHashCode();
     }
-    
-    
     public List<ScriptableObject> GetMissionTasks()
     {
         Debug.Log("MissionScriptableObject");
         return missionTasks;
     }
-    
-
-
-
+    public List<ScriptableObject> MissionsAvailable
+    {   
+        get { return missionsAvailable;}
+    }
+    public bool IsAvailable
+    {
+        get { return isAvailable; }
+        set { isAvailable = value; }
+    }
 }

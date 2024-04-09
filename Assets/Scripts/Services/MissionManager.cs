@@ -124,6 +124,10 @@ public class MissionManager : ServiceManager<MissionManager>
     public void EndCurrentMission()
     {
         MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
+        foreach(MissionScriptableObject missionScriptableObject in activeMission.MissionsAvailable)
+        {
+            missionScriptableObject.IsAvailable = true;
+        }
         OnMissionEndedSO.RaiseEvent(eventArgs.Mission);
     }
 }

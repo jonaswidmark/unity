@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionTasks:
   - {fileID: 11400000, guid: 600bc829b2d704646bd3103e34e8ddda, type: 2}
+  missionsAvailable: []
   title: Go To Village
   previousVisualTransform: {fileID: 0}
   newVisualTransform: {fileID: 0}
-  isAvailable: 1
+  isAvailable: 0
   missionOrder: 1

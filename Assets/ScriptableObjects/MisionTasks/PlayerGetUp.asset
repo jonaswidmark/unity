@@ -17,7 +17,7 @@ MonoBehaviour:
   key: player_get_up
   title: Player Get Up
   toTransformTitle: 
-  timeToExecute: 10
+  timeToExecute: 7
   showTimer: 0
   playAnimation: GettingUp
   timeToCrossFade: 1
