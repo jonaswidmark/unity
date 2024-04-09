@@ -28,6 +28,7 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Quaternion missionTaskCameraRotation;
     [SerializeField] float missionTaskMovementSpeed = 1.5f;
     private MissionManager missionManager;
+    private GameManager gameManager;
     private enum CameraState
     {
         Idle,
@@ -38,6 +39,7 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private CameraState currentState;
     private string keyPressedOrReleased;
+    private string playerState = "Idle";
     private void Start()
     {
         currentState = CameraState.KeyReleased;
@@ -56,10 +58,12 @@ public class CameraManager : ServiceManager<CameraManager>
         missionTaskCameraPosition = transform.position;
         missionTaskCameraRotation = transform.rotation;
         missionManager = ServiceLocator.MissionManager;
-
+        gameManager= ServiceLocator.GameManager;
+        gameManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
     }
     private void Update()
-    {
+    {   
+        Debug.Log(currentState);
         switch (currentState)
         {
             case CameraState.Idle:
@@ -77,6 +81,10 @@ public class CameraManager : ServiceManager<CameraManager>
                 HandleMouseDown();
                 break;
         }
+    }
+    private void EventManager_OnPlayerStatsUpdate(object sender, EventArgs e)
+    {
+        playerState = gameManager.GetCurrentPlayerState();
     }
     public void TransitionToIdleState()
     {
@@ -114,17 +122,19 @@ public class CameraManager : ServiceManager<CameraManager>
         TransitionToMissionTaskState();
     }
     private void EventManager_OnMouseSelect(object sender, EventArgs e)
-    {
-        if(currentState == CameraState.MissionTask)
+    {   
+        if(currentState != CameraState.MissionTask)
         {
-            return;
+            HandleMouseCLicked();
+            currentState = CameraState.MouseClicked;
         }
-        HandleMouseCLicked();
-        currentState = CameraState.MouseClicked;
     }
     private void EventManager_OnMouseReleased(object sender, EventArgs e)
     {
-        currentState = CameraState.KeyReleased;
+        if(currentState != CameraState.MissionTask)
+        {
+            currentState = CameraState.KeyReleased;
+        }
     }
     private void EventManager_OnWASDPressed(object sender, Vector2EventArgs e)
     {
@@ -137,10 +147,7 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnKeyPressed(object sender, StringEventArgs e)
     { 
-        if(currentState == CameraState.MissionTask)
-        {
-            return;
-        }
+        
         if(e.StringArg == "shift")
         {
             movementSpeed = fastSpeed;
@@ -153,10 +160,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void EventManager_OnKeyReleased(object sender, StringEventArgs e)
     {
-        if(currentState == CameraState.MissionTask)
+        /* if(currentState == CameraState.MissionTask)
         {
             return;
-        }
+        } */
         if(e.StringArg == "shift")
         {
             movementSpeed = normalSpeed;
@@ -179,10 +186,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMouseDown()
     {
-        if(currentState == CameraState.MissionTask)
+        /* if(currentState == CameraState.MissionTask)
         {
             return;
-        }
+        } */
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float entry;
@@ -211,6 +218,10 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void HandleMovementInput(string keyPressed)
     {
+        if(currentState != CameraState.MissionTask)
+        {
+            
+        
         if(keyPressed =="w" || keyPressed == "upArrow")
         {
             newPosition += (transform.forward * movementSpeed);
@@ -250,6 +261,7 @@ public class CameraManager : ServiceManager<CameraManager>
             {
                 newZoom -= zoomAmount;
             }
+        }
         }
         transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);

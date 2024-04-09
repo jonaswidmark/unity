@@ -9,6 +9,7 @@ public class GameManager : ServiceManager<GameManager>
     private EventManager eventManager;
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
     public event EventHandler<MissionEventArgs> OnMissionEnded;
+    public event EventHandler<EventArgs> OnPlayerStatsUpdate;
     [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
     public enum PlayerState
     {
@@ -25,13 +26,14 @@ public class GameManager : ServiceManager<GameManager>
         eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         eventManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
     }
-    private string GetCurrentPlayerState()
+    public string GetCurrentPlayerState()
     {
         return currentState;
     }
     private void EventManager_OnPlayerStatsUpdate(object sender, EventArgs e)
     {
         currentState = playerDataScriptableObject.GetPlayerStats().currentState.ToString();
+        OnPlayerStatsUpdate?.Invoke(sender, e);
     }
     private void EventManager_OnNewMissionInitialized(object sender, MissionEventArgs e)
     {

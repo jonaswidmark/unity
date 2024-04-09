@@ -55,7 +55,6 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void EventManager_OnSelect(object sender, EventArgs e)
     {
-        Debug.Log("Base scene objects: "+ isSelectable);
         if(!isSelectable)
         {
             return;
