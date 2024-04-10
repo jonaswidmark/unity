@@ -2083,6 +2083,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0717be90240e7db4f8a5ebb6ec2863a5,
         type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tand more ...\n\tFrom animation clip 'Idle'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0717be90240e7db4f8a5ebb6ec2863a5,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -2619,6 +2630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d502ccf087d0c47a35e49f5c4dfcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartGameSO: {fileID: 11400000, guid: 41aa8a7fc6764ba43b86eb26be720cdf, type: 2}
   playerDataScriptableObject: {fileID: 11400000, guid: f9f8f47c64131384c894b5e8784db35e,
     type: 2}
 --- !u!1 &980864395
@@ -4077,6 +4089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc75d572f6cdce4d9955be15ab78caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStartGameSO: {fileID: 11400000, guid: 41aa8a7fc6764ba43b86eb26be720cdf, type: 2}
   OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
   OnMouseReleasedEventArgsSO: {fileID: 11400000, guid: 1b0f35edbe2e51049868d20f617cc7f0,
     type: 2}

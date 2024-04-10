@@ -103,6 +103,5 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
         {
             return gameObject;
         }
-    }
-   
+    } 
 }

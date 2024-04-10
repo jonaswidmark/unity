@@ -7,6 +7,8 @@ public class GameManager : ServiceManager<GameManager>
 {
     private StateManager stateManager;
     private EventManager eventManager;
+    [SerializeField] EventArgsSO OnStartGameSO;
+    public event EventHandler OnStartGame;
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
     public event EventHandler<MissionEventArgs> OnMissionEnded;
     public event EventHandler<EventArgs> OnPlayerStatsUpdate;
@@ -25,6 +27,12 @@ public class GameManager : ServiceManager<GameManager>
         eventManager.OnNewMissionInitialized += EventManager_OnNewMissionInitialized;
         eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         eventManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
+        eventManager.OnStartGame += OnStartGameSO_OnStartGame;
+    }
+    private void OnStartGameSO_OnStartGame(object sender, EventArgs e)
+    {
+        Debug.Log("GameManager starts game");
+        OnStartGame?.Invoke(this, e);
     }
     public string GetCurrentPlayerState()
     {

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EventManager : ServiceManager<EventManager>
 {
+    [SerializeField] EventArgsSO OnStartGameSO;
+    public event EventHandler OnStartGame;
     [SerializeField] EventArgsSO OnMouseSelectSO;
     public event EventHandler OnMouseSelect;
     [SerializeField] EventArgsSO OnMouseReleasedEventArgsSO;
@@ -55,8 +57,15 @@ public class EventManager : ServiceManager<EventManager>
         OnCameraPositionSO.OnRaiseVector3Event += OnCameraPositionSO_OnRaiseVector3Event;
         OnCameraLocalPositionSO.OnRaiseVector3Event += OnCameraLocalPositionSO_OnRaiseVector3Event;
         OnPlayerStatsUpdateSO.OnRaiseEvent += OnPlayerStatsUpdateSO_OnRaiseEvent;
+        StartGame();
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
+    private void StartGame()
+    {
+        Debug.Log("EventManagerstarts game");
+        OnStartGameSO.RaiseEvent(EventArgs.Empty);
+        OnStartGame?.Invoke(this, EventArgs.Empty);
+    }
     private void OnPlayerStatsUpdateSO_OnRaiseEvent(object sender, EventArgs e)
     {
         /** Player Stats (struct) updated **/

@@ -11,9 +11,6 @@ using UnityEngine.InputSystem;
 
 public class Player : BaseSceneObject, IClickable
 {
-    /* private EventManager eventManager;
-    private VisualsManager visualsManager;
-    private MissionManager missionManager; */
     private Rigidbody rb = null;
     public event EventHandler OnIsPlayerWalking;
     public event EventHandler OnIsPlayerIdle;
@@ -58,6 +55,7 @@ public class Player : BaseSceneObject, IClickable
     private void Start()
     {
         eventManager = ServiceLocator.EventManager;
+        gameManager = ServiceLocator.GameManager;
         eventManager.OnMouseSelect += EventManager_OnSelect;
         visualsManager = ServiceLocator.VisualsManager;
         visualsManager.RemoveVisual(this);
@@ -74,10 +72,20 @@ public class Player : BaseSceneObject, IClickable
         animator.CrossFade("SleepIdle", 0f);
         playerDataScriptableObject.SetPlayerObject(this);
         playerStats.currentState = currentState;
+        gameManager.OnStartGame += GameManager_OnStartGame;
     }
     private void Update()
     {
         //GroundedSettings();
+    }
+    private void GameManager_OnStartGame(object sender, EventArgs e)
+    {
+        StartGame();
+    }
+    private void StartGame()
+    {
+        visualsManager.SetVisual(this);
+        UpdateMissionList();
     }
     private void EventManager_OnNewMissionInitialized(object sender, EventArgs e)
     {
