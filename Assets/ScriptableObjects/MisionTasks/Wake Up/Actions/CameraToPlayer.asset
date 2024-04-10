@@ -28,4 +28,4 @@ MonoBehaviour:
   placing: {x: 0, y: 0}
   cameraPosition: {x: 26, y: 10, z: -2}
   cameraLocalPosition: {x: 5.8, y: 63.1, z: -66.7}
-  cameraRotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
+  cameraRotation: {x: 0, y: 0.50000006, z: 0, w: -0.8660254}
