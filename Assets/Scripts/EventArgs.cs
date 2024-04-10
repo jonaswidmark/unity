@@ -1,15 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionTaskEventArgs : EventArgs
 {
     public MissionTask missionTask {get;}
+    
     public MissionTaskEventArgs(MissionTask missionTask)
     {
         this.missionTask = missionTask;
     }
+    public bool TypeText => missionTask.typeText;
 }
 
 public class MissionEventArgs : EventArgs

@@ -23,7 +23,7 @@ public class MissionManager : ServiceManager<MissionManager>
     private MissionTask activeMissionTask;
     [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
-    private MissionTask nextissionTask;
+    private MissionTask nextMissionTask;
     private MissionTask currentMissionTask;
     private void Start()
     {
@@ -77,10 +77,10 @@ public class MissionManager : ServiceManager<MissionManager>
     {
         if(missionTasksStack.Count>0)
         {
-            nextissionTask = missionTasksStack.Pop();
-            float timeToExecute = nextissionTask.TimeToExecute;
-            countdownManager.SpawnPrefab(timeToExecute, nextissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject, nextissionTask.Placing);
-            InvokeMissionTaskEvents(nextissionTask);
+            nextMissionTask = missionTasksStack.Pop();
+            float timeToExecute = nextMissionTask.TimeToExecute;
+            countdownManager.SpawnPrefab(timeToExecute, nextMissionTask, out GameObject spawnedPrefab, out CountdownScriptableObject countDownSriptableObject, nextMissionTask.Placing);
+            InvokeMissionTaskEvents(nextMissionTask);
         }
         else
         {
@@ -118,7 +118,7 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     public void EndCurrentMissiontaskCountdown()
     {
-        nextissionTask.GetActiveCountdown().EndCountDown();
+        nextMissionTask.GetActiveCountdown().EndCountDown();
     }
     public void EndCurrentMission()
     {

@@ -35,9 +35,10 @@ public class CountdownManager : ServiceManager<CountdownManager>
                     }
                 }
             }
-        if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback && missionTask.ShowText)
+        if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback && missionTask.showText)
         {
-            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask));
+            Debug.Log("CountdownManager: "+ missionTask);
+            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask), missionTask.typeText);
         }
     }
     private string GetTextToDisplay(MissionTask missionTask)
@@ -134,7 +135,8 @@ public class CountdownManager : ServiceManager<CountdownManager>
                         {
                             stringToDisplay += DisplayTime(countdownScriptableObject.GetTimeRemaining());
                         }
-                        missionTaskPrefab.GetComponent<Timer>().SetTimeText(stringToDisplay);
+                        
+                        missionTaskPrefab.GetComponent<Timer>().SetTimeText(stringToDisplay, missionTask.typeText);
                         
                     }
                 }
@@ -142,7 +144,10 @@ public class CountdownManager : ServiceManager<CountdownManager>
         }
         else
         {
-            missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask));
+            if(missionTask.showText)
+            {
+                missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask), missionTask.typeText);
+            } 
         }
     }
     private string DisplayTime(float timeToDisplay)

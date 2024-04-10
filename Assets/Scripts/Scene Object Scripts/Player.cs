@@ -78,8 +78,6 @@ public class Player : BaseSceneObject, IClickable
     private void Update()
     {
         //GroundedSettings();
-
-
     }
     private void EventManager_OnNewMissionInitialized(object sender, EventArgs e)
     {

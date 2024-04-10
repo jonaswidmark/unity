@@ -22,8 +22,9 @@ MonoBehaviour:
   playAnimation: GettingUp
   timeToCrossFade: 1
   useTimeToCrossFade: 1
-  textToDisplay: Getting up
+  textToDisplay: Ok, so I really stink! Whatever happend? I feel sick!
   showText: 1
+  typeText: 1
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

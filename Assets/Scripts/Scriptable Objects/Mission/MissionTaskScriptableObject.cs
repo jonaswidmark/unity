@@ -24,8 +24,10 @@ public class MissionTask : ScriptableObject
     [SerializeField] bool useTimeToCrossFade = false;
     private CountdownScriptableObject activeCountdown;
     [Header("Text to display")]
+    [TextArea]
     [SerializeField] string textToDisplay;
-    [SerializeField] bool showText;
+    public bool showText;
+    public bool typeText;
     [Header("X and Y for local placing offset \nfrom default upper left corner")]
     [SerializeField] Vector2 placing;
     [Header("Camera placement")]
@@ -68,6 +70,11 @@ public class MissionTask : ScriptableObject
     {
         get { return showText; }
         private set { showText = value; }
+    }
+    public bool TypeText
+    {
+        get { return typeText; }
+        private set { typeText = value; }
     }
     public bool ShowTimer
     {

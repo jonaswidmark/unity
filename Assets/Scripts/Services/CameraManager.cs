@@ -63,7 +63,6 @@ public class CameraManager : ServiceManager<CameraManager>
     }
     private void Update()
     {   
-        Debug.Log(currentState);
         switch (currentState)
         {
             case CameraState.Idle:

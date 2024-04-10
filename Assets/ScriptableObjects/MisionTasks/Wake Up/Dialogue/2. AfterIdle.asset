@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: PlayerSleeping
+  m_Name: 2. AfterIdle
   m_EditorClassIdentifier: 
   isCompletedBy: 0
   id: 0
-  key: player_sleeing
-  title: Player Sleeping
+  key: 
+  title: 
   toTransformTitle: 
-  timeToExecute: 1
-  showTimer: 1
-  playAnimation: SleepIdle
+  timeToExecute: 7
+  showTimer: 0
+  playAnimation: 
   timeToCrossFade: 0
-  useTimeToCrossFade: 1
-  textToDisplay: Sleeping
+  useTimeToCrossFade: 0
+  textToDisplay: If this is what i seems like, I'm sure I'll get a hint looking around.
   showText: 1
+  typeText: 1
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}
