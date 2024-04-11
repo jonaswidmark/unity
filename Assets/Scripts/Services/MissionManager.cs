@@ -16,6 +16,7 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
     [SerializeField] EventVector3ArgsSO OnCameraLocalPositionSO;
     [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
+    [SerializeField] EventMissionTaskEventArgsSO OnToggleAlertArrowSO;
     private EventManager eventManager;
     private CountdownManager countdownManager;
     [SerializeField] private Transform parentObject;
@@ -106,9 +107,13 @@ public class MissionManager : ServiceManager<MissionManager>
         {
             OnCameraLocalPositionSO.RaiseEvent(missionTask.CameraLocalPosition);
         }
-        if(goToTransform != null)
+        if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.playerGoTo)
         {
             OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);
+        } 
+        if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.alertArrow)
+        {
+            OnToggleAlertArrowSO.RaiseEvent(eventArgs.missionTask);
         } 
         string playAnimation = missionTask.GetPlayAnimation();
         if(!string.IsNullOrEmpty(playAnimation))

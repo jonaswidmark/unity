@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mission Player Wake Up
   m_EditorClassIdentifier: 
   missionTasks:
+  - {fileID: 11400000, guid: 7a6a8094d79051147bd8d792604e1da1, type: 2}
   - {fileID: 11400000, guid: 42e92d047781c3a489319663ca7a5417, type: 2}
   - {fileID: 11400000, guid: 11f69da343536c04498d40f829654574, type: 2}
   - {fileID: 11400000, guid: 75f728b6c8e1f564bb0dc092410d300f, type: 2}

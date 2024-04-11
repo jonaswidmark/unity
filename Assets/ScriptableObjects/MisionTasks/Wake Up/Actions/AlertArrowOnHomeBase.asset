@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: PlayerSleeping
+  m_Name: AlertArrowOnHomeBase
   m_EditorClassIdentifier: 
   isCompletedBy: 0
   id: 0
-  key: player_sleeing
-  title: Player Sleeping
-  toTransformTitle: 
-  targetTransformAction: 0
-  timeToExecute: 3
+  key: 
+  title: 
+  toTransformTitle: HomeBase
+  targetTransformAction: 1
+  timeToExecute: 0
   showTimer: 0
-  playAnimation: SleepIdle
+  playAnimation: 
   timeToCrossFade: 0
-  useTimeToCrossFade: 1
-  textToDisplay: Didn't my wife let the cat out? Something really smells funky
+  useTimeToCrossFade: 0
+  textToDisplay: Show Alert Arrow
   showText: 1
-  typeText: 1
+  typeText: 0
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

@@ -5,6 +5,9 @@ public class HomeBase :  BaseSceneObject, IClickable
 {
     public override void StartAddon()
     {
+        Transform alertArrowTransform = transform.Find("AlertArrow");
+        alertArrow = alertArrowTransform.GetComponent<AlertArrow>();
+        //alertArrow.ToggleArrow();
         foreach(MissionScriptableObject mission in missionScriptableObjectList)
         {
             mission.MissionTransform = transform;
@@ -29,5 +32,13 @@ public class HomeBase :  BaseSceneObject, IClickable
     public override bool WasSelected()
     { 
         return Utils.WasSelected(this);
+    }
+    public override void EventManager_OnToggleAlertArrow(object sender, MissionTaskEventArgs e)
+    {
+        Transform transfomForArrow = e.missionTask.GetToTransform();
+        if(transfomForArrow == transform)
+        {
+            ToggleAllertArrow();
+        }
     }
 }

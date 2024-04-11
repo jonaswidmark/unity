@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BaseSceneObject :  MonoBehaviour, IClickable
 {
-    
     protected EventManager eventManager;
     protected GameManager gameManager;
     protected VisualsManager visualsManager;
@@ -18,6 +17,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     protected MissionEventArgs missionEventArgs;
     protected bool isSelectable = false;
     [SerializeField] protected List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
+    protected AlertArrow alertArrow = null;
     private void Start()
     {
         eventManager = ServiceLocator.EventManager;
@@ -27,6 +27,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
         missionManager = ServiceLocator.MissionManager;
         gameManager.OnNewMissionInitialized += GameManager_OnNewMissionInitialized;
         gameManager.OnMissionEnded += GameManager_OnMissionEnded;
+        eventManager.OnToggleAlertArrow += EventManager_OnToggleAlertArrow;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, transform);
         StartAddon();
@@ -34,6 +35,14 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     public virtual void StartAddon()
     {
         /** Used by derived classes **/
+    }
+    public virtual void ToggleAllertArrow()
+    {
+        alertArrow.ToggleArrow();
+    }
+    public virtual void EventManager_OnToggleAlertArrow(object sender, MissionTaskEventArgs e)
+    {
+        
     }
     public virtual void GameManager_OnNewMissionInitialized(object sender, MissionEventArgs missionEventArgs)
     {

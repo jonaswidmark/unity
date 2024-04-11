@@ -9,12 +9,17 @@ public class MissionTask : ScriptableObject
         predefinedTimer,
         callback
     }
+    public enum TransformAction 
+    {
+        playerGoTo, alertArrow
+    }
     [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
     [SerializeField] int id;
     [SerializeField] string key;
     [SerializeField] string title;
-    [Header("Title of player target Transform")]
+    [Header("Title of target Transform")]
     [SerializeField] string toTransformTitle;
+    [SerializeField] TransformAction targetTransformAction = TransformAction.playerGoTo;
     [Header("Timer options")]
     [SerializeField] float timeToExecute;
     [SerializeField] bool showTimer;
@@ -41,10 +46,14 @@ public class MissionTask : ScriptableObject
         return playAnimation;
     }
     public IsCompletedBy CompletedBy { get; private set; }
-    
+    public TransformAction TargetTransformAction { get; private set; }
     public IsCompletedBy GetIsCompletedBy()
     {
         return isCompletedBy;
+    }
+    public TransformAction GetTransformAction()
+    {
+        return targetTransformAction;
     }
     public int Id
     {

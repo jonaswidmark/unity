@@ -39,7 +39,9 @@ public class EventManager : ServiceManager<EventManager>
     public event EventHandler<Vector3EventArgs> OnCameraLocalPosition;
     public event EventHandler OnPlayerStatsUpdate;
     [SerializeField] EventArgsSO OnPlayerStatsUpdateSO;
-    private void Start()
+    [SerializeField] EventMissionTaskEventArgsSO OnToggleAlertArrowSO;
+    public event EventHandler<MissionTaskEventArgs> OnToggleAlertArrow;
+    private void OnEnable()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
         OnMouseReleasedEventArgsSO.OnRaiseEvent += OnMouseReleasedEventArgsSO_OnRaiseEvent;
@@ -57,14 +59,41 @@ public class EventManager : ServiceManager<EventManager>
         OnCameraPositionSO.OnRaiseVector3Event += OnCameraPositionSO_OnRaiseVector3Event;
         OnCameraLocalPositionSO.OnRaiseVector3Event += OnCameraLocalPositionSO_OnRaiseVector3Event;
         OnPlayerStatsUpdateSO.OnRaiseEvent += OnPlayerStatsUpdateSO_OnRaiseEvent;
+        OnToggleAlertArrowSO.OnRaiseMissionTaskEvent += OnToggleAlertArrowSO_OnRaiseMissionTaskEvent;
+    }
+    private void OnDisable() 
+    {
+        OnMouseSelectSO.OnRaiseEvent -= OnMouseSelectSO_OnRaiseEvent;
+        OnMouseReleasedEventArgsSO.OnRaiseEvent -= OnMouseReleasedEventArgsSO_OnRaiseEvent;
+        OnCountDownOrCallbackComplete.OnRaiseEvent -= OnCountDownOrCallbackComplete_OnRaiseEvent;
+        OnGoToTransformSO.OnRaiseMissionTaskEvent -= OnGoToTransformSO_OnRaiseMissionTaskEvent;
+        OnPlayerAnimationSO.OnRaiseMissionTaskEvent -= OnPlayerAnimationSO_OnRaiseMissionTaskEvent;
+        OnMissionTaskEndedSO.OnRaiseMissionTaskEvent -= OnMissionTaskEndedSO_OnRaiseMissionTaskEvent;
+        OnMissionEndedSO.OnRaiseMissionEvent -= OnMissionEndedSO_OnRaiseMissionEvent;
+        OnNewMissionSO.OnRaiseMissionEvent -= OnNewMissionSO_OnRaiseMissionEvent;
+        OnNewMissionInitializedSO.OnRaiseMissionEvent -= OnNewMissionInitializedSO_OnRaiseMissionEvent;
+        OnKeyPressedSO.OnRaiseStringEvent -= OnKeyPressedSO_OnRaiseStringEvent;
+        OnKeyReleasedSO.OnRaiseStringEvent -= OnKeyReleasedSO_OnRaiseStringEvent;
+        OnWASDPressedSO.OnRaiseVector2Event -= OnWASDPressedSO_OnRaiseVector2Event;
+        OnCameraRotationSO.OnRaiseQuaternionEvent -= OnCameraRotationSO_OnRaiseQuaternionEvent;
+        OnCameraPositionSO.OnRaiseVector3Event -= OnCameraPositionSO_OnRaiseVector3Event;
+        OnCameraLocalPositionSO.OnRaiseVector3Event -= OnCameraLocalPositionSO_OnRaiseVector3Event;
+        OnPlayerStatsUpdateSO.OnRaiseEvent -= OnPlayerStatsUpdateSO_OnRaiseEvent;
+        OnToggleAlertArrowSO.OnRaiseMissionTaskEvent -= OnToggleAlertArrowSO_OnRaiseMissionTaskEvent;    
+    }
+    private void Start()
+    {
         StartGame();
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
     private void StartGame()
     {
-        Debug.Log("EventManagerstarts game");
         OnStartGameSO.RaiseEvent(EventArgs.Empty);
         OnStartGame?.Invoke(this, EventArgs.Empty);
+    }
+    private void OnToggleAlertArrowSO_OnRaiseMissionTaskEvent(object sender, MissionTaskEventArgs e)
+    {
+        OnToggleAlertArrow?.Invoke(sender, e);
     }
     private void OnPlayerStatsUpdateSO_OnRaiseEvent(object sender, EventArgs e)
     {
