@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
   m_Name: MiningForGold
   m_EditorClassIdentifier: 
+  isCompletedBy: 0
   id: 0
   key: working_with_pickaxe
   title: Mining for gold
   toTransformTitle: 
+  targetTransformAction: 0
   timeToExecute: 6
   showTimer: 1
   playAnimation: Mining
+  timeToCrossFade: 0.5
+  useTimeToCrossFade: 1
   textToDisplay: Minging for gold
   showText: 1
+  typeText: 0
   placing: {x: 0, y: 0}
-  isCompletedBy: 0
+  cameraPosition: {x: 0, y: 0, z: 0}
+  cameraLocalPosition: {x: 0, y: 0, z: 0}
+  cameraRotation: {x: 0, y: 0, z: 0, w: 0}

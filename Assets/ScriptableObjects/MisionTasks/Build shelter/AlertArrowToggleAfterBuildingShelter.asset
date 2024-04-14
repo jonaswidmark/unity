@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: GoToMine
+  m_Name: AlertArrowToggleAfterBuildingShelter
   m_EditorClassIdentifier: 
-  isCompletedBy: 1
+  isCompletedBy: 0
   id: 0
-  key: go_to_mine
-  title: Go To Mine
-  toTransformTitle: Mine
-  targetTransformAction: 0
+  key: 
+  title: 
+  toTransformTitle: HomeBase
+  targetTransformAction: 1
   timeToExecute: 0
   showTimer: 0
-  playAnimation: Walking
-  timeToCrossFade: 0.1
-  useTimeToCrossFade: 1
-  textToDisplay: Most ugly mine I've seen so far!
+  playAnimation: 
+  timeToCrossFade: 0
+  useTimeToCrossFade: 0
+  textToDisplay: 
   showText: 1
   typeText: 0
   placing: {x: 0, y: 0}
