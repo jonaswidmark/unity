@@ -91,6 +91,7 @@ public class MissionManager : ServiceManager<MissionManager>
     private void InvokeMissionTaskEvents(MissionTask missionTask)
     {
         currentMissionTask = missionTask;
+        string playAnimation = missionTask.GetPlayAnimation();
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
         if( missionTask.CameraRotation.x != 0 || 
@@ -108,18 +109,25 @@ public class MissionManager : ServiceManager<MissionManager>
             OnCameraLocalPositionSO.RaiseEvent(missionTask.CameraLocalPosition);
         }
         if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.playerGoTo)
-        {
+        {   
+            /* if(!string.IsNullOrEmpty(playAnimation))
+            {
+                Debug.Log("Animation :"+playAnimation);
+                OnPlayerAnimationSO.RaiseEvent(eventArgs.missionTask);
+            } */
             OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);
         } 
         if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.alertArrow)
         {
             OnToggleAlertArrowSO.RaiseEvent(eventArgs.missionTask);
         } 
-        string playAnimation = missionTask.GetPlayAnimation();
         if(!string.IsNullOrEmpty(playAnimation))
         {
+            Debug.Log("Animation :"+playAnimation);
             OnPlayerAnimationSO.RaiseEvent(eventArgs.missionTask);
         }
+        
+        
     }
     public void EndCurrentMissiontaskCountdown()
     {

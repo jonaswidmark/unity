@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Mission Build Shelter
   m_EditorClassIdentifier: 
   missionTasks:
-  - {fileID: 11400000, guid: 11f69da343536c04498d40f829654574, type: 2}
+  - {fileID: 11400000, guid: ec179a7c03d51ab4891e39df7609195d, type: 2}
   - {fileID: 11400000, guid: 32ac91dc2bdedcd41b7fef69d756c6b8, type: 2}
   - {fileID: 11400000, guid: c29b60abdc92b4a4fac8e605fabaeb4d, type: 2}
-  - {fileID: 11400000, guid: dd282673440d58144ad09fd5fed894ce, type: 2}
   missionsAvailable: []
   title: Build Shelter
   previousVisualTransform: {fileID: 434698, guid: 9f34afb08d4d48c4b860e0b7634ce5b4,

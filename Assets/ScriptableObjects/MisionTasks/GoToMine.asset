@@ -17,13 +17,15 @@ MonoBehaviour:
   key: go_to_mine
   title: Go To Mine
   toTransformTitle: Mine
+  targetTransformAction: 0
   timeToExecute: 0
   showTimer: 0
   playAnimation: Walking
-  timeToCrossFade: 0
-  useTimeToCrossFade: 0
-  textToDisplay: 
-  showText: 0
+  timeToCrossFade: 0.5
+  useTimeToCrossFade: 1
+  textToDisplay: Most ugly mine I've seen so far!
+  showText: 1
+  typeText: 0
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

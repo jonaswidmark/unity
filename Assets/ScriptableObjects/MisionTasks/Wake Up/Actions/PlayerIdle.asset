@@ -17,6 +17,7 @@ MonoBehaviour:
   key: player_idle
   title: Player Idle
   toTransformTitle: 
+  targetTransformAction: 0
   timeToExecute: 4
   showTimer: 0
   playAnimation: Breathing Idle

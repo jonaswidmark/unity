@@ -141,7 +141,7 @@ public class Player : BaseSceneObject, IClickable
         if (!isMoving)
             return;
 
-        Vector3 newInitialPosition = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        Vector3 newInitialPosition = new Vector3(transform.position.x, 10.0f, transform.position.z);
         transform.position = newInitialPosition;
 
         Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
