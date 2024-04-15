@@ -13,6 +13,7 @@ public class GameManager : ServiceManager<GameManager>
     public event EventHandler<MissionEventArgs> OnMissionEnded;
     public event EventHandler<EventArgs> OnPlayerStatsUpdate;
     [SerializeField] PlayerDataScriptableObject playerDataScriptableObject;
+    [SerializeField] SceneMainObjectScriptableObject[] sceneMainObjectsSO;
     public enum PlayerState
     {
         Idle,
@@ -31,8 +32,8 @@ public class GameManager : ServiceManager<GameManager>
     }
     private void OnStartGameSO_OnStartGame(object sender, EventArgs e)
     {
-        Debug.Log("GameManager starts game");
         OnStartGame?.Invoke(this, e);
+        SetSceneObject();
     }
     public string GetCurrentPlayerState()
     {
@@ -58,4 +59,13 @@ public class GameManager : ServiceManager<GameManager>
         currentState = stateManager.GetPlayerState();
         return currentState;
     } */
+    private void SetSceneObject()
+    {
+        foreach(SceneMainObjectScriptableObject sceneMainObjectSO in sceneMainObjectsSO)
+        {
+            GameObject prefabGO = sceneMainObjectSO.GetThisGameObject();
+            
+            sceneMainObjectSO.SpawnPrefab(prefabGO);
+        }
+    }
 }

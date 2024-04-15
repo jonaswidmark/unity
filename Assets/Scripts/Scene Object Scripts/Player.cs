@@ -169,14 +169,11 @@ public class Player : BaseSceneObject, IClickable
 
     private bool IsTouchingTarget()
     {
-        // Utför en sfärisk kollisionskontroll runt spelarens position med angiven radie
-        Collider[] colliders = Physics.OverlapSphere(transform.position, collisionRadius / 2f);
-
-        // Loopa igenom alla collider som hittades
+        Collider[] colliders = Physics.OverlapSphere(transform.position, collisionRadius );
         foreach (Collider collider in colliders)
         {
-            // Kontrollera om någon av kolliderarna tillhör målet
-            if (collider.transform == targetTransform)
+            BaseSceneObject sceneObject = collider.GetComponent<BaseSceneObject>();
+            if (sceneObject != null && sceneObject != gameObject && sceneObject.transform == targetTransform)
             {
                 return true;
             }
@@ -186,8 +183,8 @@ public class Player : BaseSceneObject, IClickable
     private void EventManager_OnGoToTransform(object sender, MissionTaskEventArgs e)
     {
         initialPosition = transform.position;
-        targetTransform = e.missionTask.GetToTransform();
-
+        targetTransform = e.missionTask.GetToTransformSO().GetSpawnedGameObject().transform;
+       
         elapsedTime = 0f;
         duration = e.missionTask.TimeToExecute;
         isMoving = true;
@@ -196,6 +193,7 @@ public class Player : BaseSceneObject, IClickable
         targetCollider = targetTransform.GetComponent<Collider>();
         if (targetCollider != null)
         {
+            
             closestTargetPoint = targetCollider.ClosestPoint(transform.position);
 
             targetColliderVector = new Vector3(targetCollider.bounds.size.x, targetCollider.bounds.size.y, targetCollider.bounds.size.z);

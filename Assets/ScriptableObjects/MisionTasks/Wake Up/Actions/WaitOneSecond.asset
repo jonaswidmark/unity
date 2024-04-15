@@ -17,13 +17,15 @@ MonoBehaviour:
   key: wait_one_second
   title: Wait One Second
   toTransformTitle: 
-  timeToExecute: 1
-  showTimer: 0
+  targetTransformAction: 0
+  timeToExecute: 5
+  showTimer: 1
   playAnimation: 
   timeToCrossFade: 0
   useTimeToCrossFade: 0
-  textToDisplay: 
-  showText: 0
+  textToDisplay: Hej Erik
+  showText: 1
+  typeText: 1
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}

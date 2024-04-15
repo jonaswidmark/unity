@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Services\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\Scene Objects\SceneMainObjectSriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionTaskScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\EventManager.cs" />

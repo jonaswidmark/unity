@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HomeBase :  BaseSceneObject, IClickable
+public class HomeBase : BaseSceneObject, IClickable
 {
     public override void StartAddon()
     {
@@ -35,7 +35,8 @@ public class HomeBase :  BaseSceneObject, IClickable
     }
     public override void EventManager_OnToggleAlertArrow(object sender, MissionTaskEventArgs e)
     {
-        Transform transfomForArrow = e.missionTask.GetToTransform();
+        Transform transfomForArrow = e.missionTask.GetToTransformSO().GetSpawnedGameObject().transform;
+        
         if(transfomForArrow == transform)
         {
             ToggleAllertArrow();

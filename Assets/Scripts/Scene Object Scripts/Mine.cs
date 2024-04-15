@@ -26,4 +26,8 @@ public class Mine : BaseSceneObject
     { 
         return Utils.WasSelected(this);
     }
+    public override Transform GetTransform()
+    {
+        return transform;
+    }
 }

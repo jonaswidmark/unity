@@ -56,7 +56,6 @@ public class AlertArrow : MonoBehaviour
     }
     public void ToggleArrow()
     {
-        Debug.Log("ArrowActive: "+isActive);
         targetAlpha = (currentAlpha == 0) ? 1 : 0;
         transform.gameObject.SetActive(!isActive);
         StartLerp();

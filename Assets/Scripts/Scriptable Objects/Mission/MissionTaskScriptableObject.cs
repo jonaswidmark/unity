@@ -19,6 +19,8 @@ public class MissionTask : ScriptableObject
     [SerializeField] string title;
     [Header("Title of target Transform")]
     [SerializeField] string toTransformTitle;
+    [SerializeField] Transform toTransform;
+    [SerializeField] SceneMainObjectScriptableObject toTransformSO;
     [SerializeField] TransformAction targetTransformAction = TransformAction.playerGoTo;
     [Header("Timer options")]
     [SerializeField] float timeToExecute;
@@ -112,8 +114,13 @@ public class MissionTask : ScriptableObject
     }
     public Transform GetToTransform()
     {
-        GameObject obj = GameObject.Find(toTransformTitle);
-        return obj != null ? obj.transform : null;
+        /* GameObject obj = GameObject.Find(toTransformTitle); */
+        
+        return toTransform != null ? toTransform : null;
+    }
+    public SceneMainObjectScriptableObject GetToTransformSO()
+    {
+        return toTransformSO;
     }
     public float TimeToCrossFade
     {

@@ -46,7 +46,7 @@ public class MissionManager : ServiceManager<MissionManager>
         var availableMissions = missionScriptableObjectList.Where(mission => mission.isAvailable);
         var sortedMissions = availableMissions.OrderBy(mission => mission.missionOrder);
         var firstMission = sortedMissions.FirstOrDefault();
-        
+
         if (firstMission != null)
         {
             SetNewMissionAction(firstMission);
@@ -68,7 +68,7 @@ public class MissionManager : ServiceManager<MissionManager>
         OnNewMissionInitializedSO.RaiseEvent(activeMission);
         List<ScriptableObject> missionTasks = activeMission.GetMissionTasks();
         missionTasksStack.Clear();
-        foreach(MissionTask missionTask in missionTasks)
+        foreach (MissionTask missionTask in missionTasks)
         {
             missionTasksStack.Push(missionTask);
         }
@@ -76,7 +76,7 @@ public class MissionManager : ServiceManager<MissionManager>
     }
     private void InitializeNextMissionTask()
     {
-        if(missionTasksStack.Count>0)
+        if (missionTasksStack.Count > 0)
         {
             nextMissionTask = missionTasksStack.Pop();
             float timeToExecute = nextMissionTask.TimeToExecute;
@@ -94,40 +94,32 @@ public class MissionManager : ServiceManager<MissionManager>
         string playAnimation = missionTask.GetPlayAnimation();
         MissionTaskEventArgs eventArgs = new MissionTaskEventArgs(missionTask);
         Transform goToTransform = missionTask.GetToTransform();
-        if( missionTask.CameraRotation.x != 0 || 
-            missionTask.CameraRotation.y != 0 || 
+        if (missionTask.CameraRotation.x != 0 ||
+            missionTask.CameraRotation.y != 0 ||
             missionTask.CameraRotation.z != 0)
         {
             OnCameraRotationSO.RaiseEvent(missionTask.CameraRotation);
         }
-        if(missionTask.CameraPosition != Vector3.zero)
+        if (missionTask.CameraPosition != Vector3.zero)
         {
             OnCameraPositionSO.RaiseEvent(missionTask.CameraPosition);
         }
-        if(missionTask.CameraLocalPosition != Vector3.zero)
+        if (missionTask.CameraLocalPosition != Vector3.zero)
         {
             OnCameraLocalPositionSO.RaiseEvent(missionTask.CameraLocalPosition);
         }
-        if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.playerGoTo)
-        {   
-            /* if(!string.IsNullOrEmpty(playAnimation))
-            {
-                Debug.Log("Animation :"+playAnimation);
-                OnPlayerAnimationSO.RaiseEvent(eventArgs.missionTask);
-            } */
+        if (goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.playerGoTo)
+        {
             OnGoToTransformSO.RaiseEvent(eventArgs.missionTask);
-        } 
-        if(goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.alertArrow)
+        }
+        if (goToTransform != null && missionTask.GetTransformAction() == MissionTask.TransformAction.alertArrow)
         {
             OnToggleAlertArrowSO.RaiseEvent(eventArgs.missionTask);
-        } 
-        if(!string.IsNullOrEmpty(playAnimation))
+        }
+        if (!string.IsNullOrEmpty(playAnimation))
         {
-            Debug.Log("Animation :"+playAnimation);
             OnPlayerAnimationSO.RaiseEvent(eventArgs.missionTask);
         }
-        
-        
     }
     public void EndCurrentMissiontaskCountdown()
     {
@@ -136,7 +128,7 @@ public class MissionManager : ServiceManager<MissionManager>
     public void EndCurrentMission()
     {
         MissionEventArgs eventArgs = new MissionEventArgs(activeMission);
-        foreach(MissionScriptableObject missionScriptableObject in activeMission.MissionsAvailable)
+        foreach (MissionScriptableObject missionScriptableObject in activeMission.MissionsAvailable)
         {
             missionScriptableObject.IsAvailable = true;
         }

@@ -42,7 +42,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void EventManager_OnToggleAlertArrow(object sender, MissionTaskEventArgs e)
     {
-        
+        Debug.Log("BaseScene object");
     }
     public virtual void GameManager_OnNewMissionInitialized(object sender, MissionEventArgs missionEventArgs)
     {
@@ -113,4 +113,8 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
             return gameObject;
         }
     } 
+    public virtual Transform GetTransform()
+    {
+        return transform;
+    }
 }
