@@ -144,7 +144,6 @@ public class Player : BaseSceneObject, IClickable
         float moveTowardsSpeed = 0.05f;
         transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveTowardsSpeed);
     }
-
     private bool IsTouchingTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, collisionRadius );

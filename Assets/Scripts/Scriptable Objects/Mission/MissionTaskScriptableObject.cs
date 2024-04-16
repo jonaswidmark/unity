@@ -18,19 +18,23 @@ public class MissionTask : ScriptableObject
     [SerializeField] string key;
     [SerializeField] string title;
     [Header("Title of target Transform")]
-    [SerializeField] string toTransformTitle;
+    [Tooltip("This can be the target for the palyer movement or other, such as alert arrow")]
     [SerializeField] Transform toTransform;
     [SerializeField] SceneMainObjectScriptableObject toTransformSO;
     [SerializeField] TransformAction targetTransformAction = TransformAction.none;
     [Header("Timer options")]
+    [Tooltip("Seconds for the task to complete, shown as a count down if the show timer box is ticked")]
     [SerializeField] float timeToExecute;
     [SerializeField] bool showTimer;
-    [Header("Title of optional animation in Animator")]
+    [Header("Optional animation")]
+    [Tooltip("Chose an animation from the animator controller to play during the task")]
     [SerializeField] string playAnimation;
+    [Tooltip("Seconds to fade from previous animation to the new animation")]
     [SerializeField] float timeToCrossFade;
+    [Tooltip("If unticked, the animation will occur emediately")]
     [SerializeField] bool useTimeToCrossFade = false;
     private CountdownScriptableObject activeCountdown;
-    [Header("Text to display")]
+    [Tooltip("Text to display, if the show text box is ticked")]
     [TextArea]
     [SerializeField] string textToDisplay;
     public bool showText;
@@ -114,8 +118,6 @@ public class MissionTask : ScriptableObject
     }
     public Transform GetToTransform()
     {
-        /* GameObject obj = GameObject.Find(toTransformTitle); */
-        
         return toTransform != null ? toTransform : null;
     }
     public SceneMainObjectScriptableObject GetToTransformSO()

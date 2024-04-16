@@ -53,7 +53,7 @@ public class MissionManagerSO : ScriptableObject
         }
         else
         {
-            Debug.Log("Inga tillgängliga missioner hittades.");
+            Debug.Log("No more missions");
         }
     }
     private void EventManager_OnMissionTaskComplete(object sender, EventArgs e)

@@ -49,7 +49,6 @@ public class MissionScriptableObject : ScriptableObject
     }
     public List<ScriptableObject> GetMissionTasks()
     {
-        Debug.Log("MissionScriptableObject");
         return missionTasks;
     }
     public List<ScriptableObject> MissionsAvailable

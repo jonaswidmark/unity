@@ -65,10 +65,8 @@
     <Compile Include="Assets\Scripts\Scene Object Scripts\BaseSceneObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\VisualsManagerSO.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\SoSetterFromHierarchy.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Grid\ServiceManager.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\EventManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventArgsSO.cs" />
     <Compile Include="Assets\Scripts\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\States\MissionState.cs" />
@@ -86,11 +84,9 @@
     <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\State\IdleStateScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Grid\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventVector2ArgsSO.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\VisualsManager.cs" />
     <Compile Include="Assets\Scripts\Grid\GridDebugObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventStringArgsSO.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStateSO.cs" />
@@ -100,7 +96,6 @@
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\CameraManagerSO.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\GameManager.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\HomeBase.cs" />
     <Compile Include="Assets\Scripts\Testing.cs" />
     <Compile Include="Assets\Scripts\Grid\GridObject.cs" />
@@ -110,8 +105,6 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\GameManagerSO.cs" />
     <Compile Include="Assets\Scripts\Grid\GridPosition.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\CountdownManager.cs" />
-    <Compile Include="Assets\Scripts\Quarantene\InputManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Scene Objects\SceneMainObjectSriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionTaskScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Grid\LevelGrid.cs" />

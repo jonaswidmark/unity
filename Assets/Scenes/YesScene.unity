@@ -3402,7 +3402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 684732463}
-  - component: {fileID: 684732464}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -3427,38 +3426,6 @@ Transform:
   - {fileID: 912411067}
   m_Father: {fileID: 263180176}
   m_LocalEulerAnglesHint: {x: 0, y: -19.58, z: 0}
---- !u!114 &684732464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684732462}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 632ab1dba98ec524cbd54c6c08f7fc3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalSpeed: 0.5
-  fastSpeed: 1
-  movementSpeed: 0.5
-  movementTime: 5
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
-  rotationAmount: 0.5
-  cameraTransform: {fileID: 330585546}
-  zoomAmount: {x: 0, y: -1, z: 1}
-  newZoom: {x: 0, y: 0, z: 0}
-  dragStartPosition: {x: 0, y: 0, z: 0}
-  dragCurrentPosition: {x: 0, y: 0, z: 0}
-  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
-  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
-  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
-    type: 2}
-  missionTaskCameraPosition: {x: 0, y: 0, z: 0}
-  missionTaskCameraLocalPosition: {x: 0, y: 0, z: 0}
-  missionTaskCameraRotation: {x: 0, y: 0, z: 0, w: 0}
-  missionTaskMovementSpeed: 1.5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
