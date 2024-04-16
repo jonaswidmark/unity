@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
-public class CameraManager : ServiceManager<CameraManager>
+[CreateAssetMenu(fileName = "CameraManagerSO", menuName = "ServicesSO/CameraManagerSO")]
+public class CameraManagerSO : ScriptableObject
 {
     [SerializeField] float normalSpeed;
     [SerializeField] float fastSpeed;
@@ -29,6 +27,12 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] float missionTaskMovementSpeed = 1.5f;
     private MissionManagerSO missionManager;
     private GameManagerSO gameManager;
+    private Transform cameraRigTransform;
+
+    public void SetMainCamera(Transform mainCamera)
+    {
+        cameraTransform = mainCamera;
+    }
     private enum CameraState
     {
         Idle,
@@ -40,12 +44,12 @@ public class CameraManager : ServiceManager<CameraManager>
     private CameraState currentState;
     private string keyPressedOrReleased;
     private string playerState = "Idle";
-    private void Start()
+    public void StartAction()
     {
         ServiceLocatorSO.InitializeManagers();
         currentState = CameraState.KeyReleased;
-        newPosition = transform.position;
-        newRotation = transform.rotation;
+        newPosition = cameraRigTransform.position;
+        newRotation = cameraRigTransform.rotation;
         newZoom = cameraTransform.localPosition;
         eventManager = ServiceLocatorSO.EventManagerSO;
         eventManager.OnKeyPressed += EventManager_OnKeyPressed;
@@ -56,13 +60,17 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnCameraRotation += EventManager_OnCameraRotation;
         eventManager.OnCameraPosition += EventManager_OnCameraPosition;
         eventManager.OnCameraLocalPosition += EventManager_OnCameraLocalPosition;
-        missionTaskCameraPosition = transform.position;
-        missionTaskCameraRotation = transform.rotation;
+        missionTaskCameraPosition = cameraRigTransform.position;
+        missionTaskCameraRotation = cameraRigTransform.rotation;
         missionManager = ServiceLocatorSO.MissionManagerSO;
         gameManager = ServiceLocatorSO.GameManagerSO;
         gameManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
     }
-    private void Update()
+    public void SetCameraRigTransform(Transform cameraRigTransform)
+    {
+        this.cameraRigTransform = cameraRigTransform;
+    }
+    public void UpdateAction()
     {   
         switch (currentState)
         {
@@ -196,19 +204,19 @@ public class CameraManager : ServiceManager<CameraManager>
         if(plane.Raycast(ray, out entry))
         {
             dragCurrentPosition = ray.GetPoint(entry);
-            newPosition = transform.position + dragStartPosition - dragCurrentPosition;
+            newPosition = cameraRigTransform.position + dragStartPosition - dragCurrentPosition;
         }
-        transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
+        cameraRigTransform.position = Vector3.Lerp(cameraRigTransform.position, newPosition, movementTime * Time.deltaTime);
     }
     private void HandleMissionTask()
     {
-        transform.position = Vector3.Lerp(transform.position, missionTaskCameraPosition, missionTaskMovementSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, missionTaskCameraRotation, missionTaskMovementSpeed * Time.deltaTime);
+        cameraRigTransform.position = Vector3.Lerp(cameraRigTransform.position, missionTaskCameraPosition, missionTaskMovementSpeed * Time.deltaTime);
+        cameraRigTransform.rotation = Quaternion.Lerp(cameraRigTransform.rotation, missionTaskCameraRotation, missionTaskMovementSpeed * Time.deltaTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, missionTaskCameraLocalPosition, missionTaskMovementSpeed * Time.deltaTime);
         float threshold = 1.0f;
         if (
-        Vector3.Distance(transform.position, missionTaskCameraPosition) < threshold
-        && Quaternion.Angle(transform.rotation, missionTaskCameraRotation) < threshold
+        Vector3.Distance(cameraRigTransform.position, missionTaskCameraPosition) < threshold
+        && Quaternion.Angle(cameraRigTransform.rotation, missionTaskCameraRotation) < threshold
         && Vector3.Distance(cameraTransform.localPosition, missionTaskCameraLocalPosition) < threshold
         )
         {
@@ -224,19 +232,19 @@ public class CameraManager : ServiceManager<CameraManager>
         
         if(keyPressed =="w" || keyPressed == "upArrow")
         {
-            newPosition += (transform.forward * movementSpeed);
+            newPosition += (cameraRigTransform.forward * movementSpeed);
         }
         if(keyPressed =="s" || keyPressed == "downArrow")
         {
-            newPosition += (transform.forward * -movementSpeed);
+            newPosition += (cameraRigTransform.forward * -movementSpeed);
         }
         if(keyPressed =="d" || keyPressed == "rightArrow")
         {
-            newPosition += (transform.right * movementSpeed);
+            newPosition += (cameraRigTransform.right * movementSpeed);
         }
         if(keyPressed =="a" || keyPressed == "leftArrow")
         {
-            newPosition += (transform.right * -movementSpeed);
+            newPosition += (cameraRigTransform.right * -movementSpeed);
         }
         if(keyPressed == "q")
         {
@@ -263,8 +271,8 @@ public class CameraManager : ServiceManager<CameraManager>
             }
         }
         }
-        transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
+        cameraRigTransform.position = Vector3.Lerp(cameraRigTransform.position, newPosition, movementTime * Time.deltaTime);
+        cameraRigTransform.rotation = Quaternion.Lerp(cameraRigTransform.rotation, newRotation, movementTime * Time.deltaTime);
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
     }
 }

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SceneAsset", menuName = "SceneAssets/MainObject")]
@@ -11,15 +8,16 @@ public class SceneMainObjectScriptableObject : ScriptableObject
     [SerializeField] GameObject thisGameObject;
     [SerializeField] int ifPlayerIndex;
     private GameObject spawnedGameObject;
-    private GameManager gameManager;
+    private GameManagerSO gameManager;
     private void OnEnable()
     {
-        gameManager = ServiceLocator.GameManager;
+        ServiceLocatorSO.InitializeManagers();
+        gameManager = ServiceLocatorSO.GameManagerSO;
         gameManager.OnStartGame += GameManager_OnStartGame;
     }
     private void GameManager_OnStartGame(object sender,EventArgs e)
     {
-        Debug.Log("SO scene main object starts game");
+        
     }
     public void SpawnPrefab(GameObject prefab)
     {

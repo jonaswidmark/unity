@@ -80,14 +80,9 @@ public class EventManagerSO : ScriptableObject
         OnPlayerStatsUpdateSO.OnRaiseEvent -= OnPlayerStatsUpdateSO_OnRaiseEvent;
         OnToggleAlertArrowSO.OnRaiseMissionTaskEvent -= OnToggleAlertArrowSO_OnRaiseMissionTaskEvent;    
     }
-    public string Test()
-    {
-        return "Svar från EventManagerSO!";
-    }
     public void StartAction()
     {
         StartGame();
-        Debug.Log("EventManagerSO start!!!");
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
     private void StartGame()
@@ -146,7 +141,6 @@ public class EventManagerSO : ScriptableObject
     }
     private void OnCountDownOrCallbackComplete_OnRaiseEvent(object sender, EventArgs e)
     {
-        Debug.Log("OnCountDownOrCallbackComplete_OnRaiseEvent in EventManagerSO");
         /** Attached to a Mission task. can be a countdown or a callback **/
         OnMissionTaskComplete?.Invoke(sender, EventArgs.Empty);
     }

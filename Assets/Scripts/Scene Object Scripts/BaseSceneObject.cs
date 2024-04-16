@@ -7,8 +7,8 @@ using UnityEngine;
 public class BaseSceneObject :  MonoBehaviour, IClickable
 {
     protected EventManagerSO eventManager;
-    protected GameManager gameManager;
-    protected VisualsManager visualsManager;
+    protected GameManagerSO gameManager;
+    protected VisualsManagerSO visualsManager;
     protected MissionManagerSO missionManager;
     protected MissionScriptableObject activeMission;
     [SerializeField] protected Transform currentPrefab;
@@ -22,8 +22,8 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     {
         ServiceLocatorSO.InitializeManagers();
         eventManager = ServiceLocatorSO.EventManagerSO;
-        visualsManager = ServiceLocator.VisualsManager;
-        gameManager = ServiceLocator.GameManager;
+        visualsManager = ServiceLocatorSO.VisualsManagerSO;
+        gameManager = ServiceLocatorSO.GameManagerSO;
         eventManager.OnMouseSelect += EventManager_OnSelect;
         missionManager = ServiceLocatorSO.MissionManagerSO;
         gameManager.OnNewMissionInitialized += GameManager_OnNewMissionInitialized;

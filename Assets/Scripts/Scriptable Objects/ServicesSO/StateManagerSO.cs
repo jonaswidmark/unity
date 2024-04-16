@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class StateManager: ServiceManager<StateManager>
+[CreateAssetMenu(fileName = "StateManagerSO", menuName = "ServicesSO/StateManagerSO")]
+public class StateManagerSO: ScriptableObject
 {
     private IStateSO currentState;
     public event EventHandler OnMissionState;

@@ -2,15 +2,12 @@ using UnityEngine.Rendering.HighDefinition;
 
 public static class ServiceLocator
 {
+    /** Used for access to services derived from ServiceManager : Monobehaviour 
+        The class Scriptable Objects/ServicesSO/ServiceLocatorSO let's you access Scriptable object Managers
+        Todo: Think about if we should have Monobehaviour Managers. Som Managers, e.g. Camera Manager has several references to hierarchy objects
+    **/
     public static InputManager InputManager => InputManager.Instance;
-    //public static MissionManager MissionManager => MissionManager.Instance;
-    public static StateManager StateManager => StateManager.Instance;
-    public static ActionManager ActionManager => ActionManager.Instance;
-    //public static CountdownManager CountdownManager => CountdownManager.Instance;
-    public static GameManager GameManager => GameManager.Instance;
-    public static VisualsManager VisualsManager => VisualsManager.Instance;
     public static LevelGrid LevelGrid => LevelGrid.Instance;
-    //public static EventManager EventManager => EventManager.Instance;
     public static CameraManager CameraManager => CameraManager.Instance;
-    public static MouseWorld MouseWorld => MouseWorld.Instance;
+    //public static MouseWorld MouseWorld => MouseWorld.Instance;
 }

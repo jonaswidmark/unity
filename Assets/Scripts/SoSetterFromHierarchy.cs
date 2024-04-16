@@ -6,8 +6,14 @@ public class SoSetterFromHierarchy : MonoBehaviour
 {
     [SerializeField] CountdownManagerSO countdownManagerSO;
     [SerializeField] EventManagerSO eventManagerSO;
+    [SerializeField] GameManagerSO gameManagerSO;
+    void Awake()
+    {
+        gameManagerSO.AwakeAction();
+    }
     void Start()
     {
+        /** Countdown Manager SO **/
         ServiceLocatorSO.InitializeManagers();
         GameObject countdownsObject = GameObject.Find("Countdowns");
         if (countdownsObject != null)
@@ -19,11 +25,15 @@ public class SoSetterFromHierarchy : MonoBehaviour
         {
             Debug.LogWarning("Objekt med namnet 'Countdowns' hittades inte.");
         }
+
+        /** Event Manager SO **/
         eventManagerSO.StartAction();
+
+        
     }
     void Update()
     {
-        countdownManagerSO.UpdateLogic();
+        countdownManagerSO.UpdateAction();
     }
   
 }

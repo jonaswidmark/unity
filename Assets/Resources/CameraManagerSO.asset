@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a4e3773adb2c449b3c71b4a424bcf9, type: 3}
+  m_Name: CameraManagerSO
+  m_EditorClassIdentifier: 
+  normalSpeed: 0.5
+  fastSpeed: 1
+  movementSpeed: 0.5
+  movementTime: 5
+  newPosition: {x: 0, y: 0, z: 0}
+  newRotation: {x: 0, y: 0, z: 0, w: 0}
+  rotationAmount: 0
+  cameraTransform: {fileID: 0}
+  zoomAmount: {x: 0, y: -1, z: 1}
+  newZoom: {x: 0, y: 0, z: 0}
+  dragStartPosition: {x: 0, y: 0, z: 0}
+  dragCurrentPosition: {x: 0, y: 0, z: 0}
+  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
+  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
+  missionTaskCameraPosition: {x: 0, y: 0, z: 0}
+  missionTaskCameraLocalPosition: {x: 0, y: 0, z: 0}
+  missionTaskCameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  missionTaskMovementSpeed: 1.5

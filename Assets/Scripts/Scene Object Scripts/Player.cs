@@ -45,9 +45,9 @@ public class Player : BaseSceneObject, IClickable
     {
         ServiceLocatorSO.InitializeManagers();
         eventManager = ServiceLocatorSO.EventManagerSO;
-        gameManager = ServiceLocator.GameManager;
+        gameManager = ServiceLocatorSO.GameManagerSO;
         eventManager.OnMouseSelect += EventManager_OnSelect;
-        visualsManager = ServiceLocator.VisualsManager;
+        visualsManager = ServiceLocatorSO.VisualsManagerSO;
         visualsManager.RemoveVisual(this);
         missionManager = ServiceLocatorSO.MissionManagerSO;
         eventManager.OnGoToTransform += EventManager_OnGoToTransform;

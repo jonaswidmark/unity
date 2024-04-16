@@ -18,7 +18,7 @@ public static class Utils
         if (wasHit)
         {
             selectedObject = (IClickable)obj.GetComponent<T>();
-            ServiceLocator.ActionManager.SetSelectedTransform((IClickable) obj);
+            //ServiceLocator.ActionManager.SetSelectedTransform((IClickable) obj);
         }
         return wasHit;
     }

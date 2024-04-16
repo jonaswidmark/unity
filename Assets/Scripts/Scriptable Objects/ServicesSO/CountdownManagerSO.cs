@@ -113,7 +113,7 @@ public class CountdownManagerSO : ScriptableObject
         UpdateActiveComponents();
         OnCountDownOrCallbackComplete.RaiseEvent(EventArgs.Empty);
     }
-    public void UpdateLogic()
+    public void UpdateAction()
     {
         if(missionTaskPrefab == null || countdownScriptableObject == null)
         {

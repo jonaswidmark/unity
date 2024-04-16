@@ -12,11 +12,11 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private GameObject buttonContainer;
     private MissionManagerSO missionManager;
     private EventManagerSO eventManager;
-    private GameManager gameManager;
+    private GameManagerSO gameManager;
     private void Start()
     {
         ServiceLocatorSO.InitializeManagers();
-        gameManager = ServiceLocator.GameManager;
+        gameManager = ServiceLocatorSO.GameManagerSO;
         eventManager = ServiceLocatorSO.EventManagerSO;
         missionManager = ServiceLocatorSO.MissionManagerSO;
         eventManager.OnNewMission += eventManager_OnNewMission;
