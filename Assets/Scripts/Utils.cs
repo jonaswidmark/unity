@@ -13,7 +13,7 @@ public static class Utils
     };
     public static bool WasSelected<T>(T obj) where T : MonoBehaviour
     {
-        Ray ray = Camera.main.ScreenPointToRay(ServiceLocator.InputManager.GetMouseScreenPosition());
+        Ray ray = Camera.main.ScreenPointToRay(ServiceLocatorSO.InputManagerSO.GetMouseScreenPosition());
         bool wasHit = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue) && raycastHit.collider.GetComponent<T>() != null;
         if (wasHit)
         {

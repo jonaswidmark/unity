@@ -23,7 +23,6 @@ public class PlayerDataScriptableObject : ScriptableObject
     public void SetPlayerStats(Player.PlayerStats playerStats)
     {
         this.playerStats = playerStats;
-        Debug.Log("SO: "+playerStats.currentState);
     }
     public Player.PlayerStats GetPlayerStats()
     {

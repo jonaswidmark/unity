@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\AlertArrow.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\CountdownManagerSO.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\InputManagerSO.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Village.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventHandlerSO.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />

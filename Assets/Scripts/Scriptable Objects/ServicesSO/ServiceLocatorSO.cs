@@ -9,7 +9,8 @@ public class ServiceLocatorSO : MonoBehaviour
     public static GameManagerSO GameManagerSO { get; private set; }
     public static StateManagerSO StateManagerSO { get; private set; }
     public static MouseWorldSO MouseWorldSO { get; private set; }
-    //public static CameraManagerSO CameraManagerSO { get; private set; }
+    public static InputManagerSO InputManagerSO { get; private set; }
+    public static CameraManagerSO CameraManagerSO { get; private set; }
     private void OnEnable()
     {
         InitializeManagers();
@@ -21,8 +22,9 @@ public class ServiceLocatorSO : MonoBehaviour
         CountdownManagerSO = Resources.Load<CountdownManagerSO>("CountdownManagerSO");
         VisualsManagerSO = Resources.Load<VisualsManagerSO>("VisualsManagerSO");
         GameManagerSO = Resources.Load<GameManagerSO>("GameManagerSO");
-        //CameraManagerSO = Resources.Load<CameraManagerSO>("CameraManagerSO");
+        CameraManagerSO = Resources.Load<CameraManagerSO>("CameraManagerSO");
         StateManagerSO = Resources.Load<StateManagerSO>("StateManagerSO");
         MouseWorldSO = Resources.Load<MouseWorldSO>("MouseWorldSO");
+        InputManagerSO = Resources.Load<InputManagerSO>("InputManagerSO");
     }
 }

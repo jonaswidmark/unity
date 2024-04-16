@@ -40,7 +40,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void GameManager_OnStartGame(object sender, EventArgs e)
     {
-        Debug.Log("Base scene object starts game");
+       
     }
     public virtual void ToggleAllertArrow()
     {
@@ -48,7 +48,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     }
     public virtual void EventManager_OnToggleAlertArrow(object sender, MissionTaskEventArgs e)
     {
-        Debug.Log("BaseScene object");
+       
     }
     public virtual void GameManager_OnNewMissionInitialized(object sender, MissionEventArgs missionEventArgs)
     {

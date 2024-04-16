@@ -39,7 +39,6 @@ public class MissionManagerSO : ScriptableObject
     public void SetNewMissionAction(MissionScriptableObject mission)
     {
         SetActiveMission(mission);
-        Debug.Log("Mission ManagerSO SetNewMissionAction");
         OnNewMissionSO.RaiseEvent(mission);
     }
     public void UpdateMissionList()

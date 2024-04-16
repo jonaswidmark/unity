@@ -33,6 +33,10 @@ public class CameraManagerSO : ScriptableObject
     {
         cameraTransform = mainCamera;
     }
+    public void SetCameraRig(Transform cameraRig)
+    {
+        cameraRigTransform = cameraRig;
+    }
     private enum CameraState
     {
         Idle,

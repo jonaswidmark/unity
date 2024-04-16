@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel; 
-using UnityEngine.UIElements;
-public class InputManager : ServiceManager<InputManager>
+
+[CreateAssetMenu(fileName = "InputManagerSO", menuName = "ServicesSO/InputManagerSO")]
+public class InputManagerSO : ScriptableObject
 {
     private PlayerInputActions playerInputActions = null;
-
     private InputAction mouseSelect = null;
     private InputAction keyboardPressed = null;
     private InputAction wasdPressed = null;
@@ -17,24 +16,28 @@ public class InputManager : ServiceManager<InputManager>
     [SerializeField] EventVector2ArgsSO OnWASDPressedSO;
     [SerializeField] EventArgsSO OnMouseReleasedEventArgsSO;
     private Vector2 mouseXDelta;
-    public void Awake()
+    public void AwakeAction()
     {
         playerInputActions = new PlayerInputActions();
     }
     private void OnEnable()
     {
-        playerInputActions.Enable();
-
-        mouseSelect = playerInputActions.Player.MouseSelect;
-        mouseSelect.performed += OnMouseSelectAction;
-        keyboardPressed = playerInputActions.Player.Keyboard;
-        keyboardPressed.performed += OnKeyPressedAction;   
-        wasdPressed = playerInputActions.Player.WASD;
-        wasdPressed.performed += OnWASDPressedAction;
+        playerInputActions = new PlayerInputActions();
+        if(playerInputActions !=null)
+        {
+            playerInputActions.Enable();
+            mouseSelect = playerInputActions.Player.MouseSelect;
+            mouseSelect.performed += OnMouseSelectAction;
+            keyboardPressed = playerInputActions.Player.Keyboard;
+            keyboardPressed.performed += OnKeyPressedAction;   
+            wasdPressed = playerInputActions.Player.WASD;
+            wasdPressed.performed += OnWASDPressedAction;
+        }
+        
     }
     private void OnDisable()
     {
-        //playerInputActions.Disable();
+        playerInputActions.Disable();
         mouseSelect.performed -= OnMouseSelectAction;
         keyboardPressed.performed -= OnKeyPressedAction;
     }
@@ -90,3 +93,10 @@ public class InputManager : ServiceManager<InputManager>
     }
 }
 
+/* internal class InputEventPtr
+{
+    internal bool IsA<T>()
+    {
+        throw new NotImplementedException();
+    }
+} */

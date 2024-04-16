@@ -63,7 +63,6 @@ public class Player : BaseSceneObject, IClickable
     }
     public override void StartAddon()
     {
-        Debug.Log("Player Starts Addon()");
         currentPlayer = gameManager.GetPlayerByIndex(1);
         AnimationCompleteListener animationCompleteListener = animator.GetBehaviour<AnimationCompleteListener>();
         animationCompleteListener.OnAnimationComplete += OnAnimationComplete;
@@ -80,7 +79,6 @@ public class Player : BaseSceneObject, IClickable
     }
     private void StartGame()
     {
-        Debug.Log("Player start game");
         visualsManager.SetVisual(currentPlayer);
         UpdateMissionList();
     }
