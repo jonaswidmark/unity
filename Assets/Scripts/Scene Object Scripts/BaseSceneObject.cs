@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class BaseSceneObject :  MonoBehaviour, IClickable
 {
-    protected EventManager eventManager;
+    protected EventManagerSO eventManager;
     protected GameManager gameManager;
     protected VisualsManager visualsManager;
-    protected MissionManager missionManager;
+    protected MissionManagerSO missionManager;
     protected MissionScriptableObject activeMission;
     [SerializeField] protected Transform currentPrefab;
     [SerializeField] protected Transform parentTransform;
@@ -20,21 +20,27 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     protected AlertArrow alertArrow = null;
     private void Start()
     {
-        eventManager = ServiceLocator.EventManager;
+        ServiceLocatorSO.InitializeManagers();
+        eventManager = ServiceLocatorSO.EventManagerSO;
         visualsManager = ServiceLocator.VisualsManager;
         gameManager = ServiceLocator.GameManager;
         eventManager.OnMouseSelect += EventManager_OnSelect;
-        missionManager = ServiceLocator.MissionManager;
+        missionManager = ServiceLocatorSO.MissionManagerSO;
         gameManager.OnNewMissionInitialized += GameManager_OnNewMissionInitialized;
         gameManager.OnMissionEnded += GameManager_OnMissionEnded;
         eventManager.OnToggleAlertArrow += EventManager_OnToggleAlertArrow;
         visualsManager.RemoveVisual(this);
         currentPrefab = Instantiate(currentPrefab, transform);
+        gameManager.OnStartGame += GameManager_OnStartGame;
         StartAddon();
     }
     public virtual void StartAddon()
     {
         /** Used by derived classes **/
+    }
+    public virtual void GameManager_OnStartGame(object sender, EventArgs e)
+    {
+        Debug.Log("Base scene object starts game");
     }
     public virtual void ToggleAllertArrow()
     {
@@ -86,7 +92,7 @@ public class BaseSceneObject :  MonoBehaviour, IClickable
     {
         var nextMission = Utils.GetNextMission(missionScriptableObjectList);
         if (nextMission != null)
-        {Debug.Log(nextMission);
+        {
             SetActiveMission(nextMission);
             missionManager.SetNewMissionAction(nextMission);
         }

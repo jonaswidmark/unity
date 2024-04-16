@@ -20,7 +20,7 @@ MonoBehaviour:
   toTransform: {fileID: 1736707309992536405, guid: 0006dad173950c3469c41b096c8ad879,
     type: 3}
   toTransformSO: {fileID: 11400000, guid: 69c618331be5b0a4388d9079b2d1af40, type: 2}
-  targetTransformAction: 0
+  targetTransformAction: 1
   timeToExecute: 0
   showTimer: 0
   playAnimation: Walking

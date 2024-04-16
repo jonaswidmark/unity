@@ -11,7 +11,7 @@ public class MissionTask : ScriptableObject
     }
     public enum TransformAction 
     {
-        playerGoTo, alertArrow
+        none, playerGoTo, alertArrow
     }
     [SerializeField] IsCompletedBy isCompletedBy = IsCompletedBy.predefinedTimer;
     [SerializeField] int id;
@@ -21,7 +21,7 @@ public class MissionTask : ScriptableObject
     [SerializeField] string toTransformTitle;
     [SerializeField] Transform toTransform;
     [SerializeField] SceneMainObjectScriptableObject toTransformSO;
-    [SerializeField] TransformAction targetTransformAction = TransformAction.playerGoTo;
+    [SerializeField] TransformAction targetTransformAction = TransformAction.none;
     [Header("Timer options")]
     [SerializeField] float timeToExecute;
     [SerializeField] bool showTimer;

@@ -18,7 +18,7 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 newZoom;
     [SerializeField] Vector3 dragStartPosition;
     [SerializeField] Vector3 dragCurrentPosition;
-    private EventManager eventManager;
+    private EventManagerSO eventManager;
     private Vector2 wasdNormalized = Vector2.zero;
     [SerializeField] EventQuaternionArgsSO OnCameraRotationSO;
     [SerializeField] EventVector3ArgsSO OnCameraPositionSO;
@@ -27,7 +27,7 @@ public class CameraManager : ServiceManager<CameraManager>
     [SerializeField] Vector3 missionTaskCameraLocalPosition;
     [SerializeField] Quaternion missionTaskCameraRotation;
     [SerializeField] float missionTaskMovementSpeed = 1.5f;
-    private MissionManager missionManager;
+    private MissionManagerSO missionManager;
     private GameManager gameManager;
     private enum CameraState
     {
@@ -42,11 +42,12 @@ public class CameraManager : ServiceManager<CameraManager>
     private string playerState = "Idle";
     private void Start()
     {
+        ServiceLocatorSO.InitializeManagers();
         currentState = CameraState.KeyReleased;
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
-        eventManager = ServiceLocator.EventManager;
+        eventManager = ServiceLocatorSO.EventManagerSO;
         eventManager.OnKeyPressed += EventManager_OnKeyPressed;
         eventManager.OnKeyReleased += EventManager_OnKeyReleased;
         eventManager.OnWASDPressed += EventManager_OnWASDPressed;
@@ -57,7 +58,7 @@ public class CameraManager : ServiceManager<CameraManager>
         eventManager.OnCameraLocalPosition += EventManager_OnCameraLocalPosition;
         missionTaskCameraPosition = transform.position;
         missionTaskCameraRotation = transform.rotation;
-        missionManager = ServiceLocator.MissionManager;
+        missionManager = ServiceLocatorSO.MissionManagerSO;
         gameManager= ServiceLocator.GameManager;
         gameManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
     }

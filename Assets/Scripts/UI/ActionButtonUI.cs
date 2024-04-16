@@ -10,14 +10,15 @@ public class ActionButtonUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Button button;
     [SerializeField] private GameObject buttonContainer;
-    private MissionManager missionManager;
-    private EventManager eventManager;
+    private MissionManagerSO missionManager;
+    private EventManagerSO eventManager;
     private GameManager gameManager;
     private void Start()
     {
+        ServiceLocatorSO.InitializeManagers();
         gameManager = ServiceLocator.GameManager;
-        eventManager = ServiceLocator.EventManager;
-        missionManager = ServiceLocator.MissionManager;
+        eventManager = ServiceLocatorSO.EventManagerSO;
+        missionManager = ServiceLocatorSO.MissionManagerSO;
         eventManager.OnNewMission += eventManager_OnNewMission;
         gameManager.OnNewMissionInitialized += gameManager_OnNewMissionInitialized;
         gameManager.OnMissionEnded += GameManager_OnMissionEnded;

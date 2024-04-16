@@ -4,20 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
-public class CountdownManager : ServiceManager<CountdownManager>
+[CreateAssetMenu(fileName = "CountdownManagerSO", menuName = "ServicesSO/CountdownManagerSO")]
+public class CountdownManagerSO : ScriptableObject
 {
     public GameObject prefabToSpawn;
     [SerializeField] EventArgsSO OnCountDownOrCallbackComplete;
     [SerializeField] private CountdownArrayScriptableObject countdownArray;
     [SerializeField] private List<MissionTask> purposeList;
-    [SerializeField] private Transform parentObject;
+    private Transform parentObject;
     private MissionTask missionTask;
     private GameObject missionTaskPrefab;
     private CountdownScriptableObject countdownScriptableObject;
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionary = new Dictionary<GameObject, CountdownScriptableObject>();
     private Dictionary<GameObject, CountdownScriptableObject> countdownDictionaryCompleted = new Dictionary<GameObject, CountdownScriptableObject>();
-    private Vector3 newTransformPosition = new Vector3(0,0,0);/* 
+    private Vector3 newTransformPosition = new Vector3(0,0,0);
+
+    public void SetParentObject(Transform parentObject)
+    {
+        this.parentObject = parentObject;
+    }
     private void UpdateActiveComponents(){
         if(missionTask == null)
         {
@@ -37,7 +42,6 @@ public class CountdownManager : ServiceManager<CountdownManager>
             }
         if(missionTask.GetIsCompletedBy() == MissionTask.IsCompletedBy.callback && missionTask.showText)
         {
-            Debug.Log("CountdownManager: "+ missionTask);
             missionTaskPrefab.GetComponent<Timer>().SetTimeText(GetTextToDisplay(missionTask), missionTask.typeText);
         }
     }
@@ -109,7 +113,7 @@ public class CountdownManager : ServiceManager<CountdownManager>
         UpdateActiveComponents();
         OnCountDownOrCallbackComplete.RaiseEvent(EventArgs.Empty);
     }
-    private void Update()
+    public void UpdateLogic()
     {
         if(missionTaskPrefab == null || countdownScriptableObject == null)
         {
@@ -156,6 +160,6 @@ public class CountdownManager : ServiceManager<CountdownManager>
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         return string.Format("{0:00}:{1:00}", minutes, seconds);
-    } */
+    }
 }
 

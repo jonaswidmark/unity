@@ -17,8 +17,11 @@ MonoBehaviour:
   key: 
   title: 
   toTransformTitle: 
+  toTransform: {fileID: 0}
+  toTransformSO: {fileID: 0}
+  targetTransformAction: 0
   timeToExecute: 4
-  showTimer: 0
+  showTimer: 1
   playAnimation: 
   timeToCrossFade: 0
   useTimeToCrossFade: 0

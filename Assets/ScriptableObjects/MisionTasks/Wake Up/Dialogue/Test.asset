@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f76d77480250e8d468e34df619f29ef1, type: 3}
-  m_Name: GoToMine
+  m_Name: Test
   m_EditorClassIdentifier: 
-  isCompletedBy: 1
+  isCompletedBy: 0
   id: 0
-  key: go_to_mine
-  title: Go To Mine
-  toTransformTitle: Mine
-  toTransform: {fileID: 1636656796332837115, guid: b75a322ef3ea33d44868e42f551d0712,
-    type: 3}
-  toTransformSO: {fileID: 11400000, guid: aa91a44e2a5562f428355ced4985c7c4, type: 2}
-  targetTransformAction: 1
-  timeToExecute: 0
-  showTimer: 0
-  playAnimation: Walking
-  timeToCrossFade: 0.1
-  useTimeToCrossFade: 1
-  textToDisplay: Most ugly mine I've seen so far!
-  showText: 1
+  key: 
+  title: 
+  toTransformTitle: 
+  toTransform: {fileID: 0}
+  toTransformSO: {fileID: 0}
+  targetTransformAction: 0
+  timeToExecute: 2
+  showTimer: 1
+  playAnimation: 
+  timeToCrossFade: 0
+  useTimeToCrossFade: 0
+  textToDisplay: testar
+  showText: 0
   typeText: 0
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}

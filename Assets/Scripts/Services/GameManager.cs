@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : ServiceManager<GameManager>
 {
-    private StateManager stateManager;
-    private EventManager eventManager;
+    private IClickable currentPlayer;
+    private EventManagerSO eventManager;
     [SerializeField] EventArgsSO OnStartGameSO;
     public event EventHandler OnStartGame;
     public event EventHandler<MissionEventArgs> OnNewMissionInitialized;
@@ -20,20 +21,26 @@ public class GameManager : ServiceManager<GameManager>
         OnMission,
     }
     private string currentState = "Idle";
-    
-    private void Start()
+    private void Awake()
     {
-        stateManager = ServiceLocator.StateManager;
-        eventManager = ServiceLocator.EventManager;
+        SetSceneObject();
+    }
+    private void OnEnable()
+    {
+        Debug.Log("GameManager OnEnable");
+        ServiceLocatorSO.InitializeManagers();
+        eventManager = ServiceLocatorSO.EventManagerSO;
         eventManager.OnNewMissionInitialized += EventManager_OnNewMissionInitialized;
         eventManager.OnMissionEnded += EventManager_OnMissionEnded;
         eventManager.OnPlayerStatsUpdate += EventManager_OnPlayerStatsUpdate;
         eventManager.OnStartGame += OnStartGameSO_OnStartGame;
     }
+    
     private void OnStartGameSO_OnStartGame(object sender, EventArgs e)
     {
+        
+        Debug.Log("GM starts game");
         OnStartGame?.Invoke(this, e);
-        SetSceneObject();
     }
     public string GetCurrentPlayerState()
     {
@@ -67,5 +74,16 @@ public class GameManager : ServiceManager<GameManager>
             
             sceneMainObjectSO.SpawnPrefab(prefabGO);
         }
+    }
+    public IClickable GetPlayerByIndex(int index)
+    {
+        foreach(SceneMainObjectScriptableObject sceneMainObjectsSO in sceneMainObjectsSO)
+        {
+            if(sceneMainObjectsSO.GetIfPlayerIndex() == index)
+            {
+                currentPlayer = sceneMainObjectsSO.GetSpawnedObjectAsClickableInterface();
+            }
+        } 
+        return currentPlayer;
     }
 }

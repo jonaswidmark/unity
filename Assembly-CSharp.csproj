@@ -57,12 +57,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AnimationCompleteListener.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\State\MissionStateScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\MissionManagerSO.cs" />
     <Compile Include="Assets\Scripts\MouseWorld.cs" />
     <Compile Include="Assets\Scripts\Services\CountdownManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventMissionEventArgsSO.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\GridScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\BaseSceneObject.cs" />
+    <Compile Include="Assets\Scripts\SoSetterFromHierarchy.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IClickable.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventArgsSO.cs" />
     <Compile Include="Assets\Scripts\UI\ActionSystemUI.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Assets\Scripts\States\MissionState.cs" />
     <Compile Include="Assets\Scripts\AlertArrow.cs" />
     <Compile Include="Assets\Scripts\Services\ServiceLocator.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\CountdownManagerSO.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Village.cs" />
     <Compile Include="Assets\Scripts\Services\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventHandlerSO.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\Mission\MissionScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Services\StateManager.cs" />
     <Compile Include="Assets\Scripts\UI\ActionButtonUI.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\EventManagerSO.cs" />
     <Compile Include="Assets\Scripts\EventArgs.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\System\CountdownArrayScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\State\IdleStateScriptableObject.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects\Events\EventStringArgsSO.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStateSO.cs" />
     <Compile Include="Assets\Scripts\Services\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\ServiceLocatorSO.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />
     <Compile Include="Assets\Scripts\Grid\GridSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />

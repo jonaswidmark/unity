@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "CustomObjects/Data")]
 public class PlayerDataScriptableObject : ScriptableObject
 {
-    public Player playerObject; 
+    public GameObject playerObject; 
     private Player.PlayerStats playerStats;
     public T GetPlayerComponent<T>() where T : Component
     {
@@ -29,11 +29,11 @@ public class PlayerDataScriptableObject : ScriptableObject
     {
         return playerStats;
     }
-    public void SetPlayerObject(Player playerObject)
+    public void SetPlayerObject(GameObject playerObject)
     {
         this.playerObject = playerObject;
     }
-    public Player GetPlayerObject()
+    public GameObject GetPlayerObject()
     {
         return playerObject;
     }

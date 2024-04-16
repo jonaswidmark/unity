@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class MissionManager : ServiceManager<MissionManager>
+[CreateAssetMenu(fileName = "MissionManagerSO", menuName = "ServicesSO/MissionManagerSO")]
+public class MissionManagerSO : ScriptableObject
 {
     [SerializeField] EventMissionEventArgsSO OnMissionEndedSO;
-    //public event EventHandler<MissionEventArgs> OnUpdatedMissionList;
     [SerializeField] EventMissionTaskEventArgsSO OnGoToTransformSO;
     [SerializeField] EventMissionTaskEventArgsSO OnPlayerAnimationSO;
     [SerializeField] EventMissionTaskEventArgsSO OnMissionTaskEndedSO;
@@ -19,20 +19,18 @@ public class MissionManager : ServiceManager<MissionManager>
     [SerializeField] EventMissionTaskEventArgsSO OnToggleAlertArrowSO;
     private EventManagerSO eventManager;
     private CountdownManagerSO countdownManager;
-    [SerializeField] private Transform parentObject;
     private MissionScriptableObject activeMission;
     private MissionTask activeMissionTask;
-    [SerializeField] private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
+    private List<MissionScriptableObject> missionScriptableObjectList = new List<MissionScriptableObject>();
     private Stack<MissionTask> missionTasksStack = new Stack<MissionTask>();
     private MissionTask nextMissionTask;
     private MissionTask currentMissionTask;
-    /**
-    private void Start()
+    private void OnEnable()
     {
-        eventManager = ServiceLocator.EventManager;
-        eventManager.OnMissionTaskComplete += EventManager_OnMissionTaskComplete;
         ServiceLocatorSO.InitializeManagers();
         countdownManager = ServiceLocatorSO.CountdownManagerSO;
+        eventManager = ServiceLocatorSO.EventManagerSO;
+        eventManager.OnMissionTaskComplete += EventManager_OnMissionTaskComplete;
     }
     private void SetActiveMission(MissionScriptableObject activeMission)
     {
@@ -41,7 +39,7 @@ public class MissionManager : ServiceManager<MissionManager>
     public void SetNewMissionAction(MissionScriptableObject mission)
     {
         SetActiveMission(mission);
-        Debug.Log("Mission Manager SetNewMissionAction");
+        Debug.Log("Mission ManagerSO SetNewMissionAction");
         OnNewMissionSO.RaiseEvent(mission);
     }
     public void UpdateMissionList()
@@ -53,8 +51,6 @@ public class MissionManager : ServiceManager<MissionManager>
         if (firstMission != null)
         {
             SetNewMissionAction(firstMission);
-            //MissionEventArgs eventArgs = new MissionEventArgs(firstMission);
-            //OnUpdatedMissionList?.Invoke(this,eventArgs);
         }
         else
         {
@@ -137,5 +133,4 @@ public class MissionManager : ServiceManager<MissionManager>
         }
         OnMissionEndedSO.RaiseEvent(eventArgs.Mission);
     }
-    **/
 }

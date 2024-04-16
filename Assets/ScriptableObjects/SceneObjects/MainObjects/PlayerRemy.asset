@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ffb088bb7e9ee241ba77c216804fae1, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: 0fc97085c99b2144695a303b976c82cd, type: 3}
+  m_Name: PlayerRemy
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 7522638345719685552, guid: 8378b7c289b53ae47affc348147b60de,
+  prefabTransformPosition: {x: 0, y: 0, z: 0}
+  thisGameObject: {fileID: 7522638345719685552, guid: 8378b7c289b53ae47affc348147b60de,
     type: 3}
+  ifPlayerIndex: 1

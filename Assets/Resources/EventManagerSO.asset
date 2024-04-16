@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f817f224e26fa244cbf147d6b69e0a55, type: 3}
+  m_Name: EventManagerSO
+  m_EditorClassIdentifier: 
+  OnStartGameSO: {fileID: 11400000, guid: 41aa8a7fc6764ba43b86eb26be720cdf, type: 2}
+  OnMouseSelectSO: {fileID: 11400000, guid: 6079fdcc65254694e837acc2a53da90d, type: 2}
+  OnMouseReleasedEventArgsSO: {fileID: 11400000, guid: 1b0f35edbe2e51049868d20f617cc7f0,
+    type: 2}
+  OnCountDownOrCallbackComplete: {fileID: 11400000, guid: 122350e4438175048a6bd6533bf542aa,
+    type: 2}
+  OnMissionTaskEndedSO: {fileID: 11400000, guid: 95f14e06d495f074e83d64a7f53c18ef,
+    type: 2}
+  OnGoToTransformSO: {fileID: 11400000, guid: 05b97134cdba25f409c84955fc6b1c83, type: 2}
+  OnPlayerAnimationSO: {fileID: 11400000, guid: a6fd6dd4d3c4e0e43b4e21a4f5414b91,
+    type: 2}
+  OnMissionEndedSO: {fileID: 11400000, guid: 4327aa0bd1ebfc54292e94682009f9d7, type: 2}
+  OnNewMissionSO: {fileID: 11400000, guid: 3dc2d3d95bb0d004a929fd927b31d13c, type: 2}
+  OnNewMissionInitializedSO: {fileID: 11400000, guid: de0889db23f67e94e967e4792ac7713a,
+    type: 2}
+  OnKeyPressedSO: {fileID: 11400000, guid: 55535f22b91f06642922a41ea4436f82, type: 2}
+  OnKeyReleasedSO: {fileID: 11400000, guid: f21478373faffcf48a96a8f117c4d391, type: 2}
+  OnWASDPressedSO: {fileID: 11400000, guid: 725f9b0f3333c5e49ab160367adfac42, type: 2}
+  OnCameraRotationSO: {fileID: 11400000, guid: 9c6cf19866fd3ef4c9a656b72e378b0f, type: 2}
+  OnCameraPositionSO: {fileID: 11400000, guid: 10cde5d8d97d06b4aaf5289721a5453b, type: 2}
+  OnCameraLocalPositionSO: {fileID: 11400000, guid: 98373a32ea9e42d4d9af8f961d37448d,
+    type: 2}
+  OnPlayerStatsUpdateSO: {fileID: 11400000, guid: 3baa1a06014e5624097e5dc3a2d5c107,
+    type: 2}
+  OnToggleAlertArrowSO: {fileID: 11400000, guid: 7d5aa14aecf892d4e9537d4750302c19,
+    type: 2}

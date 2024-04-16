@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager : ServiceManager<EventManager>
+[CreateAssetMenu(fileName = "EventManagerSO", menuName = "ServicesSO/EventManagerSO")]
+public class EventManagerSO : ScriptableObject
 {
     [SerializeField] EventArgsSO OnStartGameSO;
     public event EventHandler OnStartGame;
@@ -41,7 +40,6 @@ public class EventManager : ServiceManager<EventManager>
     [SerializeField] EventArgsSO OnPlayerStatsUpdateSO;
     [SerializeField] EventMissionTaskEventArgsSO OnToggleAlertArrowSO;
     public event EventHandler<MissionTaskEventArgs> OnToggleAlertArrow;
-    
     private void OnEnable()
     {
         OnMouseSelectSO.OnRaiseEvent += OnMouseSelectSO_OnRaiseEvent;
@@ -82,9 +80,14 @@ public class EventManager : ServiceManager<EventManager>
         OnPlayerStatsUpdateSO.OnRaiseEvent -= OnPlayerStatsUpdateSO_OnRaiseEvent;
         OnToggleAlertArrowSO.OnRaiseMissionTaskEvent -= OnToggleAlertArrowSO_OnRaiseMissionTaskEvent;    
     }
-    private void Start()
+    public string Test()
+    {
+        return "Svar från EventManagerSO!";
+    }
+    public void StartAction()
     {
         StartGame();
+        Debug.Log("EventManagerSO start!!!");
     }
     /** Hierarchy: countdown (countdown or callback) -> mission task -> mission**/
     private void StartGame()
@@ -143,6 +146,7 @@ public class EventManager : ServiceManager<EventManager>
     }
     private void OnCountDownOrCallbackComplete_OnRaiseEvent(object sender, EventArgs e)
     {
+        Debug.Log("OnCountDownOrCallbackComplete_OnRaiseEvent in EventManagerSO");
         /** Attached to a Mission task. can be a countdown or a callback **/
         OnMissionTaskComplete?.Invoke(sender, EventArgs.Empty);
     }

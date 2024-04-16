@@ -57,4 +57,9 @@ public class VisualsManager : ServiceManager<VisualsManager>
     {
         return selectedTransform;
     }
+
+    internal void SetVisual(GameObject currentPlayer)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -34,7 +34,7 @@ public class InputManager : ServiceManager<InputManager>
     }
     private void OnDisable()
     {
-        playerInputActions.Disable();
+        //playerInputActions.Disable();
         mouseSelect.performed -= OnMouseSelectAction;
         keyboardPressed.performed -= OnKeyPressedAction;
     }

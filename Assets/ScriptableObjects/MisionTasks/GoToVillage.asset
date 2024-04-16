@@ -17,6 +17,9 @@ MonoBehaviour:
   key: go_to_village
   title: Go To Village
   toTransformTitle: Village
+  toTransform: {fileID: 0}
+  toTransformSO: {fileID: 0}
+  targetTransformAction: 1
   timeToExecute: 0
   showTimer: 0
   playAnimation: Walking
@@ -24,6 +27,7 @@ MonoBehaviour:
   useTimeToCrossFade: 0
   textToDisplay: 
   showText: 0
+  typeText: 0
   placing: {x: 0, y: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraLocalPosition: {x: 0, y: 0, z: 0}
