@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8528111946652514030}
   - component: {fileID: 3314478196289505616}
-  - component: {fileID: 7527827502608475997}
   m_Layer: 0
   m_Name: Village
   m_TagString: Untagged
@@ -55,23 +54,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7527827502608475997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705024319035336258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba3c63e79823d743b38b9a52df849ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPrefab: {fileID: 434698, guid: 9f34afb08d4d48c4b860e0b7634ce5b4, type: 3}
-  parentTransform: {fileID: 8528111946652514030}
-  transitionDelay: 0.5
-  missionScriptableObjectList:
-  - {fileID: 11400000, guid: 2b77143d94baa9f4a878779b586c0e7d, type: 2}
 --- !u!1 &7597450896301212322
 GameObject:
   m_ObjectHideFlags: 0
