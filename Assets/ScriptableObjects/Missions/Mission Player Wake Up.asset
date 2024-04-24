@@ -20,7 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c401f879b76fa84c90a016124d97c5e, type: 2}
   - {fileID: 11400000, guid: 5f5a0b1d4aaef2147b0eab463e2cf151, type: 2}
   - {fileID: 11400000, guid: 088acdc57c2cbd841b11ed31d5711e24, type: 2}
-  - {fileID: 11400000, guid: 89285b9a4df22f1458e7124726191032, type: 2}
   - {fileID: 11400000, guid: cc714316d26fe9f4ba1aba9a5bda15b5, type: 2}
   missionsAvailable:
   - {fileID: 11400000, guid: 05ba6634f6918064e9c1eeb7dc9e7792, type: 2}

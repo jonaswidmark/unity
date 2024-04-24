@@ -119,8 +119,6 @@ public class Player : BaseSceneObject, IClickable
     {
         if (!isMoving)
             return;
-        Vector3 newInitialPosition = new Vector3(transform.position.x, 10.0f, transform.position.z);
-        transform.position = newInitialPosition;
         Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
         float rotationSpeed = 230.0f;
         bool rotationComplete = RotateTowardsDirection(targetDirection, rotationSpeed);
@@ -142,6 +140,7 @@ public class Player : BaseSceneObject, IClickable
         Collider[] colliders = Physics.OverlapSphere(transform.position, collisionRadius );
         foreach (Collider collider in colliders)
         {
+            //Debug.Log("Touching: "+collider.gameObject.name);
             BaseSceneObject sceneObject = collider.GetComponent<BaseSceneObject>();
             if (sceneObject != null && sceneObject != gameObject && sceneObject.transform == targetTransform)
             {

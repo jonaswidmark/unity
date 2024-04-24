@@ -83,10 +83,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _AccumulationSize: 5
-    - _AccumulationTolerance: 0.297
+    - _AccumulationTolerance: 0.877
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Amount: 0.825
+    - _Amount: 0.57
     - _Blend: 64
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -102,9 +102,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Height: 1
     - _Metallic: 0
     - _NoiseSize: 200
-    - _NoiseStrength: 0.633
+    - _NoiseStrength: 0.706
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
