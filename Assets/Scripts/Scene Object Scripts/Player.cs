@@ -134,6 +134,8 @@ public class Player : BaseSceneObject, IClickable
         }
         float moveTowardsSpeed = 0.05f;
         transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveTowardsSpeed);
+        //Vector3 moveDirection = (targetTransform.position - transform.position).normalized;
+        //rb.AddForce(moveDirection * moveTowardsSpeed, ForceMode.VelocityChange);
     }
     private bool IsTouchingTarget()
     {

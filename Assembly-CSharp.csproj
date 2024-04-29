@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Interfaces\IStateSO.cs" />
     <Compile Include="Assets\Scripts\Grid Scripts\LevelGrid.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\MouseWorldSO.cs" />
+    <Compile Include="Assets\Scripts\SelectedVisual.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\ServicesSO\ServiceLocatorSO.cs" />
     <Compile Include="Assets\Scripts\Scene Object Scripts\Mine.cs" />
     <Compile Include="Assets\Scripts\Grid Scripts\GridSystem.cs" />
